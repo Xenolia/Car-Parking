@@ -108,7 +108,7 @@ public class PrometeoCarController : MonoBehaviour
 
       [Space(20)]
       //[Header("CONTROLS")]
-      [Space(10)]
+    //  [Space(10)]
       //The following variables lets you to set up touch controls for mobile devices.
       public bool useTouchControls = false;
       public GameObject throttleButton;
@@ -680,6 +680,68 @@ public class PrometeoCarController : MonoBehaviour
       // and, as a consequense, the car starts to emit trails to simulate the wheel skids.
       isTractionLocked = true;
       DriftCarPS();
+
+
+        ////
+        ///
+
+
+
+
+
+
+
+
+
+
+        if (Mathf.Abs(localVelocityX) > 2.5f)
+        {
+            isDrifting = true;
+            DriftCarPS();
+        }
+        else
+        {
+            isDrifting = false;
+            DriftCarPS();
+        }
+        // The following part resets the throttle power to 0 smoothly.
+        if (throttleAxis != 0f)
+        {
+            if (throttleAxis > 0f)
+            {
+                throttleAxis = throttleAxis - (Time.deltaTime * 10f);
+            }
+            else if (throttleAxis < 0f)
+            {
+                throttleAxis = throttleAxis + (Time.deltaTime * 10f);
+            }
+            if (Mathf.Abs(throttleAxis) < 0.15f)
+            {
+                throttleAxis = 0f;
+            }
+        }
+        carRigidbody.velocity = carRigidbody.velocity * (1f / (1f + (0.025f * decelerationMultiplier/10)));
+        // Since we want to decelerate the car, we are going to remove the torque from the wheels of the car.
+        frontLeftCollider.motorTorque = 0;
+        frontRightCollider.motorTorque = 0;
+        rearLeftCollider.motorTorque = 0;
+        rearRightCollider.motorTorque = 0;
+        // If the magnitude of the car's velocity is less than 0.25f (very slow velocity), then stop the car completely and
+        // also cancel the invoke of this method.
+        if (carRigidbody.velocity.magnitude < 0.25f)
+        {
+            carRigidbody.velocity = Vector3.zero;
+            CancelInvoke("DecelerateCar");
+        }
+
+
+
+
+
+
+
+
+
 
     }
 
