@@ -6,8 +6,15 @@ public class GameController : MonoBehaviour
     [SerializeField] bool useMobileControls=false;
     [SerializeField] PrometeoCarController carController;
     [SerializeField] GameObject[] mobileButtons;
+
+    [SerializeField] GameObject winPanel;
+    [SerializeField] GameObject losePanel;
+
+
+    LevelController levelController;
     private void Awake()
     {
+        levelController = GetComponent<LevelController>();
         SetMobileButtons(useMobileControls);
     }
     void SetMobileButtons(bool useMobile)
@@ -32,6 +39,15 @@ public class GameController : MonoBehaviour
 
     void Restart()
     {
-        SceneManager.LoadScene(0);
+        levelController.Restart();
+    }
+
+    public void LevelWin()
+    {
+        winPanel.SetActive(true);
+    }
+    public void LevelLose()
+    {
+        losePanel.SetActive(true);
     }
 }
