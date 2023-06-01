@@ -7,11 +7,20 @@ using TMPro;
 public class LevelController : MonoBehaviour
 {
     [SerializeField] GameObject[] levels;
+    [SerializeField] bool playSpecificLevel = false;
     public int Level;
 
     public TextMeshProUGUI Leveltext;
     private void Awake()
     {
+
+        if (playSpecificLevel)
+        {
+            ActivateLevel();
+            return;
+        }
+           
+
         if (PlayerPrefs.HasKey("Level"))
         {
             Level = PlayerPrefs.GetInt("Level", 1);
@@ -31,10 +40,15 @@ public class LevelController : MonoBehaviour
     public void NextLevel()
     {
         PlayerPrefs.SetInt("Level",Level+1);
+        SceneManager.LoadScene(1);
 
     }
     public void Restart()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
+    }
+    public void Revive()
+    {
+
     }
 }
