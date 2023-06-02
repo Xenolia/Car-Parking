@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LevelEnd : MonoBehaviour
 {
-    float countdown=3f;
+    float countdown=4f;
     GameController gameController;
     private void Awake()
     {
@@ -12,9 +12,9 @@ public class LevelEnd : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-       if(other.gameObject.GetComponent<PrometeoCarController>()!=null)
+       if(other.gameObject.GetComponentInParent<PrometeoCarController>()!=null)
         {
-
+            Debug.Log("Count down");
             countdown = countdown-(Time.deltaTime/2);
             UpdateText();
         }
@@ -22,7 +22,7 @@ public class LevelEnd : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        countdown = 3f;
+        countdown = 4f;
     }
 
     void UpdateText()

@@ -33,6 +33,12 @@ public class GameController : MonoBehaviour
 #endif
 
         SetMobileButtons(useMobileControls);
+        GameStart();
+    }
+
+    void GameStart()
+    {
+        Time.timeScale = 1f;
     }
     void SetMobileButtons(bool useMobile)
     {
