@@ -159,8 +159,24 @@ public class PrometeoCarController : MonoBehaviour
       float RRWextremumSlip;
 
 
+    GameController gameController;
+    private void Awake()
+    {
+        gameController = FindObjectOfType<GameController>();
+    }
+    private void OnEnable()
+    {
+        gameController.OnRevive += Revive;
+    }
+    private void OnDisable()
+    {
+        gameController.OnRevive -= Revive;
 
-
+    }
+    void Revive()
+    {
+        carRigidbody.velocity = Vector3.zero;
+    }
     bool disableMovement=false;
 
     public void GameEnd()

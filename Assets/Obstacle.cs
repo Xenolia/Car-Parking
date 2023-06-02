@@ -4,8 +4,28 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-    
 
+    Vector3 startPos;
+    GameController gameController;
+    private void Awake()
+    {
+        startPos = transform.position;
+        gameController = GetComponentInParent<GameController>();
+    }
+    private void OnEnable()
+    {
+        gameController.OnRevive += Revive;
+    }
+    private void OnDisable()
+    {
+        gameController.OnRevive -= Revive;
+
+    }
+    void Revive()
+    {
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        transform.position = startPos;
+    }
 
     private void OnCollisionEnter(Collision collision)
     {

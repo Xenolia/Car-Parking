@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
     using System.Runtime.InteropServices;
-
+using System;
 public class GameController : MonoBehaviour
 {
 
@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour
 
     LevelController levelController;
 
+    public Action OnRevive;
 
 #if UNITY_WEBGL
     [DllImport("__Internal")]
@@ -64,6 +65,11 @@ public class GameController : MonoBehaviour
     {
         levelController.Restart();
     }
+
+    void RestartWithCheckPoint()
+    {
+        OnRevive?.Invoke();
+    }
    public void Revive()
     {
         losePanel.SetActive(false);
@@ -78,7 +84,11 @@ public class GameController : MonoBehaviour
         {
             carController.transform.position = Vector3.zero;
         }
-      
+
+        RestartWithCheckPoint();
+        GameStart();
+
+       
     }
 
 
