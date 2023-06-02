@@ -28,7 +28,7 @@ public class GameController : MonoBehaviour
     private void Awake()
     {
         levelController = GetComponent<LevelController>();
-
+        carController = FindObjectOfType<PrometeoCarController>();
 #if UNITY_WEBGL && !UNITY_EDITOR
         useMobileControls = IsMobileBrowser();
        
@@ -128,7 +128,7 @@ public class GameController : MonoBehaviour
         GameEnd();
 
  
-        Invoke("LevelLoseDelay",1f);
+        Invoke("LevelLoseDelay",0.5f);
     }
     void LevelLoseDelay()
     {
