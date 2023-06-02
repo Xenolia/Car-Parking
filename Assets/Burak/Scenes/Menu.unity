@@ -601,6 +601,7 @@ GameObject:
   - component: {fileID: 644504497}
   - component: {fileID: 644504496}
   - component: {fileID: 644504499}
+  - component: {fileID: 644504500}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -781,6 +782,20 @@ MonoBehaviour:
   optionalRotationMode: 1
   optionalScrambleMode: 0
   optionalString: 
+--- !u!64 &644504500
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 644504495}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &711211977
 GameObject:
   m_ObjectHideFlags: 0
@@ -1861,7 +1876,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1332968019}
   - component: {fileID: 1332968018}
-  - component: {fileID: 1332968017}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -1869,22 +1883,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1332968017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1332968016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e64129ef8c0f64994900b88910392dc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levels: []
-  playSpecificLevel: 0
-  Level: 0
-  Leveltext: {fileID: 0}
 --- !u!114 &1332968018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2029,7 +2027,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1332968017}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LevelController, Assembly-CSharp
         m_MethodName: Restart
         m_Mode: 1
@@ -2234,7 +2232,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1332968017}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LevelController, Assembly-CSharp
         m_MethodName: Restart
         m_Mode: 1
@@ -2368,9 +2366,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1332968017}
-        m_TargetAssemblyTypeName: LevelController, Assembly-CSharp
-        m_MethodName: Restart
+      - m_Target: {fileID: 1332968018}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: LoadGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

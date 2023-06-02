@@ -6,6 +6,7 @@ using TMPro;
 
 public class LevelController : MonoBehaviour
 {
+    GameController gameController;
     [SerializeField] GameObject[] levels;
     [SerializeField] bool playSpecificLevel = false;
     public int Level;
@@ -13,7 +14,7 @@ public class LevelController : MonoBehaviour
     public TextMeshProUGUI Leveltext;
     private void Awake()
     {
-
+        gameController = GetComponent<GameController>();
         if (playSpecificLevel)
         {
             ActivateLevel();
@@ -47,8 +48,5 @@ public class LevelController : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
-    public void Revive()
-    {
-
-    }
+   
 }
