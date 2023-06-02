@@ -13,11 +13,12 @@ public class GameController : MonoBehaviour
     [SerializeField] GameObject winPanel;
     [SerializeField] GameObject losePanel;
     [SerializeField] Text countDownText;
-     bool gameFinished = false;
+   public  bool gameFinished = false;
 
     LevelController levelController;
 
-    public Action OnRevive;
+    public Action<Vector3> OnRevive;
+    public Action OnGameEnd;
 
 #if UNITY_WEBGL
     [DllImport("__Internal")]
@@ -68,22 +69,25 @@ public class GameController : MonoBehaviour
 
     void RestartWithCheckPoint()
     {
-        OnRevive?.Invoke();
+        GameObject checkPoint = FindObjectOfType<Level>().LastCheckPoint();
+        if (checkPoint != null)
+        {
+            carController.transform.position = checkPoint.transform.position;
+            OnRevive?.Invoke(checkPoint.transform.position);
+        }
+        else
+        {
+            carController.transform.position = Vector3.zero;
+            OnRevive?.Invoke(Vector3.zero);
+        }
+       
     }
    public void Revive()
     {
         losePanel.SetActive(false);
         gameFinished = false;
 
-        GameObject checkPoint = FindObjectOfType<Level>().LastCheckPoint();
-        if(checkPoint!=null)
-        {
-            carController.transform.position = checkPoint.transform.position;
-        }
-        else
-        {
-            carController.transform.position = Vector3.zero;
-        }
+        
 
         RestartWithCheckPoint();
         GameStart();
@@ -102,7 +106,12 @@ public class GameController : MonoBehaviour
             LevelWin();
         }
     }
+    public void DisableCountDown()
+    {
+        countDownText.gameObject.SetActive(false);
+        countDownText.text = 3.ToString(); ;
 
+    }
 
     public void LevelWin()
     {
@@ -113,16 +122,23 @@ public class GameController : MonoBehaviour
     }
     public void LevelLose()
     {
-        if (gameFinished)
+        Debug.Log("111");
+         if (gameFinished)
             return;
         GameEnd();
+
+ 
+        Invoke("LevelLoseDelay",1f);
+    }
+    void LevelLoseDelay()
+    {
         losePanel.SetActive(true);
+        OnGameEnd?.Invoke();
+
     }
     void GameEnd()
     {
-        carController.GameEnd();
-        gameFinished = true;
-
-        Time.timeScale = 0f;
+         gameFinished = true;
+       // Time.timeScale = 0f;
     }
 }

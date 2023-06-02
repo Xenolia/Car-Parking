@@ -4,16 +4,25 @@ using UnityEngine;
 
 public class CheckPoint : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+    GameController gameController;
+    private void Awake()
     {
-        if (collision.gameObject.GetComponent<PrometeoCarController>() != null)
+        gameController = GetComponentInParent<GameController>();
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.GetComponentInParent<PrometeoCarController>() != null)
         {
-            CheckPointPassed(); 
+            CheckPointPassed();
         }
     }
 
     void CheckPointPassed()
     {
+        if (gameController.gameFinished)
+            return;
+
+        Debug.Log("Checkpoint");
         GetComponentInParent<Level>().CheckPointPassed(gameObject);
     }
 }

@@ -19,9 +19,9 @@ public class Obstacle : MonoBehaviour
     private void OnDisable()
     {
         gameController.OnRevive -= Revive;
-
+ 
     }
-    void Revive()
+    void Revive(Vector3 asd)
     {
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         transform.position = startPos;
@@ -31,14 +31,9 @@ public class Obstacle : MonoBehaviour
     {
         if(collision.gameObject.GetComponent<PrometeoCarController>()!=null)
         {
-            StartCoroutine(LevelLose());
+            FindObjectOfType<GameController>().LevelLose();
         }
     }
 
-    IEnumerator LevelLose()
-    {
-        yield return new WaitForSeconds(1);
-        FindObjectOfType<GameController>().LevelLose();
-
-    }
+   
 }

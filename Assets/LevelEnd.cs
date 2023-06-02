@@ -5,6 +5,7 @@ using UnityEngine;
 public class LevelEnd : MonoBehaviour
 {
     float countdown=4f;
+    PrometeoCarController CarController;
     GameController gameController;
     private void Awake()
     {
@@ -12,14 +13,36 @@ public class LevelEnd : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
+       
        if(other.gameObject.GetComponentInParent<PrometeoCarController>()!=null)
         {
+            CarController = other.gameObject.GetComponentInParent<PrometeoCarController>();
             Debug.Log("Count down");
-            countdown = countdown-(Time.deltaTime/2);
-            UpdateText();
+            CountDown();
         }
     }
+    void CountDown()
+    {
+        float absoluteCarSpeed = Mathf.Abs(CarController.carSpeed);
+         if ( Mathf.RoundToInt(absoluteCarSpeed)!=0)
+        {
+            countdown = 4f;
+            ResetTimer();
+            Debug.Log("Reset timer");
+            return;
 
+        }
+            
+        
+
+         countdown = countdown - (Time.deltaTime);
+        UpdateText();
+    }
+    void ResetTimer()
+    {
+        gameController.DisableCountDown();
+
+    }
     private void OnTriggerExit(Collider other)
     {
         countdown = 4f;
@@ -27,6 +50,12 @@ public class LevelEnd : MonoBehaviour
 
     void UpdateText()
     {
+        if(countdown<0)
+        {
+            return;
+
+        }
+
         gameController.WinCountDown((int)countdown);
     }
 }

@@ -124,7 +124,7 @@ public class PrometeoCarController : MonoBehaviour
 
     //CAR DATA
 
-      [HideInInspector]
+     
       public float carSpeed; // Used to store the speed of the car.
       [HideInInspector]
       public bool isDrifting; // Used to know whether the car is drifting or not.
@@ -167,22 +167,32 @@ public class PrometeoCarController : MonoBehaviour
     private void OnEnable()
     {
         gameController.OnRevive += Revive;
+        gameController.OnGameEnd += GameEnd;
     }
     private void OnDisable()
     {
         gameController.OnRevive -= Revive;
+        gameController.OnGameEnd -= GameEnd;
 
     }
-    void Revive()
+    
+    void Revive(Vector3 checkpoint)
     {
+        
+        transform.SetPositionAndRotation(checkpoint, Quaternion.identity);
         carRigidbody.velocity = Vector3.zero;
+        disableMovement = false;
+        carRigidbody.isKinematic = false;
+
     }
     bool disableMovement=false;
 
     public void GameEnd()
     {
+        Debug.Log("game end");
         disableMovement = true;
-        maxSpeed = 0;
+         carRigidbody.velocity = Vector3.zero;
+        carRigidbody.isKinematic = true;
     }
 
     // Start is called before the first frame update
@@ -359,21 +369,24 @@ public class PrometeoCarController : MonoBehaviour
 
       }else{
 
-        if(Input.GetKey(KeyCode.W)){
+        if(Input.GetKey(KeyCode.W)|| Input.GetKey(KeyCode.UpArrow))
+            {
           CancelInvoke("DecelerateCar");
           deceleratingCar = false;
           GoForward();
         }
-        if(Input.GetKey(KeyCode.S)){
+        if(Input.GetKey(KeyCode.S)||Input.GetKey(KeyCode.DownArrow)){
           CancelInvoke("DecelerateCar");
           deceleratingCar = false;
           GoReverse();
         }
 
-        if(Input.GetKey(KeyCode.A)){
+        if(Input.GetKey(KeyCode.A)|| Input.GetKey(KeyCode.LeftArrow))
+            {
           TurnLeft();
         }
-        if(Input.GetKey(KeyCode.D)){
+        if(Input.GetKey(KeyCode.D)|| Input.GetKey(KeyCode.RightArrow))
+            {
           TurnRight();
         }
         if(Input.GetKey(KeyCode.Space)){
@@ -384,14 +397,14 @@ public class PrometeoCarController : MonoBehaviour
         if(Input.GetKeyUp(KeyCode.Space)){
           RecoverTraction();
         }
-        if((!Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W))){
+        if((!Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W)&& !Input.GetKey(KeyCode.UpArrow)&& !Input.GetKey(KeyCode.DownArrow))){
           ThrottleOff();
         }
-        if((!Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W)) && !Input.GetKey(KeyCode.Space) && !deceleratingCar){
+        if((!Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W))&& !Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.Space) && !deceleratingCar){
           InvokeRepeating("DecelerateCar", 0f, 0.1f);
           deceleratingCar = true;
         }
-        if(!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && steeringAxis != 0f){
+        if(!Input.GetKey(KeyCode.A)&&!Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.D) && steeringAxis != 0f){
           ResetSteeringAngle();
         }
 
