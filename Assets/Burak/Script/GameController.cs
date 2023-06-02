@@ -20,6 +20,7 @@ public class GameController : MonoBehaviour
     public Action<Vector3> OnRevive;
     public Action OnGameEnd;
 
+    CoinController coinController;
 #if UNITY_WEBGL
     [DllImport("__Internal")]
     private static extern bool IsMobileBrowser();
@@ -27,6 +28,7 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
+        coinController = GetComponent<CoinController>();
         levelController = GetComponent<LevelController>();
         carController = FindObjectOfType<PrometeoCarController>();
 #if UNITY_WEBGL && !UNITY_EDITOR
@@ -119,6 +121,7 @@ public class GameController : MonoBehaviour
             return;
         GameEnd();
         winPanel.SetActive(true);
+        coinController.MakeMoney();
     }
     public void LevelLose()
     {

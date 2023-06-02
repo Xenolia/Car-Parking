@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using DG.Tweening;
 public class MenuController : MonoBehaviour
 {
     [SerializeField] GameObject[] cars;
-
+    [SerializeField] GameObject activeCar;
+    [SerializeField] GameObject Platform;
 
     [SerializeField] GameObject[] disableButtons;
     private void Awake()
@@ -21,11 +22,18 @@ public class MenuController : MonoBehaviour
 
     public void NextCar()
     {
-       
+
+
+
+
+        Platform.GetComponent<DOTweenAnimation>().DORestart();
     }
     public void PreviousCar()
     {
-        
+
+
+
+        Platform.GetComponent<DOTweenAnimation>().DORestart();
     }
     void EnableButtons()
     {
