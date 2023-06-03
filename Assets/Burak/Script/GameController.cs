@@ -21,6 +21,9 @@ public class GameController : MonoBehaviour
     public Action OnGameEnd;
 
     CoinController coinController;
+
+    int carIndex;
+
 #if UNITY_WEBGL
     [DllImport("__Internal")]
     private static extern bool IsMobileBrowser();
@@ -28,18 +31,21 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
+        EnableCar();
         coinController = GetComponent<CoinController>();
         levelController = GetComponent<LevelController>();
-        carController = FindObjectOfType<PrometeoCarController>();
 #if UNITY_WEBGL && !UNITY_EDITOR
         useMobileControls = IsMobileBrowser();
        
 #endif
 
-        SetMobileButtons(useMobileControls);
         GameStart();
     }
-
+    void EnableCar()
+    {
+      carIndex = PlayerPrefs.GetInt("Car",1);
+        FindObjectOfType<CarManager>().ActivateCar(carIndex);
+    }
     void GameStart()
     {
         Time.timeScale = 1f;
@@ -54,6 +60,13 @@ public class GameController : MonoBehaviour
             }
         }
         carController.useTouchControls = useMobile;
+
+    }
+    private void Start()
+    {
+        carController = FindObjectOfType<PrometeoCarController>();
+        SetMobileButtons(useMobileControls);
+
 
     }
     private void Update()

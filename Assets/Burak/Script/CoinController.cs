@@ -9,8 +9,19 @@ public class CoinController : MonoBehaviour
     public int Coin;
 
     public Text coinText;
+
+   [SerializeField] int GodMode = 0;
     private void Awake()
     {
+         
+            for (int i = 0; i < GodMode; i++)
+            {
+            MakeMoney();
+            }
+
+        
+            
+
         if(PlayerPrefs.HasKey("Coin"))
         {
             Coin = PlayerPrefs.GetInt("Coin",0);
