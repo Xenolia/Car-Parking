@@ -22,6 +22,8 @@ public class GameController : MonoBehaviour
 
     CoinController coinController;
 
+
+   [SerializeField] AdManager adManager;
     int carIndex;
 
 #if UNITY_WEBGL
@@ -97,19 +99,44 @@ public class GameController : MonoBehaviour
         }
        
     }
+
+ 
    public void Revive()
+    {
+      if(adManager.RewardedAdManager.IsRewardedAdReady())
+        {
+            adManager.RewardedAdManager.RegisterOnUserEarnedRewarededEvent(ReviveButton);
+            adManager.RewardedAdManager.RegisterOnAdShowFailedEvent(RewardedEnd);
+            adManager.RewardedAdManager.RegisterOnAdClosedEvent(RewardedEnd);
+
+            adManager.RewardedAdManager.ShowAd();
+        } 
+    }
+
+    private void RewardedEnd(IronSourceError arg1, IronSourceAdInfo arg2)
+    {
+        adManager.RewardedAdManager.UnRegisterOnUserEarnedRewarededEvent(ReviveButton);
+        adManager.RewardedAdManager.UnRegisterOnAdShowFailedEvent(RewardedEnd);
+        adManager.RewardedAdManager.UnRegisterOnAdClosedEvent(RewardedEnd);
+    }
+
+    private void RewardedEnd(IronSourceAdInfo obj)
+    {
+        adManager.RewardedAdManager.UnRegisterOnUserEarnedRewarededEvent(ReviveButton);
+        adManager.RewardedAdManager.UnRegisterOnAdShowFailedEvent(RewardedEnd);
+        adManager.RewardedAdManager.UnRegisterOnAdClosedEvent(RewardedEnd);
+    }
+
+    private void ReviveButton(IronSourcePlacement arg1, IronSourceAdInfo arg2)
     {
         losePanel.SetActive(false);
         gameFinished = false;
 
-        
+
 
         RestartWithCheckPoint();
         GameStart();
-
-       
     }
-
 
     public void WinCountDown(int countDown)
     {
