@@ -1072,10 +1072,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Car5
       objectReference: {fileID: 0}
-    - target: {fileID: 4633380894568260258, guid: 9af5ea1e94d39fb4f83294f6c2f98f3b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5406223852816758808, guid: 9af5ea1e94d39fb4f83294f6c2f98f3b, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1324,6 +1320,7 @@ MonoBehaviour:
   - {fileID: 1271889110}
   - {fileID: 1182869505}
   - {fileID: 422747683}
+  CurrentCar: {fileID: 0}
 --- !u!4 &511679430
 Transform:
   m_ObjectHideFlags: 0
@@ -1919,10 +1916,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Car4
       objectReference: {fileID: 0}
-    - target: {fileID: 7639841047343673449, guid: 26ccbd7d4b6621445b3ee4407d61b470, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26ccbd7d4b6621445b3ee4407d61b470, type: 3}
 --- !u!1 &705582346 stripped
@@ -1989,10 +1982,6 @@ PrefabInstance:
     - target: {fileID: 2128691788094799406, guid: 4bd1febf3599488418f1a614370ac1e2, type: 3}
       propertyPath: m_Name
       value: Car3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2128691788094799406, guid: 4bd1febf3599488418f1a614370ac1e2, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4bd1febf3599488418f1a614370ac1e2, type: 3}
@@ -2957,10 +2946,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Car1
       objectReference: {fileID: 0}
-    - target: {fileID: 1417197895592252248, guid: 78ecff6899efd6244a6087b87be7d085, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1792772773064821218, guid: 78ecff6899efd6244a6087b87be7d085, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -3105,10 +3090,6 @@ PrefabInstance:
     - target: {fileID: 4010423683833776243, guid: 9dfc7f02567e54a4a88252620b9897f1, type: 3}
       propertyPath: m_Name
       value: Car2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4010423683833776243, guid: 9dfc7f02567e54a4a88252620b9897f1, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4389940616021775049, guid: 9dfc7f02567e54a4a88252620b9897f1, type: 3}
       propertyPath: m_RootOrder
@@ -3547,7 +3528,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 25
+  field of view: 50
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -3572,8 +3553,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1697935061}
-  m_LocalRotation: {x: 0.25147444, y: -0.0007113236, z: -0.0043850895, w: 0.9678538}
-  m_LocalPosition: {x: 11.649598, y: 12.879999, z: -12.804045}
+  m_LocalRotation: {x: 0.060822383, y: 0.0007612555, z: 0.0046925126, w: 0.99813735}
+  m_LocalPosition: {x: -0.30007744, y: 1.23, z: -0.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
