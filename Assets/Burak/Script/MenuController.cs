@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 using DG.Tweening;
 using UnityEngine.UI;
 using TMPro;
+using System;
+
 public class MenuController : MonoBehaviour
 {
     [SerializeField] GameObject[] cars;
@@ -16,13 +18,14 @@ public class MenuController : MonoBehaviour
     [SerializeField] GameObject buyButton;
     [SerializeField] GameObject RaceButton;
 
-
+   [SerializeField] AdManager adManager;
     
     CoinController coinController;
 
 
     private void Awake()
     {
+        adManager.Init();
         coinController = GetComponent<CoinController>();
          CheckButtons();
         UpdateBuyButton();
@@ -58,6 +61,23 @@ public class MenuController : MonoBehaviour
         price.Unlock();
         UpdateBuyButton();
     }
+
+    public void RewardedButton()
+    {
+       if( adManager.RewardedAdManager.IsRewardedAdReady())
+        {
+            adManager.RewardedAdManager.RegisterOnUserEarnedRewarededEvent(UnlockWithRewarded);
+        }
+    }
+
+    private void UnlockWithRewarded(IronSourcePlacement arg1, IronSourceAdInfo arg2)
+    {
+        Price price = cars[activeCarIndex].GetComponent<Price>();
+
+         price.Unlock();
+        UpdateBuyButton();
+    } 
+
     void CheckBuyButtonCoin(Price price)
     {
         if(coinController.Coin>=price.CarPrice)
