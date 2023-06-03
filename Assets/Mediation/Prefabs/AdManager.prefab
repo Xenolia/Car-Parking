@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1253768460573569521}
   - component: {fileID: 1253768460573569520}
   - component: {fileID: 1578990923}
+  - component: {fileID: 1268007370}
   m_Layer: 0
   m_Name: AdManager
   m_TagString: Untagged
@@ -46,8 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inAppPurchase: {fileID: 0}
-  _ironSourceMediationSettings: {fileID: 11400000, guid: b81a54ffa6e5a15489040dbadc2a8c98,
-    type: 2}
+  _ironSourceMediationSettings: {fileID: 11400000, guid: b81a54ffa6e5a15489040dbadc2a8c98, type: 2}
   _isUnderThirteen: 0
   _bannerPosition: 2
   _bannerSize: 3
@@ -68,3 +68,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _key: f47a900d3407435687a234a436161bf6
+--- !u!114 &1268007370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253768460573569522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aeb83a31d9334de9a03c11d1f697709, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -25,8 +25,7 @@ public class MenuController : MonoBehaviour
 
     private void Awake()
     {
-        adManager.Init();
-        coinController = GetComponent<CoinController>();
+         coinController = GetComponent<CoinController>();
          CheckButtons();
         UpdateBuyButton();
      }
@@ -67,9 +66,18 @@ public class MenuController : MonoBehaviour
        if( adManager.RewardedAdManager.IsRewardedAdReady())
         {
             adManager.RewardedAdManager.RegisterOnUserEarnedRewarededEvent(UnlockWithRewarded);
+            adManager.RewardedAdManager.RegisterOnAdClosedEvent(OnAdClosed);
+
+            adManager.RewardedAdManager.ShowAd();
         }
     }
 
+    private void OnAdClosed(IronSourceAdInfo obj)
+    {
+        adManager.RewardedAdManager.UnRegisterOnUserEarnedRewarededEvent(UnlockWithRewarded);
+        adManager.RewardedAdManager.UnRegisterOnAdClosedEvent(OnAdClosed);
+    }
+     
     private void UnlockWithRewarded(IronSourcePlacement arg1, IronSourceAdInfo arg2)
     {
         Price price = cars[activeCarIndex].GetComponent<Price>();
