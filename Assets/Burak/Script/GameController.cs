@@ -21,7 +21,7 @@ public class GameController : MonoBehaviour
     public Action OnGameEnd;
 
     CoinController coinController;
-
+    CarManager carManager;
 
    [SerializeField] AdManager adManager;
     int carIndex;
@@ -33,6 +33,7 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
+        carManager = FindObjectOfType<CarManager>();
         EnableCar();
         coinController = GetComponent<CoinController>();
         levelController = GetComponent<LevelController>();
@@ -77,8 +78,15 @@ public class GameController : MonoBehaviour
         {
             Restart();
         }
+        if(Input.GetKeyDown(KeyCode.V))
+        {
+            ChangeCameraAngle();
+        }
     }
-
+    void ChangeCameraAngle()
+    {
+        carManager.ChangeCamera();
+    }
     void Restart()
     {
         levelController.Restart();
