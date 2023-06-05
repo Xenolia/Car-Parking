@@ -469,13 +469,14 @@ GameObject:
   - component: {fileID: 1792772773064821218}
   - component: {fileID: 6629445287046805499}
   - component: {fileID: 1964476039759930061}
+  - component: {fileID: 9040069623939252716}
   m_Layer: 0
   m_Name: Car1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1792772773064821218
 Transform:
   m_ObjectHideFlags: 0
@@ -563,6 +564,21 @@ MonoBehaviour:
   carSpeed: 0
   isDrifting: 0
   isTractionLocked: 0
+--- !u!114 &9040069623939252716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417197895592252248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 539a8e175e42144e7a274c39543bcfe3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam1: {fileID: 1964476039006751815}
+  cam2: {fileID: 1964476038933507543}
+  cam3: {fileID: 1964476040514196397}
 --- !u!1 &1539161942329579874
 GameObject:
   m_ObjectHideFlags: 0
