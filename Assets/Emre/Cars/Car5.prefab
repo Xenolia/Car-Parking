@@ -588,7 +588,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5406223852816758808
 Transform:
   m_ObjectHideFlags: 0
@@ -646,8 +646,8 @@ MonoBehaviour:
   accelerationMultiplier: 10
   maxSteeringAngle: 35
   steeringSpeed: 0.5
-  brakeForce: 469
-  decelerationMultiplier: 2
+  brakeForce: 600
+  decelerationMultiplier: 4
   handbrakeDriftMultiplier: 7
   bodyMassCenter: {x: 0, y: 0, z: 0}
   frontLeftMesh: {fileID: 3504691674233767376}
