@@ -5,15 +5,16 @@ using UnityEngine;
 public class CameraSwitch : MonoBehaviour
 {
     [SerializeField] GameObject cam1, cam2, cam3;
-
+    public GameObject Mirrors;
     public void ChangeCam()
     {
         Debug.Log("Change Cam");
         if(cam1.activeInHierarchy)
         {
             Debug.Log("Cam1");
-            cam1.SetActive(false);
-            cam2.SetActive(true);
+
+            StartCoroutine(CamDelay());
+
             return;
         }
         if (cam2.activeSelf)
@@ -22,6 +23,7 @@ public class CameraSwitch : MonoBehaviour
 
             cam2.SetActive(false);
             cam3.SetActive(true);
+            Mirrors.SetActive(false);
             return;
 
         }
@@ -32,8 +34,18 @@ public class CameraSwitch : MonoBehaviour
 
             cam3.SetActive(false);
             cam1.SetActive(true);
+            Mirrors.SetActive(false);
+
             return;
 
         }
+    }
+
+    IEnumerator CamDelay()
+    {
+        cam1.SetActive(false);
+        cam2.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+        Mirrors.SetActive(true);
     }
 }

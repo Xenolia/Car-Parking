@@ -660,7 +660,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1541212463030408259
 Transform:
   m_ObjectHideFlags: 0
@@ -1293,6 +1293,7 @@ MonoBehaviour:
   cam1: {fileID: 1541212461923361073}
   cam2: {fileID: 1541212462001324193}
   cam3: {fileID: 1541212463629221595}
+  Mirrors: {fileID: 1541212463030408258}
 --- !u!1 &4234792415936381556
 GameObject:
   m_ObjectHideFlags: 0
