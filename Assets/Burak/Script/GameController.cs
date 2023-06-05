@@ -20,6 +20,12 @@ public class GameController : MonoBehaviour
     public Action<Vector3> OnRevive;
     public Action OnGameEnd;
 
+    CoinController coinController;
+
+
+   [SerializeField] AdManager adManager;
+    int carIndex;
+
 #if UNITY_WEBGL
     [DllImport("__Internal")]
     private static extern bool IsMobileBrowser();
@@ -27,17 +33,21 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
+        EnableCar();
+        coinController = GetComponent<CoinController>();
         levelController = GetComponent<LevelController>();
-
 #if UNITY_WEBGL && !UNITY_EDITOR
         useMobileControls = IsMobileBrowser();
        
 #endif
 
-        SetMobileButtons(useMobileControls);
         GameStart();
     }
-
+    void EnableCar()
+    {
+      carIndex = PlayerPrefs.GetInt("Car",1);
+        FindObjectOfType<CarManager>().ActivateCar(carIndex);
+    }
     void GameStart()
     {
         Time.timeScale = 1f;
@@ -52,6 +62,13 @@ public class GameController : MonoBehaviour
             }
         }
         carController.useTouchControls = useMobile;
+
+    }
+    private void Start()
+    {
+        carController = FindObjectOfType<PrometeoCarController>();
+        SetMobileButtons(useMobileControls);
+
 
     }
     private void Update()
@@ -82,19 +99,44 @@ public class GameController : MonoBehaviour
         }
        
     }
+
+ 
    public void Revive()
+    {
+      if(adManager.RewardedAdManager.IsRewardedAdReady())
+        {
+            adManager.RewardedAdManager.RegisterOnUserEarnedRewarededEvent(ReviveButton);
+            adManager.RewardedAdManager.RegisterOnAdShowFailedEvent(RewardedEnd);
+            adManager.RewardedAdManager.RegisterOnAdClosedEvent(RewardedEnd);
+
+            adManager.RewardedAdManager.ShowAd();
+        } 
+    }
+
+    private void RewardedEnd(IronSourceError arg1, IronSourceAdInfo arg2)
+    {
+        adManager.RewardedAdManager.UnRegisterOnUserEarnedRewarededEvent(ReviveButton);
+        adManager.RewardedAdManager.UnRegisterOnAdShowFailedEvent(RewardedEnd);
+        adManager.RewardedAdManager.UnRegisterOnAdClosedEvent(RewardedEnd);
+    }
+
+    private void RewardedEnd(IronSourceAdInfo obj)
+    {
+        adManager.RewardedAdManager.UnRegisterOnUserEarnedRewarededEvent(ReviveButton);
+        adManager.RewardedAdManager.UnRegisterOnAdShowFailedEvent(RewardedEnd);
+        adManager.RewardedAdManager.UnRegisterOnAdClosedEvent(RewardedEnd);
+    }
+
+    private void ReviveButton(IronSourcePlacement arg1, IronSourceAdInfo arg2)
     {
         losePanel.SetActive(false);
         gameFinished = false;
 
-        
+
 
         RestartWithCheckPoint();
         GameStart();
-
-       
     }
-
 
     public void WinCountDown(int countDown)
     {
@@ -119,6 +161,7 @@ public class GameController : MonoBehaviour
             return;
         GameEnd();
         winPanel.SetActive(true);
+        coinController.MakeMoney();
     }
     public void LevelLose()
     {
@@ -128,7 +171,7 @@ public class GameController : MonoBehaviour
         GameEnd();
 
  
-        Invoke("LevelLoseDelay",1f);
+        Invoke("LevelLoseDelay",0.5f);
     }
     void LevelLoseDelay()
     {
