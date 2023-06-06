@@ -3321,9 +3321,10 @@ MonoBehaviour:
   - {fileID: 1230857148}
   - {fileID: 1875181113}
   - {fileID: 1115547066}
-  playSpecificLevel: 1
+  playSpecificLevel: 0
   Level: 17
   Leveltext: {fileID: 1181202524}
+  levelIndex: 0
 --- !u!114 &1287724331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4700,6 +4701,10 @@ PrefabInstance:
     - target: {fileID: 1914599597387728492, guid: b061c73ac286b9e4ca5cbe17dd81977a, type: 3}
       propertyPath: m_Name
       value: Level17
+      objectReference: {fileID: 0}
+    - target: {fileID: 1914599597387728492, guid: b061c73ac286b9e4ca5cbe17dd81977a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1914599597387728493, guid: b061c73ac286b9e4ca5cbe17dd81977a, type: 3}
       propertyPath: m_RootOrder
