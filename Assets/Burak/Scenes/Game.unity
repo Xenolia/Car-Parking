@@ -3017,7 +3017,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1227248957
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3201,9 +3201,10 @@ MonoBehaviour:
   - {fileID: 1775010956}
   - {fileID: 1065457189}
   - {fileID: 182033026}
-  playSpecificLevel: 1
+  playSpecificLevel: 0
   Level: 10
   Leveltext: {fileID: 1181202524}
+  levelIndex: 0
 --- !u!114 &1287724331
 MonoBehaviour:
   m_ObjectHideFlags: 0

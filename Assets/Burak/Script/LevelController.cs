@@ -31,12 +31,34 @@ public class LevelController : MonoBehaviour
 
         ActivateLevel();
     }
-
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            NextLevel();
+        }
+    }
+   public int levelIndex;
     void ActivateLevel()
     {
 
-        Leveltext.text = "LEVEL  " + Level.ToString() ;
-        levels[Level - 1].SetActive(true);
+        Leveltext.text = "LEVEL  " + Level.ToString();
+
+       levelIndex = Level % levels.Length+1;
+        Debug.Log(levelIndex+"  "+levels.Length);
+
+        if (levelIndex <= levels.Length)
+        {
+            Debug.Log("1111");
+            levels[levelIndex - 1].SetActive(true);
+        }
+
+        else
+        {
+            levels[levelIndex].SetActive(true);
+
+        }
+
     }
     public void NextLevel()
     {
