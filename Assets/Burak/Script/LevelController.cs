@@ -44,10 +44,10 @@ public class LevelController : MonoBehaviour
 
         Leveltext.text = "LEVEL  " + Level.ToString();
 
-       levelIndex = Level % levels.Length+1;
+       levelIndex = Level % (levels.Length+1);
         Debug.Log(levelIndex+"  "+levels.Length);
 
-        if (levelIndex <= levels.Length)
+        if (Level <= levels.Length)
         {
             Debug.Log("1111");
             levels[levelIndex - 1].SetActive(true);
@@ -56,7 +56,6 @@ public class LevelController : MonoBehaviour
         else
         {
             levels[levelIndex].SetActive(true);
-
         }
 
     }
