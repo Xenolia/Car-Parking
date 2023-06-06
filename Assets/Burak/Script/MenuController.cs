@@ -16,6 +16,7 @@ public class MenuController : MonoBehaviour
     [SerializeField] GameObject nextButton;
     [SerializeField] GameObject previousButton;
     [SerializeField] GameObject buyButton;
+    [SerializeField] GameObject rewardedButton;
     [SerializeField] GameObject RaceButton;
 
    [SerializeField] AdManager adManager;
@@ -107,10 +108,13 @@ public class MenuController : MonoBehaviour
             buyButton.SetActive(true);
             CheckBuyButtonCoin(price);
             DisableRace();
+            rewardedButton.SetActive(true);
         }
         else
         {
             buyButton.SetActive(false);
+            rewardedButton.SetActive(false);
+
             EnableRace();
         }
         
