@@ -8,7 +8,7 @@ public class LevelEnd : MonoBehaviour
     PrometeoCarController CarController;
     GameController gameController;
 
-    [SerializeField] GameObject rotationWarningText;
+    GameObject rotationWarningText;
     [SerializeField] float targetAngleY;
 
     [SerializeField] MeshRenderer changeMaterial;
