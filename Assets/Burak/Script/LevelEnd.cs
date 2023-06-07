@@ -7,7 +7,8 @@ public class LevelEnd : MonoBehaviour
     float countdown=4f;
     PrometeoCarController CarController;
     GameController gameController;
-    private void Awake()
+
+     private void Awake()
     {
         gameController = GetComponentInParent<GameController>();
     }
@@ -16,7 +17,9 @@ public class LevelEnd : MonoBehaviour
        
        if(other.gameObject.GetComponentInParent<PrometeoCarController>()!=null)
         {
+           
             CarController = other.gameObject.GetComponentInParent<PrometeoCarController>();
+           // if(CarController.transform.rotation)
             Debug.Log("Count down");
             CountDown();
         }
