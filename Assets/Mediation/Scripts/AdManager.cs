@@ -145,8 +145,7 @@ public class AdManager : MonoBehaviour
         LoadAds();
 #endif
 
-        Debug.Log("AdManagers are created");
-    }
+     }
 
     private void OnSdkInitializationComplateEvent()
     {

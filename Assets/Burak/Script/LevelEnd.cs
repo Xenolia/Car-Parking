@@ -13,7 +13,7 @@ public class LevelEnd : MonoBehaviour
     [SerializeField] bool doNotCheckRotation=false;
    MeshRenderer changeMaterial;
      MeshRenderer changeMaterial2;
-
+    bool gameEnd;
     Color oldColor;
     Color oldColor2;
      private void Awake()
@@ -30,28 +30,55 @@ public class LevelEnd : MonoBehaviour
         rotationWarningText = GameObject.FindGameObjectWithTag("WarningText");
         rotationWarningText.SetActive(false);
     }
+    private void OnEnable()
+    {
+        gameController.OnGameEnd += GameEnd;
+    }
     private void OnDisable()
     {
         changeMaterial.sharedMaterial.color = oldColor;
         changeMaterial2.sharedMaterial.color = oldColor2;
+        gameController.OnGameEnd -= GameEnd;
 
+    }
+    void GameEnd()
+    {
+        gameEnd = true;
     }
     private void OnTriggerStay(Collider other)
     {
-       
-       if(other.gameObject.GetComponentInParent<PrometeoCarController>()!=null)
+        if (gameEnd)
         {
-           
+            ResetTimer();
+            return;
+
+        }
+        if (other.gameObject.GetComponentInParent<PrometeoCarController>()!=null)
+        {
+            if (gameEnd)
+            {
+                ResetTimer();
+                return;
+
+            }
             CarController = other.gameObject.GetComponentInParent<PrometeoCarController>();
            // if(CarController.transform.rotation)
              CountDown();
         }
     }
     float temp;
-    void CountDown()
+     void CountDown()
     {
 
-         float absoluteCarSpeed = Mathf.Abs(CarController.carSpeed);
+
+        if (gameEnd)
+        {
+            ResetTimer();
+            return;
+
+        }
+
+        float absoluteCarSpeed = Mathf.Abs(CarController.carSpeed);
         if(!doNotCheckRotation)
         {
               temp = targetAngleY;
