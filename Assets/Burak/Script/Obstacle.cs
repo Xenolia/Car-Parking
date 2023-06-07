@@ -33,7 +33,9 @@ public class Obstacle : MonoBehaviour
         {
             FindObjectOfType<GameController>().LevelLose();
         }
-    }
-
-   
+        if (collision.gameObject.GetComponentInParent<PrometeoCarController>() != null)
+        {
+            FindObjectOfType<GameController>().LevelLose();
+        }
+    } 
 }
