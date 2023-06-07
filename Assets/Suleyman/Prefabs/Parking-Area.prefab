@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5242709630378927314}
+  - component: {fileID: 7858097537354698170}
   m_Layer: 0
   m_Name: Parking-Area
   m_TagString: Untagged
@@ -33,6 +34,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7858097537354698170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4866711199824297576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94abe6e0b739e4f7a9449b00bfc37fa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeMaterial1: {fileID: 4955932460794655069}
+  changeMaterial2: {fileID: 5853548380599705155}
 --- !u!1 &4955932460794655069
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,7 +220,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9eb2143769188004e9f517de42545f71, type: 2}
+  - {fileID: 2100000, guid: 7c869747415944359b9288c4bf4c4aef, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

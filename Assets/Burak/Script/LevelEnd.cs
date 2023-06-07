@@ -10,19 +10,31 @@ public class LevelEnd : MonoBehaviour
 
     GameObject rotationWarningText;
     [SerializeField] float targetAngleY;
+    [SerializeField] bool doNotCheckRotation=false;
+   MeshRenderer changeMaterial;
+     MeshRenderer changeMaterial2;
 
-    [SerializeField] MeshRenderer changeMaterial;
     Color oldColor;
+    Color oldColor2;
      private void Awake()
     {
         gameController = GetComponentInParent<GameController>();
+
+       ParkingArea area= FindObjectOfType<ParkingArea>();
+        changeMaterial = area.ChangeMaterial1().GetComponent<MeshRenderer>();
+        changeMaterial2 = area.ChangeMaterial2().GetComponent<MeshRenderer>();
+
         oldColor = changeMaterial.sharedMaterial.color;
-       rotationWarningText = GameObject.FindGameObjectWithTag("WarningText");
+        oldColor2 = changeMaterial2.sharedMaterial.color;
+
+        rotationWarningText = GameObject.FindGameObjectWithTag("WarningText");
         rotationWarningText.SetActive(false);
     }
     private void OnDisable()
     {
         changeMaterial.sharedMaterial.color = oldColor;
+        changeMaterial2.sharedMaterial.color = oldColor2;
+
     }
     private void OnTriggerStay(Collider other)
     {
@@ -35,11 +47,27 @@ public class LevelEnd : MonoBehaviour
              CountDown();
         }
     }
+    float temp;
     void CountDown()
     {
 
          float absoluteCarSpeed = Mathf.Abs(CarController.carSpeed);
+        if(!doNotCheckRotation)
+        {
+              temp = targetAngleY;
 
+            float carRotationY = CarController.transform.rotation.eulerAngles.y;
+
+            float difference = Mathf.DeltaAngle(carRotationY, targetAngleY);
+
+            if (difference > 15 )
+            {
+                
+             rotationWarningText.SetActive(true);
+                return;
+            }
+
+        }
         if (Mathf.RoundToInt(absoluteCarSpeed) != 0)
         {
             countdown = 4f;
@@ -47,37 +75,40 @@ public class LevelEnd : MonoBehaviour
              return;
 
         }
+      
+        
+             changeMaterial.sharedMaterial.color = Color.green;
+        changeMaterial2.sharedMaterial.color = Color.green;
 
-        if (Mathf.Abs(CarController.transform.rotation.eulerAngles.y - targetAngleY) > 15)
-        {
-           rotationWarningText.SetActive(true);
-             return;
-        }
-        else if(Mathf.RoundToInt(absoluteCarSpeed)== 0)
-        {
-             rotationWarningText.SetActive(false);
-            changeMaterial.sharedMaterial.color = Color.green;
-
-            countdown = countdown - (Time.deltaTime);
+        countdown = countdown - (Time.deltaTime);
             UpdateText();
-        }
-
+ 
        
     }
     void ResetTimer()
     {
         gameController.DisableCountDown();
+        changeMaterial.sharedMaterial.color =oldColor;
+        changeMaterial2.sharedMaterial.color = oldColor2;
+
+        rotationWarningText.SetActive(false);
+
     }
     private void OnTriggerExit(Collider other)
     {
         countdown = 4f;
         changeMaterial.sharedMaterial.color = oldColor;
+        changeMaterial2.sharedMaterial.color = oldColor2;
+
+        rotationWarningText.SetActive(false);
+
 
     }
 
     void UpdateText()
     {
-        if(countdown<0)
+        rotationWarningText.SetActive(false);
+        if (countdown<0)
         {
             return;
 
