@@ -491,24 +491,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &36277610 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2186826515957452602, guid: 9af5ea1e94d39fb4f83294f6c2f98f3b, type: 3}
-  m_PrefabInstance: {fileID: 422747682}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &36277614
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 36277610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dd144da14fb6496981ae2dc660eb922, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotation: {x: 0, y: 0, z: 0}
 --- !u!1 &66484010
 GameObject:
   m_ObjectHideFlags: 0
@@ -779,24 +761,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3160236291838678401, guid: 9c3b7ef35f3f21a4f8f04e0e50fb1d99, type: 3}
   m_PrefabInstance: {fileID: 221681411}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &240692495 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2186826515330644035, guid: 26ccbd7d4b6621445b3ee4407d61b470, type: 3}
-  m_PrefabInstance: {fileID: 705582345}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &240692499
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 240692495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dd144da14fb6496981ae2dc660eb922, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotation: {x: 0, y: 10, z: 0}
 --- !u!1001 &251361274
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1416,10 +1380,6 @@ PrefabInstance:
       propertyPath: turnRightButton
       value: 
       objectReference: {fileID: 4639703301944645580}
-    - target: {fileID: 5234535342556549943, guid: 9af5ea1e94d39fb4f83294f6c2f98f3b, type: 3}
-      propertyPath: useTouchControls
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5406223852816758808, guid: 9af5ea1e94d39fb4f83294f6c2f98f3b, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1897,24 +1857,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 582489992}
   m_CullTransparentMesh: 0
---- !u!1 &602090232 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2186826515017091792, guid: 4bd1febf3599488418f1a614370ac1e2, type: 3}
-  m_PrefabInstance: {fileID: 750518431}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &602090236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 602090232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dd144da14fb6496981ae2dc660eb922, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotation: {x: 0, y: 0, z: 0}
 --- !u!1 &616843976
 GameObject:
   m_ObjectHideFlags: 0
@@ -2270,10 +2212,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 511679430}
     m_Modifications:
-    - target: {fileID: 328114972466364355, guid: 26ccbd7d4b6621445b3ee4407d61b470, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7011535454741621459, guid: 26ccbd7d4b6621445b3ee4407d61b470, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -2342,20 +2280,15 @@ PrefabInstance:
       propertyPath: turnRightButton
       value: 
       objectReference: {fileID: 4639703301944645580}
-    - target: {fileID: 7129188875146297852, guid: 26ccbd7d4b6621445b3ee4407d61b470, type: 3}
-      propertyPath: useTouchControls
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7639841047343673449, guid: 26ccbd7d4b6621445b3ee4407d61b470, type: 3}
       propertyPath: m_Name
       value: Car4
       objectReference: {fileID: 0}
     - target: {fileID: 7639841047343673449, guid: 26ccbd7d4b6621445b3ee4407d61b470, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 328114972466364355, guid: 26ccbd7d4b6621445b3ee4407d61b470, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26ccbd7d4b6621445b3ee4407d61b470, type: 3}
 --- !u!1 &705582346 stripped
 GameObject:
@@ -2469,10 +2402,6 @@ PrefabInstance:
       propertyPath: turnRightButton
       value: 
       objectReference: {fileID: 4639703301944645580}
-    - target: {fileID: 1541212463346962363, guid: 4bd1febf3599488418f1a614370ac1e2, type: 3}
-      propertyPath: useTouchControls
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1639716309281154196, guid: 4bd1febf3599488418f1a614370ac1e2, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -3629,10 +3558,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Car1
       objectReference: {fileID: 0}
-    - target: {fileID: 1417197895592252248, guid: 78ecff6899efd6244a6087b87be7d085, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1792772773064821218, guid: 78ecff6899efd6244a6087b87be7d085, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -3941,10 +3866,6 @@ PrefabInstance:
       propertyPath: turnRightButton
       value: 
       objectReference: {fileID: 4639703301944645580}
-    - target: {fileID: 4561652060267018726, guid: 9dfc7f02567e54a4a88252620b9897f1, type: 3}
-      propertyPath: useTouchControls
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9dfc7f02567e54a4a88252620b9897f1, type: 3}
 --- !u!1 &1271889110 stripped
@@ -4294,24 +4215,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8062802194073777423, guid: 844b2cdad8c5c81458667c3a7f6fb626, type: 3}
   m_PrefabInstance: {fileID: 1520011095}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1542132007 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1809825698776981037, guid: 9dfc7f02567e54a4a88252620b9897f1, type: 3}
-  m_PrefabInstance: {fileID: 1271889109}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1542132011
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1542132007}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dd144da14fb6496981ae2dc660eb922, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotation: {x: 0, y: 0, z: 0}
 --- !u!1001 &1667432310
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -10,7 +10,6 @@ public class SteeringWheel : MonoBehaviour
  
     private void Update()
     {
-
         var horizontalInput = Input.GetAxisRaw("Horizontal")*rotationSpeed*Time.deltaTime;
         deltaChange += horizontalInput;
         deltaChange = Mathf.Clamp(deltaChange, -clampDelta, clampDelta);
@@ -28,7 +27,5 @@ public class SteeringWheel : MonoBehaviour
             return;
 
         transform.Rotate(Vector3.up*horizontalInput,Space.Self);
-
- 
     }
 }
