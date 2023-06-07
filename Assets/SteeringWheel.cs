@@ -15,8 +15,7 @@ public class SteeringWheel : MonoBehaviour
         deltaChange = Mathf.Clamp(deltaChange, -clampDelta, clampDelta);
 
         if(Mathf.Approximately(horizontalInput,0f)&& !Mathf.Approximately(deltaChange, 0f)){
-            Debug.Log("calistim");
-            var sign = Mathf.Sign(deltaChange) * -1f;
+             var sign = Mathf.Sign(deltaChange) * -1f;
             deltaChange += sign * rotationSpeed * Time.deltaTime;
              
             transform.Rotate(Vector3.up * sign*rotationSpeed*Time.deltaTime, Space.Self);
