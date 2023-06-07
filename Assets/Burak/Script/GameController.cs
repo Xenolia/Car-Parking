@@ -173,8 +173,7 @@ public class GameController : MonoBehaviour
     }
     public void LevelLose()
     {
-        Debug.Log("111");
-         if (gameFinished)
+          if (gameFinished)
             return;
         GameEnd();
 
