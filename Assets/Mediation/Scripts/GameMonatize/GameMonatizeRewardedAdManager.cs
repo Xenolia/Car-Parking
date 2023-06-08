@@ -138,13 +138,14 @@ public class GameMonatizeRewardedAdManager : IRewardedAdManager
     private void OnAdOpened()
     {
         OnRewardedAdOpened?.Invoke(null);
-        _lastTimeScale = Time.timeScale;
+        AudioListener.volume = 0f;
         Time.timeScale = 0;
     }
 
     private void OnAdClosed()
     {
-        Time.timeScale = _lastTimeScale;
+        Time.timeScale = 1f;
+        AudioListener.volume = 1f;
         OnRewardedAdClosed?.Invoke(null);
     }
 }

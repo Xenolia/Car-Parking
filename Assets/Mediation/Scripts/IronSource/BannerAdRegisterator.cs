@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BannerAdRegisterator : MonoBehaviour
+public class BannerAdRegisterator
 {
     public  Action<IronSourceAdInfo> OnAdLoadedEvent;
     public  Action<IronSourceAdInfo> OnAdLeftApplicationEvent;

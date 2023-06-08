@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Level : MonoBehaviour
 {
-    [SerializeField] GameObject checkPoint;
+     GameObject checkPoint;
 
     public void CheckPointPassed(GameObject lastCheckPoint)
     {

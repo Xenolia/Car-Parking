@@ -27,14 +27,16 @@ public class FakeAgentCanvas : MonoBehaviour
 
     #region FullScreenMethods
 
-     public void ShowInterstatialAd()
+    [NaughtyAttributes.Button]
+    public void ShowInterstatialAd()
     {
         FakeInterstatialEvents.OnInterstatialAdOpened?.Invoke(null);
         _currentAdEnum = AdEnum.Interstatial;
         ShowAd();
     }
 
-     public void ShowRewardedAd()
+    [NaughtyAttributes.Button]
+    public void ShowRewardedAd()
     {
         FakeRewardedEvents.ORewardednAdOpenedEvent?.Invoke(null);
         _currentAdEnum = AdEnum.Rewarded;
@@ -93,13 +95,15 @@ public class FakeAgentCanvas : MonoBehaviour
     #endregion
 
     #region BannerMethods
-     public void HideBanner()
+    [NaughtyAttributes.Button]
+    public void HideBanner()
     {
         _bannerData._bannerImage.enabled = false;
         _bannerData._bannerText.enabled = false;
     }
 
-     public void DisplayBanner()
+    [NaughtyAttributes.Button]
+    public void DisplayBanner()
     {
         _bannerData._bannerImage.enabled = true;
         _bannerData._bannerText.enabled = true;
@@ -129,7 +133,8 @@ public class FakeAgentCanvas : MonoBehaviour
         DOTween.To(() => v, newValue => v = newValue, 1, _bannerData.RefreshTime).SetLoops(-1, LoopType.Restart).OnStepComplete(RefreshBanner);
     }
 
-     private void Test()
+    [NaughtyAttributes.Button("CreateBanner")]
+    private void Test()
     {
         CreateBanner(null, IronSourceBannerPosition.BOTTOM);
     }
@@ -139,7 +144,8 @@ public class FakeAgentCanvas : MonoBehaviour
         _bannerData._bannerImage.sprite = _bannerData.SpriteList.GetRandomElement();
     }
 
-     public void DestroyBanner()
+    [NaughtyAttributes.Button]
+    public void DestroyBanner()
     {
         _bannerFrame.SetActive(false);
     }

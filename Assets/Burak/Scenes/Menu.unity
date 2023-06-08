@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3190,17 +3190,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1253768460573569521, guid: 6af79a5325a0565429b2fc4a464aaba2, type: 3}
   m_PrefabInstance: {fileID: 1386369363}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1268007370 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1268007370, guid: 6af79a5325a0565429b2fc4a464aaba2, type: 3}
-  m_PrefabInstance: {fileID: 1386369363}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8aeb83a31d9334de9a03c11d1f697709, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1305357491 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4121091811543137509, guid: ddf4ea2625767fd4bb4153e7e4009ad5, type: 3}
@@ -4993,7 +4982,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1268007370}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: AdHelper, Assembly-CSharp
         m_MethodName: ShowIntersitial
         m_Mode: 1
@@ -14115,7 +14104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Locked: 1
-  CarPrice: 500
+  CarPrice: 2000
 --- !u!1 &5444727772757281979
 GameObject:
   m_ObjectHideFlags: 0
@@ -15510,7 +15499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Locked: 1
-  CarPrice: 300
+  CarPrice: 1000
 --- !u!4 &6645823804794885374
 Transform:
   m_ObjectHideFlags: 0
@@ -17552,7 +17541,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Locked: 1
-  CarPrice: 100
+  CarPrice: 300
 --- !u!1 &7671680306106467099
 GameObject:
   m_ObjectHideFlags: 0
@@ -18635,7 +18624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Locked: 1
-  CarPrice: 200
+  CarPrice: 500
 --- !u!146 &8660532522177421761
 WheelCollider:
   m_ObjectHideFlags: 0

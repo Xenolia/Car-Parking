@@ -10,7 +10,7 @@ public class GDFacade : MonoBehaviour
     public IBannerAdManager _bannerAdManager;
     public IRewardedAdManager _rewardedAdManager;
 
-    [SerializeField] private string _key;
+    //[SerializeField] private string _key;
     private bool _isCreated = false;
 #if EN_GDAD
     [SerializeField] private GameDistribution _gameDistribution;

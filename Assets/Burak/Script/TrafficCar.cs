@@ -10,11 +10,9 @@ public class TrafficCar : MonoBehaviour
          var targetPos = transform.position.x;
 
    transform.DOLocalMoveX(targetPos - 50f, temp);
+        DestroySelf();
     }
-    public void Stop()
-    {
-        
-    }
+ 
     public void MoveAndStop(int x)
     {
         var targetPos = transform.position.x;
@@ -34,5 +32,10 @@ public class TrafficCar : MonoBehaviour
             FindObjectOfType<GameController>().LevelLose();
             asd.Kill();
         }
+    }
+    void DestroySelf()
+    {
+        GameObject garbage = gameObject;
+        Destroy(garbage,3.5f);
     }
 }
