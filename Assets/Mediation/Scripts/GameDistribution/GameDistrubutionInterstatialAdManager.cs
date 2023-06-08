@@ -130,7 +130,7 @@ public class GameDistrubutionInterstatialAdManager : IInterstatialAdManager
 
         AudioListener.volume = 0f;
         //_lastTimeScale = Time.timeScale;
-        //Time.timeScale = 0f;
+        Time.timeScale = 0f;
         OnAdOpenedEvent?.Invoke(null);
 
     }
@@ -140,7 +140,7 @@ public class GameDistrubutionInterstatialAdManager : IInterstatialAdManager
         Debug.Log("Interstatial Ad Game has been resumed by Game Distrubution");
 
 
-        //Time.timeScale = _lastTimeScale;
+        Time.timeScale = 1f;
         AudioListener.volume = 1f;
         OnAdClosedEvent?.Invoke(null);
     }

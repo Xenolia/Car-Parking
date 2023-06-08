@@ -77,12 +77,13 @@ public class InAppPurchase : MonoBehaviour
         }
         else
         {
-            // Debug.Log(ï¿½Error occurred ï¿½+message);
+            // Debug.Log(“Error occurred ”+message);
             Debug.Log("Error in app");
         }
     }
 
-     public void SetNames()
+    [NaughtyAttributes.Button]
+    public void SetNames()
     {
         _shopProductNameList.Clear();
 

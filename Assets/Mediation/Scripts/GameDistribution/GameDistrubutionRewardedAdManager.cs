@@ -170,7 +170,8 @@ public class GameDistrubutionRewardedAdManager : IRewardedAdManager
     {
         Debug.Log("Rewarded add game resume");
 
-      //  Time.timeScale = _lastTimeScale;
+        //  Time.timeScale = _lastTimeScale;
+        Time.timeScale = 1f;
         AudioListener.volume = 1f;
 
         OnAdClosedEvent?.Invoke(null);
@@ -182,7 +183,7 @@ public class GameDistrubutionRewardedAdManager : IRewardedAdManager
 
 
         //_lastTimeScale = Time.timeScale;
-        //Time.timeScale = 0f;
+        Time.timeScale = 0f;
         AudioListener.volume = 0f;
 
         OnAdOpnedEvent?.Invoke(null);

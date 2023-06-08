@@ -21,7 +21,7 @@ public class IronSourceRewardedAdManager : IRewardedAdManager
         RegisterOnAdOpenedEvent(OnAdOpened);
         //RegisterOnUserEarnedRewarededEvent(OnUserEarnedReward);
 
-        _audioListener = Camera.main.GetComponent<AudioListener>();
+        //_audioListener = Camera.main.GetComponent<AudioListener>();
     }
 
     public bool IsRewardedAdReady()

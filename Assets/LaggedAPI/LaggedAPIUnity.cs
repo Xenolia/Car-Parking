@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
-
+#if LAGGED
 public class LaggedAPIUnity : MonoBehaviour
 {
 
@@ -174,3 +174,4 @@ public class LaggedAPIUnity : MonoBehaviour
     }
 
 }
+#endif

@@ -64,7 +64,7 @@ public class MenuController : MonoBehaviour
 
     public void RewardedButton()
     {
-       if( adManager.RewardedAdManager.IsRewardedAdReady())
+        if( adManager.RewardedAdManager.IsRewardedAdReady())
         {
             adManager.RewardedAdManager.RegisterOnUserEarnedRewarededEvent(UnlockWithRewarded);
             adManager.RewardedAdManager.RegisterOnAdClosedEvent(OnAdClosed);

@@ -33,6 +33,13 @@ public class GameDistribution : MonoBehaviour
 
     void Awake()
     {
+    
+
+       // Init();
+    }
+
+    public void Init()
+    {
         if (GameDistribution.Instance == null)
             GameDistribution.Instance = this;
         else
@@ -40,11 +47,6 @@ public class GameDistribution : MonoBehaviour
 
         DontDestroyOnLoad(this);
 
-        Init();
-    }
-
-    void Init()
-    {
         try
         {
             SDK_Init(GAME_KEY);

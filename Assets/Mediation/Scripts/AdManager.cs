@@ -2,6 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if CRAZY_LABS
+using Tabtale.TTPlugins;
+#endif
 
 public class AdManager : MonoBehaviour
 {
@@ -14,7 +17,7 @@ public class AdManager : MonoBehaviour
     [SerializeField] private BannerRect _customBannerRect;
     // +[SerializeField] private GameDistribution _gameDistribution;
     [SerializeField] private GDFacade _gDFacade;
-
+    [SerializeField] private bool _isNoAdd = false;
 
     private string _apKey = string.Empty;
 
@@ -63,13 +66,15 @@ public class AdManager : MonoBehaviour
             _inAppPurchase.RemoveAds += RemoveAdsByNoAdPurchase;
         }
 
-#if UNITY_ANDROID
+#if UNITY_ANDROID && IRON_SOURCE
         _apKey = _ironSourceMediationSettings.AndroidAppKey;
-#elif UNITY_IOS
+#elif UNITY_IOS && IRON_SOURCE
         _apKey = _ironSourceMediationSettings.IOSAppKey;
 #endif
 
 #if UNITY_ANDROID || UNITY_IOS || UNITY_EDITOR
+
+#if !CRAZY_LABS
         IronSourceEvents.onSdkInitializationCompletedEvent += OnSdkInitializationComplateEvent;
         IronSource.Agent.init(_apKey);
 
@@ -91,8 +96,27 @@ public class AdManager : MonoBehaviour
             {
                 RemoveAdsByNoAdPurchase();
             }
+
+          
             LoadAds();
         }
+#endif
+#endif
+
+#if UNITY_ANDROID && CRAZY_LABS
+
+#endif
+
+#if UNITY_IOS && CRAZY_LABS
+
+#endif
+
+#if UNITY_ANDROID || UNITY_IOS || UNITY_EDITOR
+#if CRAZY_LABS
+        TTPCore.Setup();
+
+        CreateIronSourceAdManagers();
+#endif
 #endif
 #if UNITY_WEBGL && !UNITY_EDITOR
         //_gameDistribution.Init();
@@ -115,10 +139,17 @@ public class AdManager : MonoBehaviour
 
         LoadAds();
 #endif
+
+        if (_isNoAdd == true)
+        {
+            _rewardedAdManager = new NoAdRewardedAdManager();
+            _interstatialAdManager = new NoAdsInterstatialAdManager();
+            _bannerAdManager = new NoAdBannerAdManager();
+        }
     }
 
 
-    #region MOBILE
+#region MOBILE
     private void LoadAds()
     {
 
@@ -129,12 +160,21 @@ public class AdManager : MonoBehaviour
 
     private void CreateIronSourceAdManagers()
     {
+#if !CRAZY_LABS
         _rewardedAdManager = new IronSourceRewardedAdManager();
         _interstatialAdManager = new IronsSourceInterstatialAdManager();
         _bannerAdManager = new IronSourceBannerAdManager();
 
+#endif
+
+#if CRAZY_LABS
+        _rewardedAdManager = new CrazyLabsRewardedAdManager();
+        _interstatialAdManager = new CrazyLabsInterstatialAdManager();
+        _bannerAdManager = new CrazyLabsBannerAdManager();
+#endif
 #if UNITY_EDITOR
-        _rewardedAdManager = new FakeRewardedAdManager();
+
+         _rewardedAdManager = new FakeRewardedAdManager();
         _interstatialAdManager = new FakeInterstatialAdManager();
         _bannerAdManager = new FakeBannerAdManager();
 
@@ -145,7 +185,8 @@ public class AdManager : MonoBehaviour
         LoadAds();
 #endif
 
-     }
+        Debug.Log("AdManagers are created");
+    }
 
     private void OnSdkInitializationComplateEvent()
     {
