@@ -9,10 +9,11 @@ public class CoinController : MonoBehaviour
     public int Coin;
 
     public Text coinText;
-
+    GameController gameController;
    [SerializeField] int GodMode = 0;
     private void Awake()
     {
+        gameController = GetComponent<GameController>();
          
             for (int i = 0; i < GodMode; i++)
             {
@@ -31,6 +32,15 @@ public class CoinController : MonoBehaviour
             Coin = 0;
         }
         UpdateCoin();
+
+    }
+    private void OnEnable()
+    {
+        gameController.OnGameEnd += GameEnd;
+    }
+    private void OnDisable()
+    {
+        gameController.OnGameEnd -= GameEnd;
 
     }
     public void MakeMoney()
@@ -52,5 +62,10 @@ public class CoinController : MonoBehaviour
    void UpdateCoin()
     {
         coinText.text = Coin.ToString();
+    }
+
+    void GameEnd()
+    {
+        coinText.gameObject.SetActive(true);
     }
 }

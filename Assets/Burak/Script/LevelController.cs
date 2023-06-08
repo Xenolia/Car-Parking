@@ -10,7 +10,7 @@ public class LevelController : MonoBehaviour
     [SerializeField] GameObject[] levels;
     [SerializeField] bool playSpecificLevel = false;
     public int Level;
-
+    GameObject activeLevel;
     public TextMeshProUGUI Leveltext;
     private void Awake()
     {
@@ -49,13 +49,22 @@ public class LevelController : MonoBehaviour
         if (Level <= levels.Length)
         {
              levels[levelIndex - 1].SetActive(true);
+            activeLevel = levels[levelIndex - 1];
+
+
         }
 
         else
         {
             levels[levelIndex].SetActive(true);
+            activeLevel = levels[levelIndex];
+
         }
 
+    }
+    public GameObject GetActiveLevel()
+    {
+        return activeLevel;
     }
     public void NextLevel()
     {

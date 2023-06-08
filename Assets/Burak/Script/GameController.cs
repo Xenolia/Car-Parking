@@ -23,10 +23,12 @@ public class GameController : MonoBehaviour
     CoinController coinController;
     CarManager carManager;
 
+
+    [SerializeField] Text timerText;
+    float targetTime;
    [SerializeField] AdManager adManager;
     int carIndex;
-
-#if UNITY_WEBGL
+ #if UNITY_WEBGL
     [DllImport("__Internal")]
     private static extern bool IsMobileBrowser();
 #endif
@@ -43,7 +45,11 @@ public class GameController : MonoBehaviour
 #endif
 
         GameStart();
+
+
+        targetTime = levelController.GetActiveLevel().gameObject.GetComponent<Level>().Timer;
     }
+     
     void EnableCar()
     {
       carIndex = PlayerPrefs.GetInt("Car",1);
@@ -82,7 +88,32 @@ public class GameController : MonoBehaviour
         {
             ChangeCameraAngle();
         }
+        UpdateTimer();
     }
+
+    void UpdateTimer()
+    {
+         
+            if (targetTime > 0)
+            {
+            targetTime -= Time.deltaTime;
+            }
+            else
+        {
+            targetTime = 0f;
+            LevelLoseByTime();
+        }
+        timerText.text = ((int)targetTime).ToString()+" s";
+         
+    }
+    void LevelLoseByTime()
+    {
+        if (gameFinished)
+            return;
+        GameEnd();
+
+        LevelLoseDelay();
+     }
     void ChangeCameraAngle()
     {
         carManager.ChangeCamera();
@@ -176,19 +207,20 @@ public class GameController : MonoBehaviour
           if (gameFinished)
             return;
         GameEnd();
-
- 
+         
         Invoke("LevelLoseDelay",0.5f);
     }
     void LevelLoseDelay()
     {
-        losePanel.SetActive(true);
+         losePanel.SetActive(true);
         OnGameEnd?.Invoke();
 
     }
     void GameEnd()
     {
-         gameFinished = true;
+        
+        timerText.gameObject.SetActive(false);
+        gameFinished = true;
        // Time.timeScale = 0f;
     }
 }

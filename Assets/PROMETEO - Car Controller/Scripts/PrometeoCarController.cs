@@ -183,7 +183,7 @@ public class PrometeoCarController : MonoBehaviour
         carRigidbody.velocity = Vector3.zero;
         disableMovement = false;
         carRigidbody.isKinematic = false;
-
+        useSounds = true;
     }
     bool disableMovement=false;
 
@@ -193,6 +193,8 @@ public class PrometeoCarController : MonoBehaviour
         disableMovement = true;
          carRigidbody.velocity = Vector3.zero;
         carRigidbody.isKinematic = true;
+
+        useSounds = false;
     }
 
     // Start is called before the first frame update
