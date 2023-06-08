@@ -23,6 +23,7 @@ public class FakeAgentCanvas : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(this);
+        
     }
 
     #region FullScreenMethods
