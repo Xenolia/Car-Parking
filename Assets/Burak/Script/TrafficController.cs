@@ -14,10 +14,11 @@ public class TrafficController : MonoBehaviour
     private void Awake()
     {
         crashController = GetComponentInChildren<CrashController>();
-    }
-    private void Start()
+    } 
+    public void Init()
     {
         StartCoroutine(LightController());
+
     }
     IEnumerator LightController()
     {
