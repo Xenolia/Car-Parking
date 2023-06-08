@@ -87,7 +87,7 @@ public class LevelEnd : MonoBehaviour
 
             float difference = Mathf.DeltaAngle(carRotationY, targetAngleY);
 
-            if (difference > 7 )
+            if (difference > 4 )
             {
                 
              rotationWarningText.SetActive(true);
