@@ -23,6 +23,7 @@ public class CheckPoint : MonoBehaviour
             return;
 
         Debug.Log("Checkpoint");
+        gameObject.SetActive(false);
         GetComponentInParent<Level>().CheckPointPassed(gameObject);
     }
 }

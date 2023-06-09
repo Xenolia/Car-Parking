@@ -19,17 +19,82 @@ public class MenuController : MonoBehaviour
     [SerializeField] GameObject rewardedButton;
     [SerializeField] GameObject RaceButton;
 
+    [SerializeField] GameObject DifficultyButtonObj;
+
+
    [SerializeField] AdManager adManager;
     
     CoinController coinController;
 
-
+   [SerializeField] int difficulty;
     private void Awake()
     {
          coinController = GetComponent<CoinController>();
          CheckButtons();
         UpdateBuyButton();
+
+       if(PlayerPrefs.HasKey("Difficulty"))
+        {
+           difficulty= PlayerPrefs.GetInt("Difficulty");
+        }
+        else
+        {
+            difficulty = 1;
+            PlayerPrefs.SetInt("Difficulty",1);
+        }
+        SetDifficultyButton();
      }
+    public void DifficultyButton()
+    {
+        if (difficulty == 3)
+        {
+            difficulty = 0;
+            PlayerPrefs.SetInt("Difficulty", 0);
+
+        }
+
+        difficulty = (PlayerPrefs.GetInt("Difficulty")) + 1 ;
+
+        SetDifficultyButton();
+
+    }
+    void SetDifficultyButton()
+    {
+        if(difficulty==1)
+        {
+            EasyDifficulty();
+        }
+        if (difficulty == 2)
+        {
+            MediumDifficulty();
+        }
+        if (difficulty == 3)
+        {
+            HardDifficulty();
+        }
+    }
+    void EasyDifficulty()
+    {
+        PlayerPrefs.SetInt("Difficulty", 1);
+        DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "EASY";
+        DifficultyButtonObj.GetComponent<Image>().color = Color.blue;
+    }
+    void MediumDifficulty()
+    {
+        PlayerPrefs.SetInt("Difficulty", 2);
+        DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "MEDIUM";
+        DifficultyButtonObj.GetComponent<Image>().color = Color.magenta;
+
+    }
+
+    void HardDifficulty()
+    {
+        PlayerPrefs.SetInt("Difficulty", 3);
+        DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "HARD";
+        DifficultyButtonObj.GetComponent<Image>().color = Color.red;
+
+    }
+
     public void LoadGame()
     {
         PlayerPrefs.SetInt("Car",activeCarIndex);
