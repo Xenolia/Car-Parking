@@ -208,7 +208,7 @@ public class GameController : MonoBehaviour
             return;
         GameEnd();
          
-        Invoke("LevelLoseDelay",0.5f);
+        Invoke("LevelLoseDelay",0.1f);
     }
     void LevelLoseDelay()
     {
