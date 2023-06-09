@@ -47,7 +47,7 @@ public class GameController : MonoBehaviour
         GameStart();
 
 
-        targetTime = levelController.GetActiveLevel().gameObject.GetComponent<Level>().GetTime();
+       
     }
      
     void EnableCar()
@@ -75,8 +75,8 @@ public class GameController : MonoBehaviour
     {
         carController = FindObjectOfType<PrometeoCarController>();
         SetMobileButtons(useMobileControls);
-
-
+        targetTime = levelController.GetActiveLevel().gameObject.GetComponent<Level>().GetTime();
+        targetTime++;
     }
     private void Update()
     {

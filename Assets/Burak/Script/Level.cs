@@ -13,7 +13,7 @@ public class Level : MonoBehaviour
  
     public float GetTime()
     {
-        var diff = PlayerPrefs.GetInt("Difficulty");
+        var diff = PlayerPrefs.GetInt("Difficulty",1);
         if (diff == 1)
         {
             return Timer;
