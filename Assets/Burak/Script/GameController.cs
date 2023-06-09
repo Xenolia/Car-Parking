@@ -23,7 +23,7 @@ public class GameController : MonoBehaviour
     CoinController coinController;
     CarManager carManager;
 
-
+    AudioSource audioSource;
     [SerializeField] Text timerText;
     float targetTime;
    [SerializeField] AdManager adManager;
@@ -35,6 +35,8 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
+        Debug.LogError("do sounds win lose ");
         carManager = FindObjectOfType<CarManager>();
         EnableCar();
         coinController = GetComponent<CoinController>();

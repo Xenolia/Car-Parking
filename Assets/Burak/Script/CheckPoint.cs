@@ -5,9 +5,11 @@ using UnityEngine;
 public class CheckPoint : MonoBehaviour
 {
     GameController gameController;
+    AudioSource audioSource;
     private void Awake()
     {
         gameController = GetComponentInParent<GameController>();
+        audioSource = GetComponent<AudioSource>();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -22,6 +24,7 @@ public class CheckPoint : MonoBehaviour
         if (gameController.gameFinished)
             return;
 
+        audioSource.Play();
         Debug.Log("Checkpoint");
         gameObject.SetActive(false);
         GetComponentInParent<Level>().CheckPointPassed(gameObject);
