@@ -14,6 +14,11 @@ public class LevelController : MonoBehaviour
     public TextMeshProUGUI Leveltext;
     private void Awake()
     {
+        foreach (var item in levels)
+        {
+            item.SetActive(false);
+        }
+
         gameController = GetComponent<GameController>();
         if (playSpecificLevel)
         {
@@ -45,7 +50,8 @@ public class LevelController : MonoBehaviour
         Leveltext.text = "LEVEL  " + Level.ToString();
 
        levelIndex = Level % (levels.Length+1);
- 
+
+       
         if (Level <= levels.Length)
         {
              levels[levelIndex - 1].SetActive(true);
