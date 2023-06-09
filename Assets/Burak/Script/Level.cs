@@ -7,7 +7,9 @@ public class Level : MonoBehaviour
      GameObject checkPoint;
 
     public float Timer=300000f;
- 
+    public float TimerMedium = 300000f;
+    public float TimerHard = 300000f;
+
     public void CheckPointPassed(GameObject lastCheckPoint)
     {
         checkPoint = lastCheckPoint;
