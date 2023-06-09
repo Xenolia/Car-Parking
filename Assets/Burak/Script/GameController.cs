@@ -47,7 +47,7 @@ public class GameController : MonoBehaviour
         GameStart();
 
 
-        targetTime = levelController.GetActiveLevel().gameObject.GetComponent<Level>().Timer;
+        targetTime = levelController.GetActiveLevel().gameObject.GetComponent<Level>().GetTime();
     }
      
     void EnableCar()

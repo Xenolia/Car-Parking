@@ -36,12 +36,13 @@ public class CoinController : MonoBehaviour
     }
     private void OnEnable()
     {
+       if(gameController)
         gameController.OnGameEnd += GameEnd;
     }
     private void OnDisable()
     {
-        gameController.OnGameEnd -= GameEnd;
-
+               if (gameController)
+            gameController.OnGameEnd -= GameEnd;
     }
     public void MakeMoney()
     {
