@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using System;
 public class GameController : MonoBehaviour
 {
+    [SerializeField] AudioClip winSound, LoseSound;
+    AudioSource audioSource;
 
     [SerializeField] bool useMobileControls=false;
     [SerializeField] PrometeoCarController carController;
@@ -17,13 +19,12 @@ public class GameController : MonoBehaviour
 
     LevelController levelController;
 
-    public Action<Vector3> OnRevive;
+    public Action OnRevive;
     public Action OnGameEnd;
 
     CoinController coinController;
     CarManager carManager;
 
-    AudioSource audioSource;
     [SerializeField] Text timerText;
     float targetTime;
    [SerializeField] AdManager adManager;
@@ -36,8 +37,7 @@ public class GameController : MonoBehaviour
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
-        Debug.LogError("do sounds win lose ");
-        carManager = FindObjectOfType<CarManager>();
+         carManager = FindObjectOfType<CarManager>();
         EnableCar();
         coinController = GetComponent<CoinController>();
         levelController = GetComponent<LevelController>();
@@ -90,7 +90,12 @@ public class GameController : MonoBehaviour
         {
             ChangeCameraAngle();
         }
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            ReviveButton(null,null);
+        }
         UpdateTimer();
+
     }
 
     void UpdateTimer()
@@ -130,15 +135,23 @@ public class GameController : MonoBehaviour
         GameObject checkPoint = FindObjectOfType<Level>().LastCheckPoint();
         if (checkPoint != null)
         {
-            carController.transform.position = checkPoint.transform.position;
-            OnRevive?.Invoke(checkPoint.transform.position);
+            // carController.transform.position = checkPoint.transform.position;
+            var revivePos = checkPoint.transform.position;
+            revivePos.y = revivePos.y+1;
+            var reviveRot= checkPoint.transform.localEulerAngles;
+            reviveRot.y = reviveRot.z;
+            reviveRot.z = 0;
+            carController.Revive(revivePos, reviveRot);
+
+            OnRevive?.Invoke();
         }
         else
         {
-            carController.transform.position = Vector3.zero;
-            OnRevive?.Invoke(Vector3.zero);
+            //carController.transform.position = Vector3.zero;
+            carController.Revive(Vector3.zero,Vector3.zero);
+            OnRevive?.Invoke();
         }
-       
+        
     }
 
  
@@ -170,10 +183,13 @@ public class GameController : MonoBehaviour
 
     private void ReviveButton(IronSourcePlacement arg1, IronSourceAdInfo arg2)
     {
+
         losePanel.SetActive(false);
         gameFinished = false;
-
-
+       
+        targetTime = levelController.GetActiveLevel().gameObject.GetComponent<Level>().GetTime();
+        targetTime++;
+        timerText.gameObject.SetActive(true);
 
         RestartWithCheckPoint();
         GameStart();
@@ -203,6 +219,8 @@ public class GameController : MonoBehaviour
         GameEnd();
         winPanel.SetActive(true);
         coinController.MakeMoney();
+        audioSource.PlayOneShot(winSound);
+
     }
     public void LevelLose()
     {
@@ -214,6 +232,7 @@ public class GameController : MonoBehaviour
     }
     void LevelLoseDelay()
     {
+         audioSource.PlayOneShot(LoseSound);
          losePanel.SetActive(true);
         OnGameEnd?.Invoke();
 

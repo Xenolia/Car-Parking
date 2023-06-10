@@ -166,21 +166,20 @@ public class PrometeoCarController : MonoBehaviour
     }
     private void OnEnable()
     {
-        gameController.OnRevive += Revive;
-        gameController.OnGameEnd += GameEnd;
+         gameController.OnGameEnd += GameEnd;
     }
     private void OnDisable()
     {
-        gameController.OnRevive -= Revive;
-        gameController.OnGameEnd -= GameEnd;
+         gameController.OnGameEnd -= GameEnd;
 
     }
     
-    void Revive(Vector3 checkpoint)
+   public  void Revive(Vector3 checkpoint,Vector3 rotation)
     {
         
-        transform.SetPositionAndRotation(checkpoint, Quaternion.identity);
+        transform.SetPositionAndRotation(checkpoint, Quaternion.Euler(rotation));
         carRigidbody.velocity = Vector3.zero;
+        carRigidbody.angularVelocity = Vector3.zero;
         disableMovement = false;
         carRigidbody.isKinematic = false;
         useSounds = true;
