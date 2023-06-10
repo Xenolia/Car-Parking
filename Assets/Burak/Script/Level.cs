@@ -12,7 +12,7 @@ public class Level : MonoBehaviour
     GameController gameController;
     private void Awake()
     {
-        gameController = GetComponentInParent<GameController>();
+        gameController = FindObjectOfType<GameController>();
         Timer = Timer - 3f;
         TimerMedium = TimerMedium - 3f; 
         TimerHard = TimerHard - 3f; 
