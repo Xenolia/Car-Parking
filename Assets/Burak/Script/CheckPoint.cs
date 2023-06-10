@@ -8,6 +8,7 @@ public class CheckPoint : MonoBehaviour
      private void Awake()
     {
         gameController = GetComponentInParent<GameController>();
+        Debug.LogError(transform.rotation.eulerAngles);
      }
     private void OnTriggerEnter(Collider other)
     {
