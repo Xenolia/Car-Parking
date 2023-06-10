@@ -29,6 +29,9 @@ public class GameController : MonoBehaviour
     [SerializeField] Text timerText;
     float targetTime;
    [SerializeField] AdManager adManager;
+
+
+    bool stopTimer = false;
     int carIndex;
  #if UNITY_WEBGL
     [DllImport("__Internal")]
@@ -40,6 +43,7 @@ public class GameController : MonoBehaviour
     }
     private void Awake()
     {
+        Application.targetFrameRate = 60;
         audioSource = GetComponent<AudioSource>();
          carManager = FindObjectOfType<CarManager>();
         EnableCar();
@@ -98,10 +102,22 @@ public class GameController : MonoBehaviour
         {
             ReviveButton(null,null);
         }
+        if(!stopTimer)
         UpdateTimer();
 
     }
+   public void StopTimer(bool shouldStop)
+    {
+        if(shouldStop)
+        {
+            stopTimer = true;
+        }
+        else
+        {
+            stopTimer = false;
+        }
 
+    }
     void UpdateTimer()
     {
          

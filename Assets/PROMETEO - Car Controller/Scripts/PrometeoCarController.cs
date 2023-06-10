@@ -34,7 +34,7 @@ public class PrometeoCarController : MonoBehaviour
       [Range(0.1f, 1f)]
       public float steeringSpeed = 0.5f; // How fast the steering wheel turns.
       [Space(10)]
-      [Range(100, 600)]
+      [Range(100, 1000)]
       public int brakeForce = 350; // The strength of the wheel brakes.
       [Range(1, 10)]
       public int decelerationMultiplier = 2; // How fast the car decelerates when the user is not using the throttle.
@@ -689,6 +689,11 @@ public class PrometeoCarController : MonoBehaviour
     // will depend on the handbrakeDriftMultiplier variable. If this value is small, then the car will not drift too much, but if
     // it is high, then you could make the car to feel like going on ice.
     public void Handbrake(){
+
+
+
+        
+
       CancelInvoke("RecoverTraction");
       // We are going to start losing traction smoothly, there is were our 'driftingAxis' variable takes
       // place. This variable will start from 0 and will reach a top value of 1, which means that the maximum
@@ -731,7 +736,7 @@ public class PrometeoCarController : MonoBehaviour
       isTractionLocked = true;
       DriftCarPS();
 
-
+        
         ////
         ///
 
@@ -743,7 +748,7 @@ public class PrometeoCarController : MonoBehaviour
 
 
 
-
+        
         if (Mathf.Abs(localVelocityX) > 2.5f)
         {
             isDrifting = true;
@@ -784,10 +789,7 @@ public class PrometeoCarController : MonoBehaviour
             CancelInvoke("DecelerateCar");
         }
 
-
-
-
-
+        Brakes();
 
 
 
