@@ -33,17 +33,26 @@ public class LevelEnd : MonoBehaviour
     private void OnEnable()
     {
         gameController.OnGameEnd += GameEnd;
+
+        gameController.OnRevive += Revive;
+
     }
     private void OnDisable()
     {
         changeMaterial.sharedMaterial.color = oldColor;
         changeMaterial2.sharedMaterial.color = oldColor2;
         gameController.OnGameEnd -= GameEnd;
+        gameController.OnRevive -= Revive;
+
 
     }
     void GameEnd()
     {
         gameEnd = true;
+    }
+    void Revive()
+    {
+        gameEnd = false;
     }
     private void OnTriggerStay(Collider other)
     {
