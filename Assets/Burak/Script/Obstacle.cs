@@ -14,7 +14,7 @@ public class Obstacle : MonoBehaviour
         godmode = false;
         startPos = transform.position;
         startRot = transform.rotation;
-        gameController = GetComponentInParent<GameController>();
+        gameController = FindObjectOfType<GameController>();
     }
     private void OnEnable()
     {
