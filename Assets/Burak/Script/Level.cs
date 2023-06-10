@@ -13,7 +13,10 @@ public class Level : MonoBehaviour
     private void Awake()
     {
         gameController = GetComponentInParent<GameController>();
-     }
+        Timer = Timer - 3f;
+        TimerMedium = TimerMedium - 3f; 
+        TimerHard = TimerHard - 3f; 
+    }
     public float GetTime()
     {
         var diff = PlayerPrefs.GetInt("Difficulty",1);
