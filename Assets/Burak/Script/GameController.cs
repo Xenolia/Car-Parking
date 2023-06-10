@@ -159,7 +159,7 @@ public class GameController : MonoBehaviour
             var revivePos = checkPoint.transform.position;
             revivePos.y = revivePos.y+1;
             var reviveRot= checkPoint.transform.localEulerAngles;
-            reviveRot.y = reviveRot.z;
+            reviveRot.y = reviveRot.y-90;
             reviveRot.z = 0;
             carController.Revive(revivePos, reviveRot);
 
