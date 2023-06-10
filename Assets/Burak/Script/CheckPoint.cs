@@ -6,6 +6,7 @@ public class CheckPoint : MonoBehaviour
 {
     GameController gameController;
     AudioSource audioSource;
+    [SerializeField] AudioClip checkPointSound;
     private void Awake()
     {
         gameController = GetComponentInParent<GameController>();
@@ -24,7 +25,7 @@ public class CheckPoint : MonoBehaviour
         if (gameController.gameFinished)
             return;
 
-        audioSource.Play();
+        audioSource.PlayOneShot(checkPointSound);
         Debug.Log("Checkpoint");
         gameObject.SetActive(false);
         GetComponentInParent<Level>().CheckPointPassed(gameObject);
