@@ -5,13 +5,10 @@ using UnityEngine;
 public class CheckPoint : MonoBehaviour
 {
     GameController gameController;
-    AudioSource audioSource;
-    [SerializeField] AudioClip checkPointSound;
-    private void Awake()
+     private void Awake()
     {
         gameController = GetComponentInParent<GameController>();
-        audioSource = GetComponent<AudioSource>();
-    }
+     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.GetComponentInParent<PrometeoCarController>() != null)
@@ -25,8 +22,7 @@ public class CheckPoint : MonoBehaviour
         if (gameController.gameFinished)
             return;
 
-        audioSource.PlayOneShot(checkPointSound);
-        Debug.Log("Checkpoint");
+         Debug.Log("Checkpoint");
         gameObject.SetActive(false);
         GetComponentInParent<Level>().CheckPointPassed(gameObject);
     }
