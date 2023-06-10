@@ -106,18 +106,28 @@ public class LevelEnd : MonoBehaviour
         
              changeMaterial.sharedMaterial.color = Color.green;
         changeMaterial2.sharedMaterial.color = Color.green;
+        StopTimer();
+
 
         countdown = countdown - (Time.deltaTime);
             UpdateText();
  
        
     }
+    void StopTimer()
+    {
+        gameController.StopTimer(true);
+    }
+    void ResumeTimer()
+    {
+        gameController.StopTimer(false);
+     }
     void ResetTimer()
     {
         gameController.DisableCountDown();
         changeMaterial.sharedMaterial.color =oldColor;
         changeMaterial2.sharedMaterial.color = oldColor2;
-
+        ResumeTimer();
         rotationWarningText.SetActive(false);
 
     }
@@ -126,6 +136,7 @@ public class LevelEnd : MonoBehaviour
         countdown = 4f;
         changeMaterial.sharedMaterial.color = oldColor;
         changeMaterial2.sharedMaterial.color = oldColor2;
+        ResumeTimer();
 
         rotationWarningText.SetActive(false);
 
