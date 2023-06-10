@@ -18,7 +18,7 @@ public class LevelEnd : MonoBehaviour
     Color oldColor2;
      private void Awake()
     {
-        gameController = GetComponentInParent<GameController>();
+        gameController = FindObjectOfType<GameController>();
 
        ParkingArea area= FindObjectOfType<ParkingArea>();
         changeMaterial = area.ChangeMaterial1().GetComponent<MeshRenderer>();
