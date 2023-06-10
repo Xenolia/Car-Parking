@@ -7,7 +7,7 @@ public class CheckPoint : MonoBehaviour
     GameController gameController;
      private void Awake()
     {
-        gameController = GetComponentInParent<GameController>();
+        gameController = FindObjectOfType<GameController>();
       }
     private void OnTriggerEnter(Collider other)
     {

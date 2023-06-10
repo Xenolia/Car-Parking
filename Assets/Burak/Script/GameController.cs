@@ -53,7 +53,7 @@ public class GameController : MonoBehaviour
         useMobileControls = IsMobileBrowser();
        
 #endif
-
+        
         GameStart();
 
 
