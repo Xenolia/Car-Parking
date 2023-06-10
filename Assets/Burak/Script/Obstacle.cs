@@ -8,8 +8,10 @@ public class Obstacle : MonoBehaviour
     Vector3 startPos;
     Quaternion startRot;
     GameController gameController;
+    bool godmode;
     private void Awake()
     {
+        godmode = true;
         startPos = transform.position;
         startRot = transform.rotation;
         gameController = GetComponentInParent<GameController>();
@@ -33,6 +35,10 @@ public class Obstacle : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+
+        if (godmode)
+            return;
+
         if(collision.gameObject.GetComponent<PrometeoCarController>()!=null)
         {
             FindObjectOfType<GameController>().LevelLose();
