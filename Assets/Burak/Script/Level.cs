@@ -9,8 +9,11 @@ public class Level : MonoBehaviour
     public float Timer=300000f;
     public float TimerMedium = 300000f;
     public float TimerHard = 300000f;
-
- 
+    GameController gameController;
+    private void Awake()
+    {
+        gameController = GetComponentInParent<GameController>();
+     }
     public float GetTime()
     {
         var diff = PlayerPrefs.GetInt("Difficulty",1);
@@ -31,6 +34,7 @@ public class Level : MonoBehaviour
     public void CheckPointPassed(GameObject lastCheckPoint)
     {
         checkPoint = lastCheckPoint;
+        gameController.CheckPointPassed();
     }
 
     public GameObject LastCheckPoint()

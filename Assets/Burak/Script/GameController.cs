@@ -6,6 +6,7 @@ using System;
 public class GameController : MonoBehaviour
 {
     [SerializeField] AudioClip winSound, LoseSound;
+    [SerializeField] AudioClip CheckPointSound;
     AudioSource audioSource;
 
     [SerializeField] bool useMobileControls=false;
@@ -33,7 +34,10 @@ public class GameController : MonoBehaviour
     [DllImport("__Internal")]
     private static extern bool IsMobileBrowser();
 #endif
-
+    public void CheckPointPassed()
+    {
+        audioSource.PlayOneShot(CheckPointSound);
+    }
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -220,8 +224,8 @@ public class GameController : MonoBehaviour
         winPanel.SetActive(true);
         coinController.MakeMoney();
         audioSource.PlayOneShot(winSound);
-
-    }
+        OnGameEnd?.Invoke();
+     }
     public void LevelLose()
     {
           if (gameFinished)
