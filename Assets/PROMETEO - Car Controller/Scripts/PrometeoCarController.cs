@@ -183,6 +183,9 @@ public class PrometeoCarController : MonoBehaviour
         disableMovement = false;
         carRigidbody.isKinematic = false;
         useSounds = true;
+        carEngineSound.volume=1f;
+        tireScreechSound.volume = 1f;
+
     }
     bool disableMovement=false;
 
@@ -192,7 +195,8 @@ public class PrometeoCarController : MonoBehaviour
         disableMovement = true;
          carRigidbody.velocity = Vector3.zero;
         carRigidbody.isKinematic = true;
-
+        carEngineSound.volume = 0f;
+        tireScreechSound.volume = 0f;
         useSounds = false;
     }
 
