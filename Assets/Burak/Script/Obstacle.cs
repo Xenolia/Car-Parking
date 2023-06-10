@@ -6,10 +6,12 @@ public class Obstacle : MonoBehaviour
 {
 
     Vector3 startPos;
+    Quaternion startRot;
     GameController gameController;
     private void Awake()
     {
         startPos = transform.position;
+        startRot = transform.rotation;
         gameController = GetComponentInParent<GameController>();
     }
     private void OnEnable()
@@ -21,11 +23,13 @@ public class Obstacle : MonoBehaviour
         gameController.OnRevive -= Revive;
  
     }
-    void Revive(Vector3 asd)
+    void Revive()
     {
+        if(GetComponent<Rigidbody>()!=null)
         GetComponent<Rigidbody>().velocity = Vector3.zero;
-        transform.position = startPos;
-    }
+
+        transform.SetPositionAndRotation(startPos,startRot);
+     }
 
     private void OnCollisionEnter(Collision collision)
     {
