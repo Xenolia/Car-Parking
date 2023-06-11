@@ -22,7 +22,7 @@ public class MenuController : MonoBehaviour
 
     [SerializeField] GameObject DifficultyButtonObj;
 
-#if UNITY_WEBGL
+#if UNITY_WEBGL&& !UNITY_EDITOR
     [DllImport("__Internal")]
     private static extern bool IsMobileBrowser();
 #endif
@@ -34,8 +34,11 @@ public class MenuController : MonoBehaviour
    [SerializeField] int difficulty;
     private void Awake()
     {
-        if(IsMobileBrowser())
-                 Screen.orientation = ScreenOrientation.LandscapeRight;
+#if UNITY_WEBGL&& !UNITY_EDITOR
+        if (IsMobileBrowser())
+            Screen.orientation = ScreenOrientation.LandscapeRight;
+#endif
+
 
 
         coinController = GetComponent<CoinController>();

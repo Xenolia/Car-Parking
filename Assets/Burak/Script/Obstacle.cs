@@ -47,5 +47,9 @@ public class Obstacle : MonoBehaviour
         {
             FindObjectOfType<GameController>().LevelLose();
         }
+        if (collision.gameObject.GetComponent<WheelCollider>() != null)
+        {
+            FindObjectOfType<GameController>().LevelLose();
+        }
     } 
 }
