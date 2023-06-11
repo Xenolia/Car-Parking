@@ -51,10 +51,11 @@ public class GameController : MonoBehaviour
         levelController = GetComponent<LevelController>();
 #if UNITY_WEBGL && !UNITY_EDITOR
         useMobileControls = IsMobileBrowser();
-               Screen.orientation = ScreenOrientation.LandscapeRight;
 
 #endif
-
+        if(useMobileControls)
+            Screen.orientation = ScreenOrientation.LandscapeRight;
+        
         GameStart();
 
        
