@@ -182,10 +182,10 @@ public class PrometeoCarController : MonoBehaviour
         carRigidbody.angularVelocity = Vector3.zero;
         disableMovement = false;
         carRigidbody.isKinematic = false;
-        useSounds = true;
-        carEngineSound.volume=1f;
-        tireScreechSound.volume = 1f;
 
+        carEngineSound.volume = 1f;
+        tireScreechSound.volume = 1f;
+        useSounds = true;
     }
     bool disableMovement=false;
 
