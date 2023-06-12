@@ -120,8 +120,8 @@ public class SoundController : MonoBehaviour
 
         else
         {
-            Time.timeScale = 0f;
             settingsPanel.SetActive(true);
+            Time.timeScale = 0f;
 
         }
 
@@ -129,6 +129,8 @@ public class SoundController : MonoBehaviour
     public void DisableSettingsPanel()
     {
         settingsPanel.SetActive(false);
+        Time.timeScale = 1f;
+
     }
     void UpdateUI()
     {
@@ -165,7 +167,7 @@ public class SoundController : MonoBehaviour
     {
         musicValue = musicSlider.value;
         soundValue = soundSlider.value;
- 
+  
         PlayerPrefs.SetFloat("Sound", soundSlider.value);
         PlayerPrefs.SetFloat("Music", musicSlider.value);
         if (soundValue == 0f)
@@ -196,11 +198,11 @@ public class SoundController : MonoBehaviour
     {
         foreach (var item in sounds)
         {
-            item.volume = soundValue;
+            item.volume = PlayerPrefs.GetFloat("Sound", 1f);
         }
         foreach (var item in musics)
         {
-            item.volume = musicValue;
+            item.volume = PlayerPrefs.GetFloat("Music", 1f);
         }
     }
 

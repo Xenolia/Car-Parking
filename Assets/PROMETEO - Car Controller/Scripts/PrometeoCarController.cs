@@ -197,8 +197,7 @@ public class PrometeoCarController : MonoBehaviour
         carRigidbody.isKinematic = true;
         carEngineSound.volume = 0f;
         tireScreechSound.volume = 0f;
-        useSounds = false;
-    }
+     }
 
     // Start is called before the first frame update
     void Start()
