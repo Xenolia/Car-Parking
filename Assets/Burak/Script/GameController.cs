@@ -33,11 +33,7 @@ public class GameController : MonoBehaviour
 
     bool stopTimer = false;
     int carIndex;
-#if UNITY_WEBGL && !UNITY_EDITOR
-    [DllImport("__Internal")]
-    private static extern bool IsMobileBrowser();
-#endif
-    public void CheckPointPassed()
+     public void CheckPointPassed()
     {
         audioSource.PlayOneShot(CheckPointSound);
     }
@@ -49,12 +45,7 @@ public class GameController : MonoBehaviour
         EnableCar();
         coinController = GetComponent<CoinController>();
         levelController = GetComponent<LevelController>();
-#if UNITY_WEBGL && !UNITY_EDITOR
-        useMobileControls = IsMobileBrowser();
-
-#endif
-        if(useMobileControls)
-            Screen.orientation = ScreenOrientation.LandscapeRight;
+  
         
         GameStart();
 

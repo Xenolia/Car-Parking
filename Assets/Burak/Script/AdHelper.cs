@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AdHelper : MonoBehaviour
 {
+    [SerializeField] bool preRoll;
     AdManager adManager;
     private void Awake()
     {
@@ -11,6 +12,11 @@ public class AdHelper : MonoBehaviour
         adManager.Init();
 
         adManager.InterstatialAdManager.LoadAds();
+    }
+    private void Start()
+    {
+        if (preRoll)
+            ShowIntersitial();
     }
     public void ShowIntersitial()
     {
