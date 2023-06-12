@@ -5,6 +5,9 @@ using UnityEngine.UI;
 using System;
 public class GameController : MonoBehaviour
 {
+    [SerializeField] AudioClip winSound, LoseSound;
+    [SerializeField] AudioClip CheckPointSound;
+    AudioSource audioSource;
 
     [SerializeField] bool useMobileControls=false;
     [SerializeField] PrometeoCarController carController;
@@ -17,35 +20,43 @@ public class GameController : MonoBehaviour
 
     LevelController levelController;
 
-    public Action<Vector3> OnRevive;
+    public Action OnRevive;
     public Action OnGameEnd;
 
     CoinController coinController;
     CarManager carManager;
 
-
     [SerializeField] Text timerText;
     float targetTime;
    [SerializeField] AdManager adManager;
+
+
+    bool stopTimer = false;
     int carIndex;
- #if UNITY_WEBGL
+#if UNITY_WEBGL && !UNITY_EDITOR
     [DllImport("__Internal")]
     private static extern bool IsMobileBrowser();
 #endif
-
+    public void CheckPointPassed()
+    {
+        audioSource.PlayOneShot(CheckPointSound);
+    }
     private void Awake()
     {
-        carManager = FindObjectOfType<CarManager>();
+        Application.targetFrameRate = 60;
+        audioSource = GetComponent<AudioSource>();
+         carManager = FindObjectOfType<CarManager>();
         EnableCar();
         coinController = GetComponent<CoinController>();
         levelController = GetComponent<LevelController>();
 #if UNITY_WEBGL && !UNITY_EDITOR
         useMobileControls = IsMobileBrowser();
-       
+
 #endif
-
+        if(useMobileControls)
+            Screen.orientation = ScreenOrientation.LandscapeRight;
+        
         GameStart();
-
 
        
     }
@@ -88,9 +99,26 @@ public class GameController : MonoBehaviour
         {
             ChangeCameraAngle();
         }
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            ReviveButton(null,null);
+        }
+        if(!stopTimer)
         UpdateTimer();
-    }
 
+    }
+   public void StopTimer(bool shouldStop)
+    {
+        if(shouldStop)
+        {
+            stopTimer = true;
+        }
+        else
+        {
+            stopTimer = false;
+        }
+
+    }
     void UpdateTimer()
     {
          
@@ -128,15 +156,23 @@ public class GameController : MonoBehaviour
         GameObject checkPoint = FindObjectOfType<Level>().LastCheckPoint();
         if (checkPoint != null)
         {
-            carController.transform.position = checkPoint.transform.position;
-            OnRevive?.Invoke(checkPoint.transform.position);
+            // carController.transform.position = checkPoint.transform.position;
+            var revivePos = checkPoint.transform.position;
+            revivePos.y = revivePos.y+1;
+            var reviveRot= checkPoint.transform.localEulerAngles;
+            reviveRot.y = reviveRot.y-90;
+            reviveRot.z = 0;
+            carController.Revive(revivePos, reviveRot);
+
+            OnRevive?.Invoke();
         }
         else
         {
-            carController.transform.position = Vector3.zero;
-            OnRevive?.Invoke(Vector3.zero);
+            //carController.transform.position = Vector3.zero;
+            carController.Revive(Vector3.zero,Vector3.zero);
+            OnRevive?.Invoke();
         }
-       
+        
     }
 
  
@@ -168,10 +204,13 @@ public class GameController : MonoBehaviour
 
     private void ReviveButton(IronSourcePlacement arg1, IronSourceAdInfo arg2)
     {
+
         losePanel.SetActive(false);
         gameFinished = false;
-
-
+       
+        targetTime = levelController.GetActiveLevel().gameObject.GetComponent<Level>().GetTime();
+        targetTime++;
+        timerText.gameObject.SetActive(true);
 
         RestartWithCheckPoint();
         GameStart();
@@ -201,17 +240,20 @@ public class GameController : MonoBehaviour
         GameEnd();
         winPanel.SetActive(true);
         coinController.MakeMoney();
-    }
+        audioSource.PlayOneShot(winSound);
+        OnGameEnd?.Invoke();
+     }
     public void LevelLose()
     {
           if (gameFinished)
             return;
         GameEnd();
          
-        Invoke("LevelLoseDelay",0.5f);
+        Invoke("LevelLoseDelay",0.1f);
     }
     void LevelLoseDelay()
     {
+         audioSource.PlayOneShot(LoseSound);
          losePanel.SetActive(true);
         OnGameEnd?.Invoke();
 

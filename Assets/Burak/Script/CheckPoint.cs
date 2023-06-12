@@ -5,10 +5,10 @@ using UnityEngine;
 public class CheckPoint : MonoBehaviour
 {
     GameController gameController;
-    private void Awake()
+     private void Awake()
     {
-        gameController = GetComponentInParent<GameController>();
-    }
+        gameController = FindObjectOfType<GameController>();
+      }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.GetComponentInParent<PrometeoCarController>() != null)
@@ -22,7 +22,7 @@ public class CheckPoint : MonoBehaviour
         if (gameController.gameFinished)
             return;
 
-        Debug.Log("Checkpoint");
+         Debug.Log("Checkpoint");
         gameObject.SetActive(false);
         GetComponentInParent<Level>().CheckPointPassed(gameObject);
     }

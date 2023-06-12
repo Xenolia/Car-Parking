@@ -14,6 +14,8 @@ public class LevelController : MonoBehaviour
     public TextMeshProUGUI Leveltext;
     private void Awake()
     {
+  
+
         gameController = GetComponent<GameController>();
         if (playSpecificLevel)
         {
@@ -45,23 +47,29 @@ public class LevelController : MonoBehaviour
         Leveltext.text = "LEVEL  " + Level.ToString();
 
        levelIndex = Level % (levels.Length+1);
- 
+
+       
         if (Level <= levels.Length)
         {
-             levels[levelIndex - 1].SetActive(true);
-            activeLevel = levels[levelIndex - 1];
+         var go=   Instantiate(levels[levelIndex - 1]);
+            go.transform.parent = transform;
+            go.SetActive(true);
+           //  levels[levelIndex - 1].SetActive(true);
+            activeLevel = go;
 
 
         }
 
         else
         {
-            levels[levelIndex].SetActive(true);
-            activeLevel = levels[levelIndex];
+            var go = Instantiate(levels[levelIndex]);
+            go.transform.parent = transform;
+
+            go.SetActive(true);
+            activeLevel = go;
 
         }
-
-    }
+     }
     public GameObject GetActiveLevel()
     {
         return activeLevel;

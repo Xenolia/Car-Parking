@@ -6,11 +6,15 @@ public class Obstacle : MonoBehaviour
 {
 
     Vector3 startPos;
+    Quaternion startRot;
     GameController gameController;
+    bool godmode;
     private void Awake()
     {
+        godmode = false;
         startPos = transform.position;
-        gameController = GetComponentInParent<GameController>();
+        startRot = transform.rotation;
+        gameController = FindObjectOfType<GameController>();
     }
     private void OnEnable()
     {
@@ -21,19 +25,29 @@ public class Obstacle : MonoBehaviour
         gameController.OnRevive -= Revive;
  
     }
-    void Revive(Vector3 asd)
+    void Revive()
     {
+        if(GetComponent<Rigidbody>()!=null)
         GetComponent<Rigidbody>().velocity = Vector3.zero;
-        transform.position = startPos;
-    }
+
+        transform.SetPositionAndRotation(startPos,startRot);
+     }
 
     private void OnCollisionEnter(Collision collision)
     {
+
+        if (godmode)
+            return;
+
         if(collision.gameObject.GetComponent<PrometeoCarController>()!=null)
         {
             FindObjectOfType<GameController>().LevelLose();
         }
         if (collision.gameObject.GetComponentInParent<PrometeoCarController>() != null)
+        {
+            FindObjectOfType<GameController>().LevelLose();
+        }
+        if (collision.gameObject.GetComponent<WheelCollider>() != null)
         {
             FindObjectOfType<GameController>().LevelLose();
         }

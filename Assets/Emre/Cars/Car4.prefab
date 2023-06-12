@@ -206,7 +206,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2188019391734456647}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.025, y: 0, z: -0.047}
+  m_LocalPosition: {x: 0.025, y: 0.25, z: -0.047}
   m_LocalScale: {x: 0.96, y: 1.45, z: 0.95}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1427,7 +1427,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &7129188875146297852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1446,8 +1446,8 @@ MonoBehaviour:
   maxSteeringAngle: 35
   steeringSpeed: 0.5
   brakeForce: 600
-  decelerationMultiplier: 4
-  handbrakeDriftMultiplier: 7
+  decelerationMultiplier: 6
+  handbrakeDriftMultiplier: 5
   bodyMassCenter: {x: 0, y: 0, z: 0}
   frontLeftMesh: {fileID: 1938820710146610971}
   frontLeftCollider: {fileID: 9077876545843707910}

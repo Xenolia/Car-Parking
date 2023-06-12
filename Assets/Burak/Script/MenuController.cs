@@ -6,6 +6,7 @@ using DG.Tweening;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using System.Runtime.InteropServices;
 
 public class MenuController : MonoBehaviour
 {
@@ -21,15 +22,26 @@ public class MenuController : MonoBehaviour
 
     [SerializeField] GameObject DifficultyButtonObj;
 
+#if UNITY_WEBGL&& !UNITY_EDITOR
+    [DllImport("__Internal")]
+    private static extern bool IsMobileBrowser();
+#endif
 
-   [SerializeField] AdManager adManager;
+    [SerializeField] AdManager adManager;
     
     CoinController coinController;
 
    [SerializeField] int difficulty;
     private void Awake()
     {
-         coinController = GetComponent<CoinController>();
+#if UNITY_WEBGL&& !UNITY_EDITOR
+        if (IsMobileBrowser())
+            Screen.orientation = ScreenOrientation.LandscapeRight;
+#endif
+
+
+
+        coinController = GetComponent<CoinController>();
          CheckButtons();
         UpdateBuyButton();
 

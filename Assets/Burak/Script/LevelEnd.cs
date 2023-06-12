@@ -18,7 +18,7 @@ public class LevelEnd : MonoBehaviour
     Color oldColor2;
      private void Awake()
     {
-        gameController = GetComponentInParent<GameController>();
+        gameController = FindObjectOfType<GameController>();
 
        ParkingArea area= FindObjectOfType<ParkingArea>();
         changeMaterial = area.ChangeMaterial1().GetComponent<MeshRenderer>();
@@ -33,17 +33,26 @@ public class LevelEnd : MonoBehaviour
     private void OnEnable()
     {
         gameController.OnGameEnd += GameEnd;
+
+        gameController.OnRevive += Revive;
+
     }
     private void OnDisable()
     {
         changeMaterial.sharedMaterial.color = oldColor;
         changeMaterial2.sharedMaterial.color = oldColor2;
         gameController.OnGameEnd -= GameEnd;
+        gameController.OnRevive -= Revive;
+
 
     }
     void GameEnd()
     {
         gameEnd = true;
+    }
+    void Revive()
+    {
+        gameEnd = false;
     }
     private void OnTriggerStay(Collider other)
     {
@@ -106,18 +115,28 @@ public class LevelEnd : MonoBehaviour
         
              changeMaterial.sharedMaterial.color = Color.green;
         changeMaterial2.sharedMaterial.color = Color.green;
+        StopTimer();
+
 
         countdown = countdown - (Time.deltaTime);
             UpdateText();
  
        
     }
+    void StopTimer()
+    {
+        gameController.StopTimer(true);
+    }
+    void ResumeTimer()
+    {
+        gameController.StopTimer(false);
+     }
     void ResetTimer()
     {
         gameController.DisableCountDown();
         changeMaterial.sharedMaterial.color =oldColor;
         changeMaterial2.sharedMaterial.color = oldColor2;
-
+        ResumeTimer();
         rotationWarningText.SetActive(false);
 
     }
@@ -126,6 +145,7 @@ public class LevelEnd : MonoBehaviour
         countdown = 4f;
         changeMaterial.sharedMaterial.color = oldColor;
         changeMaterial2.sharedMaterial.color = oldColor2;
+        ResumeTimer();
 
         rotationWarningText.SetActive(false);
 
