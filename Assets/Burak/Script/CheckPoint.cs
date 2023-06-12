@@ -22,8 +22,7 @@ public class CheckPoint : MonoBehaviour
         if (gameController.gameFinished)
             return;
 
-         Debug.Log("Checkpoint");
-        gameObject.SetActive(false);
+         gameObject.SetActive(false);
         GetComponentInParent<Level>().CheckPointPassed(gameObject);
     }
 }

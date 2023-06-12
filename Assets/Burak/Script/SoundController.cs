@@ -148,8 +148,7 @@ public class SoundController : MonoBehaviour
 
     void ASD(float musicVal, float soundVal, [CallerMemberName] string callername = "")
     {
-        Debug.Log(callername);
-        musicSlider.value = musicVal;
+         musicSlider.value = musicVal;
 
         soundSlider.value = soundVal;
     }
@@ -181,8 +180,7 @@ public class SoundController : MonoBehaviour
             soundButton.GetComponent<Image>().sprite = soundOffImage;
 
         }
-        Debug.LogError(soundValue);
-
+ 
         UpdateVolumes();
     }
     public void SliderValueChanged()
