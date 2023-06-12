@@ -158,8 +158,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -349.7, y: 175.5}
-  m_SizeDelta: {x: 102, y: 50}
+  m_AnchoredPosition: {x: 42.7, y: -4.0000153}
+  m_SizeDelta: {x: 174, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &46137328
 MonoBehaviour:
@@ -484,7 +484,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -224, y: 175.5}
+  m_AnchoredPosition: {x: 75.7, y: -4}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &121928935
@@ -618,9 +618,9 @@ RectTransform:
   m_Father: {fileID: 609091661}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 50, y: -50}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &182693025
@@ -1188,7 +1188,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3672726119700542745, guid: c980e759da18347458f717a7a1f315fa, type: 3}
       propertyPath: m_Text
-      value: 123
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3672726119700542745, guid: c980e759da18347458f717a7a1f315fa, type: 3}
       propertyPath: m_FontData.m_Alignment
@@ -1224,7 +1224,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3672726119700542747, guid: c980e759da18347458f717a7a1f315fa, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 250
+      value: 555.8
       objectReference: {fileID: 0}
     - target: {fileID: 3672726119700542747, guid: c980e759da18347458f717a7a1f315fa, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1272,11 +1272,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3672726119700542747, guid: c980e759da18347458f717a7a1f315fa, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -347.2
+      value: 44.8
       objectReference: {fileID: 0}
     - target: {fileID: 3672726119700542747, guid: c980e759da18347458f717a7a1f315fa, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 153.5
+      value: -26.000015
       objectReference: {fileID: 0}
     - target: {fileID: 3672726119700542747, guid: c980e759da18347458f717a7a1f315fa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4057,7 +4057,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 090d3497b0ccba64d87a422b9f55ae41, type: 3}
+  m_audioClip: {fileID: 8300000, guid: bde38ddb894432b45a0e08504cdaae12, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
