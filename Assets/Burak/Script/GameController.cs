@@ -33,7 +33,7 @@ public class GameController : MonoBehaviour
 
     bool stopTimer = false;
     int carIndex;
- #if UNITY_WEBGL
+#if UNITY_WEBGL && !UNITY_EDITOR
     [DllImport("__Internal")]
     private static extern bool IsMobileBrowser();
 #endif
@@ -51,10 +51,11 @@ public class GameController : MonoBehaviour
         levelController = GetComponent<LevelController>();
 #if UNITY_WEBGL && !UNITY_EDITOR
         useMobileControls = IsMobileBrowser();
-               Screen.orientation = ScreenOrientation.LandscapeRight;
 
 #endif
-
+        if(useMobileControls)
+            Screen.orientation = ScreenOrientation.LandscapeRight;
+        
         GameStart();
 
        
