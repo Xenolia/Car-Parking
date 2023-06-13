@@ -152,7 +152,7 @@ public class MenuController : MonoBehaviour
 
          price.Unlock();
         UpdateBuyButton();
-    } 
+    }
 
     void CheckBuyButtonCoin(Price price)
     {

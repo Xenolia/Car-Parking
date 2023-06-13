@@ -59,6 +59,7 @@ public class GameController : MonoBehaviour
         if(PlayerPrefs.HasKey("NightMode"))
         {
           var   a = PlayerPrefs.GetInt("NightMode",0);
+
             if (a == 1)
                 nightMode = true;
         }
@@ -128,7 +129,8 @@ public class GameController : MonoBehaviour
             ChangeCameraAngle();
         }
        
-        if(!stopTimer)
+
+        if (!stopTimer)
         UpdateTimer();
 
     }
