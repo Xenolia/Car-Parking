@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,45 +25,56 @@ public class SoundController : MonoBehaviour
     [SerializeField] AudioSource[] sounds;
 
     [SerializeField] GameObject settingsPanel;
+    string musicKey = "Music";
+    string soundKey = "Sound";
+
     private void Awake()
     {
-        if( PlayerPrefs.HasKey("Sound"))
+        if (PlayerPrefs.HasKey(soundKey))
         {
-            soundValue = PlayerPrefs.GetFloat("Sound");
+            soundValue = PlayerPrefs.GetFloat(soundKey);
+
         }
         else
         {
-            soundValue = 1F;
-            PlayerPrefs.SetFloat("Sound", soundValue);
+            soundValue = 1f;
+            PlayerPrefs.SetFloat(soundKey, soundValue);
         }
-        if (PlayerPrefs.HasKey("Music"))
+
+        if (PlayerPrefs.HasKey(musicKey))
         {
-            musicValue = PlayerPrefs.GetFloat("Music");
+            musicValue = PlayerPrefs.GetFloat(musicKey);
         }
         else
         {
-            musicValue = 1F;
-            PlayerPrefs.SetFloat("Music", musicValue);
+            musicValue = 1f;
+            PlayerPrefs.SetFloat(musicKey, musicValue);
         }
 
         UpdateUI();
         UpdateVolumes();
         StartCoroutine(CheckSound());
     }
+    private void OnDisable()
+    {
+        PlayerPrefs.SetFloat(soundKey, soundValue);
+        PlayerPrefs.SetFloat(musicKey, musicValue);
+    }
+
     public void MusicButton()
     {
-        if(musicValue>0)
+        if (musicValue > 0)
         {
             musicValue = 0;
             musicSlider.value = 0f;
-            PlayerPrefs.SetFloat("Music", 0);
+            PlayerPrefs.SetFloat(musicKey, 0);
             musicButton.GetComponent<Image>().sprite = musicOffImage;
         }
         else
         {
             musicValue = 1;
             musicSlider.value = 1f;
-             PlayerPrefs.SetFloat("Music", 1);
+            PlayerPrefs.SetFloat(musicKey, 1);
             musicButton.GetComponent<Image>().sprite = musicOnImage;
 
         }
@@ -75,7 +87,7 @@ public class SoundController : MonoBehaviour
         {
             soundValue = 0;
             soundSlider.value = 0f;
-            PlayerPrefs.SetFloat("Sound", 0);
+            PlayerPrefs.SetFloat(soundKey, 0);
             soundButton.GetComponent<Image>().sprite = soundOffImage;
 
         }
@@ -83,7 +95,7 @@ public class SoundController : MonoBehaviour
         {
             soundValue = 1;
             soundSlider.value = 1f;
-            PlayerPrefs.SetFloat("Sound", 1);
+            PlayerPrefs.SetFloat(soundKey, 1);
             soundButton.GetComponent<Image>().sprite = soundOnImage;
 
         }
@@ -110,7 +122,7 @@ public class SoundController : MonoBehaviour
     }
     public void EnableSettingsPanel()
     {
-        if(settingsPanel.activeSelf)
+        if (settingsPanel.activeSelf)
         {
             settingsPanel.SetActive(false);
             Time.timeScale = 1f;
@@ -132,11 +144,18 @@ public class SoundController : MonoBehaviour
         Time.timeScale = 1f;
 
     }
+
+
+    void ASD(float musicVal, float soundVal, [CallerMemberName] string callername = "")
+    {
+         musicSlider.value = musicVal;
+
+        soundSlider.value = soundVal;
+    }
     void UpdateUI()
     {
-        musicSlider.value = musicValue = PlayerPrefs.GetFloat("Music",1f);
+        ASD(musicValue, soundValue);
 
-        soundSlider.value = soundValue = PlayerPrefs.GetFloat("Sound",1f);
 
 
         if (musicValue > 0)
@@ -161,15 +180,16 @@ public class SoundController : MonoBehaviour
             soundButton.GetComponent<Image>().sprite = soundOffImage;
 
         }
+ 
         UpdateVolumes();
     }
-  public  void SliderValueChanged()
+    public void SliderValueChanged()
     {
         musicValue = musicSlider.value;
         soundValue = soundSlider.value;
-  
-        PlayerPrefs.SetFloat("Sound", soundSlider.value);
-        PlayerPrefs.SetFloat("Music", musicSlider.value);
+
+        PlayerPrefs.SetFloat(soundKey, soundValue);
+        PlayerPrefs.SetFloat(musicKey, musicValue);
         if (soundValue == 0f)
         {
             soundButton.GetComponent<Image>().sprite = soundOffImage;
@@ -198,12 +218,15 @@ public class SoundController : MonoBehaviour
     {
         foreach (var item in sounds)
         {
-            item.volume = PlayerPrefs.GetFloat("Sound", 1f);
+            item.volume = soundValue;
+            //  item.volume = PlayerPrefs.GetFloat(soundKey, 1f);
         }
         foreach (var item in musics)
         {
-            item.volume = PlayerPrefs.GetFloat("Music", 1f);
+            item.volume = musicValue;
+            // item.volume = PlayerPrefs.GetFloat(musicKey, 1f);
         }
+
     }
 
 }
