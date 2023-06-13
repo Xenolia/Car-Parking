@@ -2966,6 +2966,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bus1
       objectReference: {fileID: 0}
+    - target: {fileID: 1417197895592252248, guid: 78ecff6899efd6244a6087b87be7d085, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1792772773064821218, guid: 78ecff6899efd6244a6087b87be7d085, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -3010,6 +3014,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1964476039759930061, guid: 78ecff6899efd6244a6087b87be7d085, type: 3}
+      propertyPath: carSpeedText
+      value: 
+      objectReference: {fileID: 677710026}
+    - target: {fileID: 1964476039759930061, guid: 78ecff6899efd6244a6087b87be7d085, type: 3}
+      propertyPath: carEngineSound
+      value: 
+      objectReference: {fileID: 511879847}
+    - target: {fileID: 1964476039759930061, guid: 78ecff6899efd6244a6087b87be7d085, type: 3}
+      propertyPath: tireScreechSound
+      value: 
+      objectReference: {fileID: 66484012}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78ecff6899efd6244a6087b87be7d085, type: 3}
 --- !u!4 &1073784145 stripped
@@ -4514,6 +4530,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5954736393062469980, guid: 7da4c80eec949d243a7826c49fbd3d39, type: 3}
+      propertyPath: carSpeedText
+      value: 
+      objectReference: {fileID: 677710026}
+    - target: {fileID: 5954736393062469980, guid: 7da4c80eec949d243a7826c49fbd3d39, type: 3}
+      propertyPath: carEngineSound
+      value: 
+      objectReference: {fileID: 511879847}
+    - target: {fileID: 5954736393062469980, guid: 7da4c80eec949d243a7826c49fbd3d39, type: 3}
+      propertyPath: tireScreechSound
+      value: 
+      objectReference: {fileID: 66484012}
     - target: {fileID: 6506193231691735241, guid: 7da4c80eec949d243a7826c49fbd3d39, type: 3}
       propertyPath: m_Name
       value: Bus4
@@ -4886,8 +4914,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1697935061}
-  m_LocalRotation: {x: 0.24479969, y: 0, z: 0, w: 0.9695737}
-  m_LocalPosition: {x: 0.02, y: 2.3, z: 3.82}
+  m_LocalRotation: {x: 0.11577593, y: 0.04419138, z: -0.005156111, w: 0.99227846}
+  m_LocalPosition: {x: 0.01, y: 2.63, z: 2.94}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5259,6 +5287,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1412846773}
     m_Modifications:
+    - target: {fileID: 7003138514114142891, guid: 707dffcbc4f29be43974a916d2d379e8, type: 3}
+      propertyPath: carSpeedText
+      value: 
+      objectReference: {fileID: 677710026}
+    - target: {fileID: 7003138514114142891, guid: 707dffcbc4f29be43974a916d2d379e8, type: 3}
+      propertyPath: carEngineSound
+      value: 
+      objectReference: {fileID: 511879847}
+    - target: {fileID: 7003138514114142891, guid: 707dffcbc4f29be43974a916d2d379e8, type: 3}
+      propertyPath: tireScreechSound
+      value: 
+      objectReference: {fileID: 66484012}
     - target: {fileID: 7102784117175748996, guid: 707dffcbc4f29be43974a916d2d379e8, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -5423,12 +5463,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1364048809717154736, guid: 6fa16928ab649f643827ef536a7f9b45, type: 3}
+      propertyPath: carSpeedText
+      value: 
+      objectReference: {fileID: 677710026}
+    - target: {fileID: 1364048809717154736, guid: 6fa16928ab649f643827ef536a7f9b45, type: 3}
+      propertyPath: carEngineSound
+      value: 
+      objectReference: {fileID: 511879847}
+    - target: {fileID: 1364048809717154736, guid: 6fa16928ab649f643827ef536a7f9b45, type: 3}
+      propertyPath: tireScreechSound
+      value: 
+      objectReference: {fileID: 66484012}
     - target: {fileID: 1875694667171983909, guid: 6fa16928ab649f643827ef536a7f9b45, type: 3}
       propertyPath: m_Name
       value: Bus2
       objectReference: {fileID: 0}
     - target: {fileID: 1875694667171983909, guid: 6fa16928ab649f643827ef536a7f9b45, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4785771961151423080, guid: 6fa16928ab649f643827ef536a7f9b45, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4785771961151423080, guid: 6fa16928ab649f643827ef536a7f9b45, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4785771961151423080, guid: 6fa16928ab649f643827ef536a7f9b45, type: 3}
+      propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
