@@ -19,7 +19,7 @@ public class GameController : MonoBehaviour
     [SerializeField] bool useMobileControls=false;
     [SerializeField] PrometeoCarController carController;
     [SerializeField] GameObject[] mobileButtons;
-
+    [SerializeField] GameObject reviveButton;
     [SerializeField] GameObject winPanel;
     [SerializeField] GameObject losePanel;
     [SerializeField] Text countDownText;
@@ -37,7 +37,7 @@ public class GameController : MonoBehaviour
     float targetTime;
    [SerializeField] AdManager adManager;
 
-
+    [SerializeField] GameObject gosterge;
     bool stopTimer = false;
     int carIndex;
      public void CheckPointPassed()
@@ -46,7 +46,6 @@ public class GameController : MonoBehaviour
     }
     private void Awake()
     {
-        
         Application.targetFrameRate = 60;
         audioSource = GetComponent<AudioSource>();
          carManager = FindObjectOfType<CarManager>();
@@ -231,6 +230,7 @@ public class GameController : MonoBehaviour
 
     private void ReviveButton(IronSourcePlacement arg1, IronSourceAdInfo arg2)
     {
+        gosterge.SetActive(true);
 
         losePanel.SetActive(false);
         gameFinished = false;
@@ -282,12 +282,17 @@ public class GameController : MonoBehaviour
     {
          audioSource.PlayOneShot(LoseSound);
          losePanel.SetActive(true);
+        if(levelController.GetActiveLevel().gameObject.GetComponent<Level>().LastCheckPoint()==null)
+        {
+            reviveButton.SetActive(false);
+        }
         OnGameEnd?.Invoke();
 
     }
     void GameEnd()
     {
-        
+        gosterge.SetActive(false);
+
         timerText.gameObject.SetActive(false);
         gameFinished = true;
        // Time.timeScale = 0f;
