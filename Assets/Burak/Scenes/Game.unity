@@ -876,7 +876,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4.02, y: -1.75}
+  m_AnchoredPosition: {x: 4.02, y: 100}
   m_SizeDelta: {x: 204, y: 74}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &312080468
@@ -1847,8 +1847,8 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1.1
+  m_Color: {r: 0.40392157, g: 0.26666668, b: 0.7176471, a: 1}
+  m_Intensity: 0.55
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1879,7 +1879,7 @@ Light:
       e32: 0
       e33: 1
     m_UseCullingMatrixOverride: 0
-  m_Cookie: {fileID: 2800000, guid: 05ad205f298e2b94d9f8aee40b917a40, type: 3}
+  m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
   m_RenderMode: 0
@@ -3829,7 +3829,7 @@ MonoBehaviour:
   - {fileID: 1123957114126764209, guid: 363347b00e6a845479a6251f16de0528, type: 3}
   - {fileID: 930318544430323861, guid: 41ca74d30a2dc204cbc49a036f7da975, type: 3}
   playSpecificLevel: 0
-  Level: 13
+  Level: 36
   Leveltext: {fileID: 1181202524}
   levelIndex: 0
 --- !u!114 &1287724331
@@ -5158,7 +5158,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 100}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 204, y: 74}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2084252688

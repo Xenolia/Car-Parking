@@ -11,7 +11,7 @@ public class Obstacle : MonoBehaviour
     bool godmode;
     private void Awake()
     {
-        godmode = false;
+        godmode = false  ;
         startPos = transform.position;
         startRot = transform.rotation;
         gameController = FindObjectOfType<GameController>();
