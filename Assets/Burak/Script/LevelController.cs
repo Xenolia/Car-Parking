@@ -33,13 +33,7 @@ public class LevelController : MonoBehaviour
 
         ActivateLevel();
     }
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            NextLevel();
-        }
-    }
+ 
    public int levelIndex;
     void ActivateLevel()
     {

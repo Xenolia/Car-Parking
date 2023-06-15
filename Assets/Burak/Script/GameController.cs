@@ -3,8 +3,15 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
     using System.Runtime.InteropServices;
 using System;
+using UnityEngine.Experimental.GlobalIllumination;
+
 public class GameController : MonoBehaviour
 {
+    [SerializeField] Light dayLight;
+    [SerializeField] Light nightLight;
+
+    bool nightMode = false;
+
     [SerializeField] AudioClip winSound, LoseSound;
     [SerializeField] AudioClip CheckPointSound;
     AudioSource audioSource;
@@ -12,7 +19,7 @@ public class GameController : MonoBehaviour
     [SerializeField] bool useMobileControls=false;
     [SerializeField] PrometeoCarController carController;
     [SerializeField] GameObject[] mobileButtons;
-
+    [SerializeField] GameObject reviveButton;
     [SerializeField] GameObject winPanel;
     [SerializeField] GameObject losePanel;
     [SerializeField] Text countDownText;
@@ -30,14 +37,10 @@ public class GameController : MonoBehaviour
     float targetTime;
    [SerializeField] AdManager adManager;
 
-
+    [SerializeField] GameObject gosterge;
     bool stopTimer = false;
     int carIndex;
-#if UNITY_WEBGL && !UNITY_EDITOR
-    [DllImport("__Internal")]
-    private static extern bool IsMobileBrowser();
-#endif
-    public void CheckPointPassed()
+     public void CheckPointPassed()
     {
         audioSource.PlayOneShot(CheckPointSound);
     }
@@ -49,18 +52,37 @@ public class GameController : MonoBehaviour
         EnableCar();
         coinController = GetComponent<CoinController>();
         levelController = GetComponent<LevelController>();
-#if UNITY_WEBGL && !UNITY_EDITOR
-        useMobileControls = IsMobileBrowser();
-
-#endif
-        if(useMobileControls)
-            Screen.orientation = ScreenOrientation.LandscapeRight;
+  
         
         GameStart();
+        if(PlayerPrefs.HasKey("NightMode"))
+        {
+          var   a = PlayerPrefs.GetInt("NightMode",0);
 
-       
+            if (a == 1)
+                nightMode = true;
+        }
+    
+        if (nightMode)
+            SwitchLight();
     }
-     
+     public void SwitchLight()
+    {
+        if (!nightLight.gameObject.activeSelf)
+        {
+            nightLight.gameObject.SetActive(true);
+            dayLight.gameObject.SetActive(false);
+            nightMode = true;
+            PlayerPrefs.SetInt("NightMode",1);
+        }
+        else
+        {
+            nightLight.gameObject.SetActive(false);
+            dayLight.gameObject.SetActive(true);
+            nightMode = false;
+            PlayerPrefs.SetInt("NightMode",0);
+        }
+    }
     void EnableCar()
     {
       carIndex = PlayerPrefs.GetInt("Car",1);
@@ -91,20 +113,24 @@ public class GameController : MonoBehaviour
     }
     private void Update()
     {
+        /*
         if(Input.GetKeyDown(KeyCode.R))
         {
             Restart();
         }
-        if(Input.GetKeyDown(KeyCode.V))
-        {
-            ChangeCameraAngle();
-        }
-        if (Input.GetKeyDown(KeyCode.T))
+         if (Input.GetKeyDown(KeyCode.T))
         {
             ReviveButton(null,null);
         }
-        if(!stopTimer)
-        UpdateTimer();
+        */
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            ChangeCameraAngle();
+        }
+
+
+        if (!stopTimer)
+            UpdateTimer();
 
     }
    public void StopTimer(bool shouldStop)
@@ -204,6 +230,7 @@ public class GameController : MonoBehaviour
 
     private void ReviveButton(IronSourcePlacement arg1, IronSourceAdInfo arg2)
     {
+        gosterge.SetActive(true);
 
         losePanel.SetActive(false);
         gameFinished = false;
@@ -255,12 +282,17 @@ public class GameController : MonoBehaviour
     {
          audioSource.PlayOneShot(LoseSound);
          losePanel.SetActive(true);
+        if(levelController.GetActiveLevel().gameObject.GetComponent<Level>().LastCheckPoint()==null)
+        {
+            reviveButton.SetActive(false);
+        }
         OnGameEnd?.Invoke();
 
     }
     void GameEnd()
     {
-        
+        gosterge.SetActive(false);
+
         timerText.gameObject.SetActive(false);
         gameFinished = true;
        // Time.timeScale = 0f;

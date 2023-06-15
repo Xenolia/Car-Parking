@@ -10,7 +10,8 @@ public class Level : MonoBehaviour
     public float TimerMedium = 300000f;
     public float TimerHard = 300000f;
     GameController gameController;
-    private void Awake()
+
+     private void Awake()
     {
         gameController = FindObjectOfType<GameController>();
         Timer = Timer - 3f;
