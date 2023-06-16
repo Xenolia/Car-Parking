@@ -19,6 +19,7 @@ public class YandexInterstatialAdManager : IInterstatialAdManager
 
     public bool IsInterstatialAdReady()
     {
+        Debug.Log("this is yandex");
         return true;
     }
 

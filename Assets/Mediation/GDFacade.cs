@@ -79,10 +79,12 @@ public class GDFacade : MonoBehaviour
 
 #if YANDEX_GAMES
         _yandexSDK.Init();
-
+        Debug.Log("before new");
         _rewardedAdManager = new YandexRewardedAdManager();
         _interstatialAdManager = new YandexInterstatialAdManager();
         _bannerAdManager = new YandexBannerAdManager();
+        Debug.Log("after new");
+
 #endif
     }
 

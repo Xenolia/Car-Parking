@@ -11,7 +11,7 @@ public class AdHelper : MonoBehaviour
         adManager = GetComponent<AdManager>();
         adManager.Init();
 
-        adManager.InterstatialAdManager.LoadAds();
+       // adManager.InterstatialAdManager.LoadAds();
     }
     private void Start()
     {

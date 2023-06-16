@@ -137,7 +137,7 @@ public class AdManager : MonoBehaviour
         _rewardedAdManager.RegisterIronSourceEvents();
         _bannerAdManager.RegisterIronsSourceBannerEvents();
 
-        LoadAds();
+      //  LoadAds();
 #endif
 
         if (_isNoAdd == true)
@@ -173,8 +173,7 @@ public class AdManager : MonoBehaviour
         _bannerAdManager = new CrazyLabsBannerAdManager();
 #endif
 #if UNITY_EDITOR
-
-         _rewardedAdManager = new FakeRewardedAdManager();
+        _rewardedAdManager = new FakeRewardedAdManager();
         _interstatialAdManager = new FakeInterstatialAdManager();
         _bannerAdManager = new FakeBannerAdManager();
 

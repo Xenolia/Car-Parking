@@ -219,7 +219,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1121521616}
+      - m_Target: {fileID: 1287724337}
         m_TargetAssemblyTypeName: AdHelper, Assembly-CSharp
         m_MethodName: ShowIntersitial
         m_Mode: 1
@@ -643,7 +643,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1121521616}
+      - m_Target: {fileID: 1287724337}
         m_TargetAssemblyTypeName: AdHelper, Assembly-CSharp
         m_MethodName: ShowIntersitial
         m_Mode: 1
@@ -777,7 +777,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1121521616}
+      - m_Target: {fileID: 1287724337}
         m_TargetAssemblyTypeName: AdHelper, Assembly-CSharp
         m_MethodName: ShowIntersitial
         m_Mode: 1
@@ -1222,7 +1222,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1121521616}
+      - m_Target: {fileID: 1287724337}
         m_TargetAssemblyTypeName: AdHelper, Assembly-CSharp
         m_MethodName: ShowIntersitial
         m_Mode: 1
@@ -2895,6 +2895,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1039237712}
   m_CullTransparentMesh: 1
+--- !u!1001 &1052553678
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 12778234783248565, guid: b8cc9fa895ac03a4f8d994ed62b6341e, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 12778234783248565, guid: b8cc9fa895ac03a4f8d994ed62b6341e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 207.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 12778234783248565, guid: b8cc9fa895ac03a4f8d994ed62b6341e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 136.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 12778234783248565, guid: b8cc9fa895ac03a4f8d994ed62b6341e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 12778234783248565, guid: b8cc9fa895ac03a4f8d994ed62b6341e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 12778234783248565, guid: b8cc9fa895ac03a4f8d994ed62b6341e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 12778234783248565, guid: b8cc9fa895ac03a4f8d994ed62b6341e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 12778234783248565, guid: b8cc9fa895ac03a4f8d994ed62b6341e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 12778234783248565, guid: b8cc9fa895ac03a4f8d994ed62b6341e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 12778234783248565, guid: b8cc9fa895ac03a4f8d994ed62b6341e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 12778234783248565, guid: b8cc9fa895ac03a4f8d994ed62b6341e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 12778234783248567, guid: b8cc9fa895ac03a4f8d994ed62b6341e, type: 3}
+      propertyPath: m_Name
+      value: YandexSDK
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b8cc9fa895ac03a4f8d994ed62b6341e, type: 3}
+--- !u!114 &1052553679 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 12778234783248564, guid: b8cc9fa895ac03a4f8d994ed62b6341e, type: 3}
+  m_PrefabInstance: {fileID: 1052553678}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bfdda3e0fb20e24d9f2ea7b5acee7bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1072230321
 GameObject:
   m_ObjectHideFlags: 0
@@ -3116,13 +3184,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1287724332}
     m_Modifications:
+    - target: {fileID: 1578990923, guid: 6af79a5325a0565429b2fc4a464aaba2, type: 3}
+      propertyPath: _yandexSDK
+      value: 
+      objectReference: {fileID: 1052553679}
     - target: {fileID: 1253768460573569520, guid: 6af79a5325a0565429b2fc4a464aaba2, type: 3}
       propertyPath: _isNoAdd
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1253768460573569521, guid: 6af79a5325a0565429b2fc4a464aaba2, type: 3}
       propertyPath: m_RootOrder
-      value: 31
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1253768460573569521, guid: 6af79a5325a0565429b2fc4a464aaba2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3175,17 +3247,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1253768460573569521, guid: 6af79a5325a0565429b2fc4a464aaba2, type: 3}
   m_PrefabInstance: {fileID: 1121521614}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1121521616 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1268007372, guid: 6af79a5325a0565429b2fc4a464aaba2, type: 3}
-  m_PrefabInstance: {fileID: 1121521614}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8aeb83a31d9334de9a03c11d1f697709, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1121521618 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1253768460573569520, guid: 6af79a5325a0565429b2fc4a464aaba2, type: 3}
@@ -3758,6 +3819,7 @@ GameObject:
   - component: {fileID: 1287724334}
   - component: {fileID: 1287724335}
   - component: {fileID: 1287724336}
+  - component: {fileID: 1287724337}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -4117,6 +4179,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1287724337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287724328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aeb83a31d9334de9a03c11d1f697709, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  preRoll: 0
 --- !u!1 &1301065565
 GameObject:
   m_ObjectHideFlags: 0
@@ -5205,7 +5280,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1121521616}
+      - m_Target: {fileID: 1287724337}
         m_TargetAssemblyTypeName: AdHelper, Assembly-CSharp
         m_MethodName: ShowIntersitial
         m_Mode: 1

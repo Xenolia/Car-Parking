@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
+using UnityEngine.UI;
 
 #if YANDEX_GAMES
 
@@ -63,12 +64,7 @@ public class YandexSDK : MonoBehaviour {
     public Queue<string> rewardedAdsPlacements = new Queue<string>();
 
     private void Awake() {
-        //if (instance == null) {
-        //    instance = this;
-        //}
-        //else {
-        //    Destroy(gameObject);
-        //}
+        Init();
     }
 
     public void Init()
