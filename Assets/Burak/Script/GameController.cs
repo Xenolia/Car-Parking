@@ -4,6 +4,8 @@ using UnityEngine.UI;
     using System.Runtime.InteropServices;
 using System;
 using UnityEngine.Experimental.GlobalIllumination;
+using YG;
+using YG.Example;
 
 public class GameController : MonoBehaviour
 {
@@ -24,7 +26,7 @@ public class GameController : MonoBehaviour
     [SerializeField] GameObject losePanel;
     [SerializeField] Text countDownText;
    public  bool gameFinished = false;
-
+    
     LevelController levelController;
 
     public Action OnRevive;
@@ -83,6 +85,11 @@ public class GameController : MonoBehaviour
             PlayerPrefs.SetInt("NightMode",0);
         }
     }
+    private void OnEnable() => YandexGame.RewardVideoEvent += ReviveYG;
+    // Unsubscribe from the ad opening event in OnDisable
+    private void OnDisable() => YandexGame.RewardVideoEvent -= ReviveYG;
+
+
     void EnableCar()
     {
       carIndex = PlayerPrefs.GetInt("Car",1);
@@ -204,6 +211,14 @@ public class GameController : MonoBehaviour
  
    public void Revive()
     {
+        YG.YandexGame.RewVideoShow(2);
+
+
+
+        if (!adManager)
+            return;
+
+
       if(adManager.RewardedAdManager.IsRewardedAdReady())
         {
             adManager.RewardedAdManager.RegisterOnUserEarnedRewarededEvent(ReviveButton);
@@ -227,7 +242,24 @@ public class GameController : MonoBehaviour
         adManager.RewardedAdManager.UnRegisterOnAdShowFailedEvent(RewardedEnd);
         adManager.RewardedAdManager.UnRegisterOnAdClosedEvent(RewardedEnd);
     }
+    void ReviveYG(int id )
+    {
 
+        if (id != 2)
+            return;
+
+        gosterge.SetActive(true);
+
+        losePanel.SetActive(false);
+        gameFinished = false;
+
+        targetTime = levelController.GetActiveLevel().gameObject.GetComponent<Level>().GetTime();
+        targetTime++;
+        timerText.gameObject.SetActive(true);
+
+        RestartWithCheckPoint();
+        GameStart();
+    }
     private void ReviveButton(IronSourcePlacement arg1, IronSourceAdInfo arg2)
     {
         gosterge.SetActive(true);

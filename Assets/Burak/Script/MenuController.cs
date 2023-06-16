@@ -7,6 +7,8 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 using System.Runtime.InteropServices;
+using YG;
+using YG.Example;
 
 public class MenuController : MonoBehaviour
 {
@@ -45,7 +47,17 @@ public class MenuController : MonoBehaviour
             PlayerPrefs.SetInt("Difficulty",1);
         }
         SetDifficultyButton();
+        Time.timeScale = 1f;
      }
+    private void OnEnable()
+    {
+        YandexGame.RewardVideoEvent += UnlockWithRewarded2;
+    }
+    private void OnDisable()
+    {
+        YandexGame.RewardVideoEvent -= UnlockWithRewarded2;
+
+    }
     public void DifficultyButton()
     {
         if (difficulty == 3)
@@ -131,6 +143,13 @@ public class MenuController : MonoBehaviour
 
     public void RewardedButton()
     {
+        if (!adManager)
+        {
+            YandexGame.RewVideoShow(1);
+            return;
+        }
+
+
         if( adManager.RewardedAdManager.IsRewardedAdReady())
         {
             adManager.RewardedAdManager.RegisterOnUserEarnedRewarededEvent(UnlockWithRewarded);
@@ -145,7 +164,17 @@ public class MenuController : MonoBehaviour
         adManager.RewardedAdManager.UnRegisterOnUserEarnedRewarededEvent(UnlockWithRewarded);
         adManager.RewardedAdManager.UnRegisterOnAdClosedEvent(OnAdClosed);
     }
+     void UnlockWithRewarded2(int id )
+    {
+        if(id!=1)
+            return;
+
+            Price price = cars[activeCarIndex].GetComponent<Price>();
+
+            price.Unlock();
+            UpdateBuyButton(); 
      
+    }
     private void UnlockWithRewarded(IronSourcePlacement arg1, IronSourceAdInfo arg2)
     {
         Price price = cars[activeCarIndex].GetComponent<Price>();
