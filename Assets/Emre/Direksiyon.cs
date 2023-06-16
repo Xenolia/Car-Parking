@@ -11,6 +11,14 @@ public class Direksiyon : MonoBehaviour
 
     public float wheelSpeed;
 
+    Vector3 StartPos;
+
+
+    private void Awake()
+    {
+        StartPos = transform.rotation.eulerAngles;
+    }
+
 
     private void Update()
     {
