@@ -14,23 +14,23 @@ public class Direksiyon : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
             transform.DOLocalRotate(new Vector3(transform.rotation.x, -89, transform.rotation.z), wheelSpeed);
 
         }
-        else if (Input.GetKeyUp(KeyCode.A))
+        else if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow))
         {
             transform.DOLocalRotate(new Vector3(transform.rotation.x, 0, transform.rotation.z), wheelSpeed);
         }
 
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
         {
             transform.DOLocalRotate(new Vector3(transform.rotation.x, 89, transform.rotation.z), wheelSpeed);
 
         }
-        else if (Input.GetKeyUp(KeyCode.D))
+        else if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow))
         {
             transform.DOLocalRotate(new Vector3(transform.rotation.x, 0, transform.rotation.z), wheelSpeed);
         }

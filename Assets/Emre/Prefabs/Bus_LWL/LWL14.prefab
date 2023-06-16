@@ -8086,6 +8086,7 @@ GameObject:
   - component: {fileID: 6414220190718240429}
   - component: {fileID: 6962353243917621894}
   - component: {fileID: 3638093378800040774}
+  - component: {fileID: 8871720725101434861}
   m_Layer: 0
   m_Name: city:city:city1:polySurface11149.001
   m_TagString: Untagged
@@ -8172,6 +8173,18 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 7039195350725228847, guid: fc697daade7c0b144981a7d63944cf36, type: 3}
+--- !u!114 &8871720725101434861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092287887728237275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b147827364c0a4a6a967794cec1b2d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2100850392996961520
 GameObject:
   m_ObjectHideFlags: 0
@@ -120448,6 +120461,7 @@ GameObject:
   - component: {fileID: 2926519454792445353}
   - component: {fileID: 1655498202752296516}
   - component: {fileID: 2287989952542572471}
+  - component: {fileID: 2826252988655153923}
   m_Layer: 0
   m_Name: city:city:city1:polySurface11149
   m_TagString: Untagged
@@ -120534,6 +120548,18 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3250034231772142269, guid: fc697daade7c0b144981a7d63944cf36, type: 3}
+--- !u!114 &2826252988655153923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6013327681996820318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b147827364c0a4a6a967794cec1b2d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6018260377904126461
 GameObject:
   m_ObjectHideFlags: 0

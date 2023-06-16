@@ -2624,6 +2624,7 @@ GameObject:
   - component: {fileID: 5849716738587020659}
   - component: {fileID: 8019443402902308510}
   - component: {fileID: 7382482999104298861}
+  - component: {fileID: 6951432581942013883}
   m_Layer: 0
   m_Name: city:city:city1:polySurface11149
   m_TagString: Untagged
@@ -2710,6 +2711,18 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3250034231772142269, guid: fc697daade7c0b144981a7d63944cf36, type: 3}
+--- !u!114 &6951432581942013883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3080719686669643652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b147827364c0a4a6a967794cec1b2d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3124566739513438870
 GameObject:
   m_ObjectHideFlags: 0
@@ -98461,6 +98474,7 @@ GameObject:
   - component: {fileID: 2355568245041825399}
   - component: {fileID: 1813953332712127068}
   - component: {fileID: 5462392691157179292}
+  - component: {fileID: 2993036065550414020}
   m_Layer: 0
   m_Name: city:city:city1:polySurface11149.001
   m_TagString: Untagged
@@ -98547,6 +98561,18 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 7039195350725228847, guid: fc697daade7c0b144981a7d63944cf36, type: 3}
+--- !u!114 &2993036065550414020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7258121646713240065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b147827364c0a4a6a967794cec1b2d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7270839642978768113
 GameObject:
   m_ObjectHideFlags: 0
@@ -99095,14 +99121,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7800320952538150636}
-  m_LocalRotation: {x: -0.608979, y: 0.10518888, z: 0.13381536, w: 0.77470857}
+  m_LocalRotation: {x: -0.68452185, y: 0.1182374, z: 0.12243842, w: 0.70884323}
   m_LocalPosition: {x: -18.093, y: 1.1465393, z: -10.842}
   m_LocalScale: {x: 1, y: 1, z: 1.36}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1725427562226341414}
   m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: -76.34, y: 0, z: 19.6}
+  m_LocalEulerAnglesHint: {x: -88, y: 0, z: 19.6}
 --- !u!33 &3020194768815237701
 MeshFilter:
   m_ObjectHideFlags: 0
