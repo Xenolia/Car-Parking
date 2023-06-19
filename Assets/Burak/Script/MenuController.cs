@@ -30,7 +30,7 @@ public class MenuController : MonoBehaviour
     [SerializeField] AdManager adManager;
     
     CoinController coinController;
-
+    [SerializeField] GameObject languagePanel;
    [SerializeField] int difficulty;
     private void Awake()
     { 
@@ -50,6 +50,19 @@ public class MenuController : MonoBehaviour
         selectedLang = lm.GetSelectedLang();
 
         SetDifficultyButton();
+
+        if(Time.realtimeSinceStartup<=15)
+        {
+            OpenLanguagePanel();
+        }
+     }
+   public void OpenLanguagePanel()
+    {
+        languagePanel.SetActive(true);
+    }
+    public void CloseLanguagePanel()
+    {
+        languagePanel.SetActive(false);
      }
     private void Update()
     {
