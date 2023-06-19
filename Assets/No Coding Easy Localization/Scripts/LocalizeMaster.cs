@@ -92,6 +92,8 @@ namespace NoCodingEasyLocalization
             {
                 uiTmp.Apply();
             }
+
+
         }
 
         public string MappingValueNam(SystemLanguage thisLandValue)
