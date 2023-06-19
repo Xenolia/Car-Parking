@@ -7,14 +7,14 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 using System.Runtime.InteropServices;
-using YG;
-using YG.Example;
-
+using NoCodingEasyLocalization;
 public class MenuController : MonoBehaviour
 {
+    [SerializeField] LocalizeMaster lm = null;
+
     [SerializeField] GameObject[] cars;
     [SerializeField] int activeCarIndex;
- 
+
     [SerializeField] GameObject[] disableButtons;
     [SerializeField] GameObject nextButton;
     [SerializeField] GameObject previousButton;
@@ -24,12 +24,13 @@ public class MenuController : MonoBehaviour
 
     [SerializeField] GameObject DifficultyButtonObj;
 
- 
+    private SystemLanguage selectedLang = SystemLanguage.English;
+
 
     [SerializeField] AdManager adManager;
     
     CoinController coinController;
-
+    [SerializeField] GameObject languagePanel;
    [SerializeField] int difficulty;
     private void Awake()
     { 
@@ -46,17 +47,34 @@ public class MenuController : MonoBehaviour
             difficulty = 1;
             PlayerPrefs.SetInt("Difficulty",1);
         }
-        SetDifficultyButton();
-        Time.timeScale = 1f;
-     }
-    private void OnEnable()
-    {
-        YandexGame.RewardVideoEvent += UnlockWithRewarded2;
-    }
-    private void OnDisable()
-    {
-        YandexGame.RewardVideoEvent -= UnlockWithRewarded2;
+        selectedLang = lm.GetSelectedLang();
 
+        SetDifficultyButton();
+
+        if(Time.realtimeSinceStartup<=15)
+        {
+            OpenLanguagePanel();
+        }
+     }
+    private void Start()
+    {
+        Time.timeScale = 1f;
+    }
+    public void OpenLanguagePanel()
+    {
+        languagePanel.SetActive(true);
+    }
+    public void CloseLanguagePanel()
+    {
+        languagePanel.SetActive(false);
+     }
+    private void Update()
+    {
+        if(selectedLang!=lm.GetSelectedLang())
+        {
+            selectedLang = lm.GetSelectedLang();
+        }
+        Debug.Log(lm.GetSelectedLang());
     }
     public void DifficultyButton()
     {
@@ -90,13 +108,52 @@ public class MenuController : MonoBehaviour
     void EasyDifficulty()
     {
         PlayerPrefs.SetInt("Difficulty", 1);
-        DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "EASY";
+         if(selectedLang==SystemLanguage.English)
+        {
+            DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "Easy";
+        }
+        if (selectedLang == SystemLanguage.Russian)
+        {
+            DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "легкий";
+        }
+        if (selectedLang == SystemLanguage.German)
+        {
+            DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "Einfach";
+        }
+        if (selectedLang == SystemLanguage.French)
+        {
+            DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "Facile";
+        }
+        if (selectedLang == SystemLanguage.Turkish)
+        {
+            DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "Kolay";
+        }
         DifficultyButtonObj.GetComponent<Image>().color = Color.blue;
     }
     void MediumDifficulty()
     {
         PlayerPrefs.SetInt("Difficulty", 2);
-        DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "MEDIUM";
+ 
+        if (selectedLang == SystemLanguage.English)
+        {
+            DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "Medium";
+        }
+        if (selectedLang == SystemLanguage.Russian)
+        {
+            DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "Середина";
+        }
+        if (selectedLang == SystemLanguage.German)
+        {
+            DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "Mittel";
+        }
+        if (selectedLang == SystemLanguage.French)
+        {
+            DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "Moyen";
+        }
+        if (selectedLang == SystemLanguage.Turkish)
+        {
+            DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "Orta";
+        }
         DifficultyButtonObj.GetComponent<Image>().color = Color.magenta;
 
     }
@@ -104,7 +161,27 @@ public class MenuController : MonoBehaviour
     void HardDifficulty()
     {
         PlayerPrefs.SetInt("Difficulty", 3);
-        DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "HARD";
+ 
+        if (selectedLang == SystemLanguage.English)
+        {
+            DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "Hard";
+        }
+        if (selectedLang == SystemLanguage.Russian)
+        {
+            DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "жесткий";
+        }
+        if (selectedLang == SystemLanguage.German)
+        {
+            DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "Hart";
+        }
+        if (selectedLang == SystemLanguage.French)
+        {
+            DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "Dur";
+        }
+        if (selectedLang == SystemLanguage.Turkish)
+        {
+            DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "Zor";
+        }
         DifficultyButtonObj.GetComponent<Image>().color = Color.red;
 
     }
@@ -143,13 +220,6 @@ public class MenuController : MonoBehaviour
 
     public void RewardedButton()
     {
-        if (!adManager)
-        {
-            YandexGame.RewVideoShow(1);
-            return;
-        }
-
-
         if( adManager.RewardedAdManager.IsRewardedAdReady())
         {
             adManager.RewardedAdManager.RegisterOnUserEarnedRewarededEvent(UnlockWithRewarded);
@@ -164,17 +234,7 @@ public class MenuController : MonoBehaviour
         adManager.RewardedAdManager.UnRegisterOnUserEarnedRewarededEvent(UnlockWithRewarded);
         adManager.RewardedAdManager.UnRegisterOnAdClosedEvent(OnAdClosed);
     }
-     void UnlockWithRewarded2(int id )
-    {
-        if(id!=1)
-            return;
-
-            Price price = cars[activeCarIndex].GetComponent<Price>();
-
-            price.Unlock();
-            UpdateBuyButton(); 
      
-    }
     private void UnlockWithRewarded(IronSourcePlacement arg1, IronSourceAdInfo arg2)
     {
         Price price = cars[activeCarIndex].GetComponent<Price>();

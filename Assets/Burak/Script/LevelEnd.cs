@@ -95,7 +95,7 @@ public class LevelEnd : MonoBehaviour
             float carRotationY = CarController.transform.rotation.eulerAngles.y;
 
             float difference = Mathf.DeltaAngle(carRotationY, targetAngleY);
-
+            difference = Mathf.Abs(difference);
             if (difference > 2 )
             {
                 ResetTimer();
