@@ -114,15 +114,15 @@ public class MenuController : MonoBehaviour
         }
         if (selectedLang == SystemLanguage.German)
         {
-            DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "einfach";
+            DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "Einfach";
         }
         if (selectedLang == SystemLanguage.French)
         {
-            DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "FACILE";
+            DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "Facile";
         }
         if (selectedLang == SystemLanguage.Turkish)
         {
-            DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "KOLAY";
+            DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "Kolay";
         }
         DifficultyButtonObj.GetComponent<Image>().color = Color.blue;
     }
@@ -132,7 +132,7 @@ public class MenuController : MonoBehaviour
  
         if (selectedLang == SystemLanguage.English)
         {
-            DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "MEDIUM";
+            DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "Medium";
         }
         if (selectedLang == SystemLanguage.Russian)
         {
@@ -144,11 +144,11 @@ public class MenuController : MonoBehaviour
         }
         if (selectedLang == SystemLanguage.French)
         {
-            DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "moyen";
+            DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "Moyen";
         }
         if (selectedLang == SystemLanguage.Turkish)
         {
-            DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "ORTA";
+            DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "Orta";
         }
         DifficultyButtonObj.GetComponent<Image>().color = Color.magenta;
 
@@ -160,7 +160,7 @@ public class MenuController : MonoBehaviour
  
         if (selectedLang == SystemLanguage.English)
         {
-            DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "HARD";
+            DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "Hard";
         }
         if (selectedLang == SystemLanguage.Russian)
         {
@@ -168,15 +168,15 @@ public class MenuController : MonoBehaviour
         }
         if (selectedLang == SystemLanguage.German)
         {
-            DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "hart";
+            DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "Hart";
         }
         if (selectedLang == SystemLanguage.French)
         {
-            DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "dur";
+            DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "Dur";
         }
         if (selectedLang == SystemLanguage.Turkish)
         {
-            DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "ZOR";
+            DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "Zor";
         }
         DifficultyButtonObj.GetComponent<Image>().color = Color.red;
 
