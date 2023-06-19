@@ -110,7 +110,7 @@ public class MenuController : MonoBehaviour
         PlayerPrefs.SetInt("Difficulty", 1);
          if(selectedLang==SystemLanguage.English)
         {
-            DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "EASY";
+            DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "Easy";
         }
         if (selectedLang == SystemLanguage.Russian)
         {
