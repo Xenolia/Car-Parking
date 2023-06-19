@@ -56,7 +56,11 @@ public class MenuController : MonoBehaviour
             OpenLanguagePanel();
         }
      }
-   public void OpenLanguagePanel()
+    private void Start()
+    {
+        Time.timeScale = 1f;
+    }
+    public void OpenLanguagePanel()
     {
         languagePanel.SetActive(true);
     }
