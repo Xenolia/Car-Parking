@@ -22,7 +22,7 @@ public class LevelEnd : MonoBehaviour
 
        ParkingArea area= FindObjectOfType<ParkingArea>();
         changeMaterial = area.ChangeMaterial1().GetComponent<MeshRenderer>();
-        changeMaterial2 = area.ChangeMaterial2().GetComponent<MeshRenderer>();
+        //changeMaterial2 = area.ChangeMaterial2().GetComponent<MeshRenderer>();
 
         oldColor = changeMaterial.sharedMaterial.color;
         oldColor2 = changeMaterial2.sharedMaterial.color;
@@ -95,6 +95,8 @@ public class LevelEnd : MonoBehaviour
             float carRotationY = CarController.transform.rotation.eulerAngles.y;
 
             float difference = Mathf.DeltaAngle(carRotationY, targetAngleY);
+
+            difference= Mathf.Abs(difference);
 
             if (difference > 2 )
             {
