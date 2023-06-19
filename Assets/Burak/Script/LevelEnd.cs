@@ -98,7 +98,7 @@ public class LevelEnd : MonoBehaviour
 
             if (difference > 2 )
             {
-                
+                ResetTimer();
              rotationWarningText.SetActive(true);
                 return;
             }

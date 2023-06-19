@@ -127,10 +127,10 @@ public class GameController : MonoBehaviour
         {
             ChangeCameraAngle();
         }
-       
+
 
         if (!stopTimer)
-        UpdateTimer();
+            UpdateTimer();
 
     }
    public void StopTimer(bool shouldStop)
