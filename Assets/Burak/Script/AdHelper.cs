@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using YG;
-public class AdHelper : MonoBehaviour
+ public class AdHelper : MonoBehaviour
 {
-    [SerializeField] bool preRoll;
+     [SerializeField] bool preRoll;
     AdManager adManager;
+   [SerializeField] LanguageYG languageYG;
     private void Awake()
     {
         return;
@@ -17,7 +18,8 @@ public class AdHelper : MonoBehaviour
     }
     private void Start()
     {
-       
+      
+        languageYG.SwitchLanguage("tr");
         if (preRoll)
             ShowIntersitial();
     }
