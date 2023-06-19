@@ -325,6 +325,7 @@ GameObject:
   - component: {fileID: 88855384}
   - component: {fileID: 88855386}
   - component: {fileID: 88855385}
+  - component: {fileID: 88855387}
   m_Layer: 5
   m_Name: Race
   m_TagString: Untagged
@@ -449,6 +450,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 88855383}
   m_CullTransparentMesh: 1
+--- !u!114 &88855387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88855383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df27065f40a344f7aa15801677c237b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LocalizeMaster: {fileID: 11400000, guid: 33bfb788efc4c4d78b02401c26a40631, type: 2}
+  LocalizeScritableObject: {fileID: 11400000, guid: bd216b90f9e353b40bc2cbcd6ba0257e, type: 2}
 --- !u!1 &121928933
 GameObject:
   m_ObjectHideFlags: 0
@@ -2462,7 +2477,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &734468335
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3575,6 +3590,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7344874181333496817, guid: ab4ea67cd9337c341af0bd7182c60f92, type: 3}
   m_PrefabInstance: {fileID: 1246309859101866904}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1007531424 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2047707702620578169, guid: 1bc538c2abd1140ef97fc8455851ee1b, type: 3}
+  m_PrefabInstance: {fileID: 6034392464865922220}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1007531428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1007531424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df27065f40a344f7aa15801677c237b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LocalizeMaster: {fileID: 11400000, guid: 33bfb788efc4c4d78b02401c26a40631, type: 2}
+  LocalizeScritableObject: {fileID: 11400000, guid: b70a30568961a284d82954edf62b80aa, type: 2}
 --- !u!114 &1032034122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5412,6 +5446,7 @@ GameObject:
   - component: {fileID: 1626095100}
   - component: {fileID: 1626095102}
   - component: {fileID: 1626095101}
+  - component: {fileID: 1626095103}
   m_Layer: 5
   m_Name: Text (TMP) (1)
   m_TagString: Untagged
@@ -5536,6 +5571,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1626095099}
   m_CullTransparentMesh: 1
+--- !u!114 &1626095103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626095099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df27065f40a344f7aa15801677c237b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LocalizeMaster: {fileID: 11400000, guid: 33bfb788efc4c4d78b02401c26a40631, type: 2}
+  LocalizeScritableObject: {fileID: 11400000, guid: 456217d28406d524196effb14719c408, type: 2}
 --- !u!1 &1693471778
 GameObject:
   m_ObjectHideFlags: 0
@@ -5618,6 +5667,7 @@ GameObject:
   - component: {fileID: 1705839600}
   - component: {fileID: 1705839602}
   - component: {fileID: 1705839601}
+  - component: {fileID: 1705839603}
   m_Layer: 5
   m_Name: Race
   m_TagString: Untagged
@@ -5643,7 +5693,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 10.000004, y: 0}
-  m_SizeDelta: {x: 82, y: 37}
+  m_SizeDelta: {x: 202.5, y: 44.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1705839601
 MonoBehaviour:
@@ -5692,8 +5742,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 31.1
-  m_fontSizeBase: 31.1
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5742,6 +5792,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1705839599}
   m_CullTransparentMesh: 1
+--- !u!114 &1705839603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705839599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df27065f40a344f7aa15801677c237b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LocalizeMaster: {fileID: 11400000, guid: 33bfb788efc4c4d78b02401c26a40631, type: 2}
+  LocalizeScritableObject: {fileID: 11400000, guid: b993b0a0371144748b419a387ce35514, type: 2}
 --- !u!114 &1734235453 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6034392465291532689, guid: 1bc538c2abd1140ef97fc8455851ee1b, type: 3}
@@ -16642,6 +16706,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1332968021}
+    - target: {fileID: 5762695687397235244, guid: 1bc538c2abd1140ef97fc8455851ee1b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 727.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5762695687397235244, guid: 1bc538c2abd1140ef97fc8455851ee1b, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 112.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5762695687397235244, guid: 1bc538c2abd1140ef97fc8455851ee1b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 162.3
+      objectReference: {fileID: 0}
     - target: {fileID: 6034392464326136906, guid: 1bc538c2abd1140ef97fc8455851ee1b, type: 3}
       propertyPath: m_Name
       value: SoundSettingsPanel
