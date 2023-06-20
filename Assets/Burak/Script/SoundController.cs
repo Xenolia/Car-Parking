@@ -60,7 +60,13 @@ public class SoundController : MonoBehaviour
         PlayerPrefs.SetFloat(soundKey, soundValue);
         PlayerPrefs.SetFloat(musicKey, musicValue);
     }
-   
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Tab))
+        {
+            EnableSettingsPanel();
+        }
+    }
     public void MusicButton()
     {
         if (musicValue > 0)

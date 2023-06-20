@@ -56,7 +56,7 @@ MonoBehaviour:
     <Width>k__BackingField: 540
     <Height>k__BackingField: 100
   _gDFacade: {fileID: 1578990923}
-  _isNoAdd: 1
+  _isNoAdd: 0
 --- !u!114 &1578990923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,6 +82,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aeb83a31d9334de9a03c11d1f697709, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  preRoll: 0
 --- !u!1001 &2111176603
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -139,7 +140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3154225735969365386, guid: 225dcaec06282044993bb0c8b2a6c426, type: 3}
       propertyPath: GAME_KEY
-      value: 9f37889bdac44f9abfc8a59fb9b1a042
+      value: 1006909b60de41a9a2aa7f8f716f7b4d
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 225dcaec06282044993bb0c8b2a6c426, type: 3}
