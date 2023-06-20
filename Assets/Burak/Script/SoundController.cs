@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
@@ -128,6 +128,8 @@ public class SoundController : MonoBehaviour
     }
     public void EnableSettingsPanel()
     {
+        Debug.LogError("acıldı!!!!!!!");
+
         if (settingsPanel.activeSelf)
         {
             settingsPanel.SetActive(false);
