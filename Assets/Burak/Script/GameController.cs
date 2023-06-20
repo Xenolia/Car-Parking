@@ -6,6 +6,7 @@ using System;
 using UnityEngine.Experimental.GlobalIllumination;
 using TMPro;
 using NoCodingEasyLocalization;
+using Unity.VisualScripting;
 
 public class GameController : MonoBehaviour
 {
@@ -51,6 +52,10 @@ public class GameController : MonoBehaviour
     {
         audioSource.PlayOneShot(CheckPointSound);
     }
+    
+  
+    
+    
     private void Awake()
     {
         selectedLang = lm.GetSelectedLang();
@@ -126,6 +131,9 @@ public class GameController : MonoBehaviour
     }
     private void Update()
     {
+
+       
+
         /*
         if(Input.GetKeyDown(KeyCode.R))
         {
