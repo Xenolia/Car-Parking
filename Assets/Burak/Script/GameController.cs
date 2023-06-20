@@ -4,6 +4,8 @@ using UnityEngine.UI;
     using System.Runtime.InteropServices;
 using System;
 using UnityEngine.Experimental.GlobalIllumination;
+using TMPro;
+using NoCodingEasyLocalization;
 
 public class GameController : MonoBehaviour
 {
@@ -36,16 +38,27 @@ public class GameController : MonoBehaviour
     [SerializeField] Text timerText;
     float targetTime;
    [SerializeField] AdManager adManager;
-
+    [SerializeField] GameObject tutorialPanel;
     [SerializeField] GameObject gosterge;
     bool stopTimer = false;
     int carIndex;
-     public void CheckPointPassed()
+    [SerializeField] LocalizeMaster lm = null;
+
+    private SystemLanguage selectedLang = SystemLanguage.English;
+
+
+    public void CheckPointPassed()
     {
         audioSource.PlayOneShot(CheckPointSound);
     }
     private void Awake()
     {
+        selectedLang = lm.GetSelectedLang();
+
+        if (selectedLang == SystemLanguage.Russian)
+        {
+            tutorialPanel.SetActive(false);
+        }
         Application.targetFrameRate = 60;
         audioSource = GetComponent<AudioSource>();
          carManager = FindObjectOfType<CarManager>();
@@ -127,10 +140,10 @@ public class GameController : MonoBehaviour
         {
             ChangeCameraAngle();
         }
-       
+
 
         if (!stopTimer)
-        UpdateTimer();
+            UpdateTimer();
 
     }
    public void StopTimer(bool shouldStop)

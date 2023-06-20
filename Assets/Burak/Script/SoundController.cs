@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
@@ -60,13 +60,7 @@ public class SoundController : MonoBehaviour
         PlayerPrefs.SetFloat(soundKey, soundValue);
         PlayerPrefs.SetFloat(musicKey, musicValue);
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Tab))
-        {
-            EnableSettingsPanel();
-        }
-    }
+   
     public void MusicButton()
     {
         if (musicValue > 0)
@@ -128,6 +122,8 @@ public class SoundController : MonoBehaviour
     }
     public void EnableSettingsPanel()
     {
+        Debug.LogError("acıldı!!!!!!!");
+
         if (settingsPanel.activeSelf)
         {
             settingsPanel.SetActive(false);

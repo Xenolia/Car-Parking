@@ -37,8 +37,9 @@ public class LevelController : MonoBehaviour
    public int levelIndex;
     void ActivateLevel()
     {
-
-        Leveltext.text = "LEVEL  " + Level.ToString();
+        string a =" " + Level.ToString();
+        string b = Leveltext.text;
+        Leveltext.text =b  + a;
 
        levelIndex = Level % (levels.Length+1);
 

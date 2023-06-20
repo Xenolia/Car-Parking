@@ -12,20 +12,20 @@ public class LevelEnd : MonoBehaviour
     [SerializeField] float targetAngleY;
     [SerializeField] bool doNotCheckRotation=false;
    MeshRenderer changeMaterial;
-     MeshRenderer changeMaterial2;
+     
     bool gameEnd;
     Color oldColor;
-    Color oldColor2;
+    
      private void Awake()
     {
         gameController = FindObjectOfType<GameController>();
 
        ParkingArea area= FindObjectOfType<ParkingArea>();
         changeMaterial = area.ChangeMaterial1().GetComponent<MeshRenderer>();
-        changeMaterial2 = area.ChangeMaterial2().GetComponent<MeshRenderer>();
+        //changeMaterial2 = area.ChangeMaterial2().GetComponent<MeshRenderer>();
 
         oldColor = changeMaterial.sharedMaterial.color;
-        oldColor2 = changeMaterial2.sharedMaterial.color;
+        //oldColor2 = changeMaterial2.sharedMaterial.color;
 
         rotationWarningText = GameObject.FindGameObjectWithTag("WarningText");
         rotationWarningText.SetActive(false);
@@ -40,7 +40,7 @@ public class LevelEnd : MonoBehaviour
     private void OnDisable()
     {
         changeMaterial.sharedMaterial.color = oldColor;
-        changeMaterial2.sharedMaterial.color = oldColor2;
+       
         gameController.OnGameEnd -= GameEnd;
         gameController.OnRevive -= Revive;
 
@@ -96,9 +96,11 @@ public class LevelEnd : MonoBehaviour
 
             float difference = Mathf.DeltaAngle(carRotationY, targetAngleY);
 
+            difference= Mathf.Abs(difference);
+
             if (difference > 2 )
             {
-                
+                ResetTimer();
              rotationWarningText.SetActive(true);
                 return;
             }
@@ -114,7 +116,7 @@ public class LevelEnd : MonoBehaviour
       
         
              changeMaterial.sharedMaterial.color = Color.green;
-        changeMaterial2.sharedMaterial.color = Color.green;
+        
         StopTimer();
 
 
@@ -135,7 +137,7 @@ public class LevelEnd : MonoBehaviour
     {
         gameController.DisableCountDown();
         changeMaterial.sharedMaterial.color =oldColor;
-        changeMaterial2.sharedMaterial.color = oldColor2;
+        
         ResumeTimer();
         rotationWarningText.SetActive(false);
 
@@ -144,7 +146,7 @@ public class LevelEnd : MonoBehaviour
     {
         countdown = 4f;
         changeMaterial.sharedMaterial.color = oldColor;
-        changeMaterial2.sharedMaterial.color = oldColor2;
+        
         ResumeTimer();
 
         rotationWarningText.SetActive(false);
