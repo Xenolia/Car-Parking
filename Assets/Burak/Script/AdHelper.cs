@@ -6,8 +6,7 @@ using YG;
 {
      [SerializeField] bool preRoll;
     AdManager adManager;
-   [SerializeField] LanguageYG languageYG;
-    private void Awake()
+     private void Awake()
     {
         return;
 
@@ -19,8 +18,7 @@ using YG;
     private void Start()
     {
       
-        languageYG.SwitchLanguage("tr");
-        if (preRoll)
+         if (preRoll)
             ShowIntersitial();
     }
     public void ShowIntersitial()

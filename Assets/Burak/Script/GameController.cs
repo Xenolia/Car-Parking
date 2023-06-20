@@ -6,6 +6,7 @@ using System;
 using UnityEngine.Experimental.GlobalIllumination;
 using TMPro;
 using NoCodingEasyLocalization;
+using YG;
 
 public class GameController : MonoBehaviour
 {
@@ -146,7 +147,11 @@ public class GameController : MonoBehaviour
             UpdateTimer();
 
     }
-   public void StopTimer(bool shouldStop)
+    private void OnEnable() => YandexGame.RewardVideoEvent += ReviveYG;
+    // Unsubscribe from the ad opening event in OnDisable
+    private void OnDisable() => YandexGame.RewardVideoEvent -= ReviveYG;
+
+    public void StopTimer(bool shouldStop)
     {
         if(shouldStop)
         {
@@ -213,11 +218,28 @@ public class GameController : MonoBehaviour
         }
         
     }
-
- 
-   public void Revive()
+    void ReviveYG(int id)
     {
-      if(adManager.RewardedAdManager.IsRewardedAdReady())
+        if (id != 2)
+            return;
+        gosterge.SetActive(true);
+        losePanel.SetActive(false);
+        gameFinished = false;
+        targetTime = levelController.GetActiveLevel().gameObject.GetComponent<Level>().GetTime();
+        targetTime++;
+        timerText.gameObject.SetActive(true);
+        RestartWithCheckPoint();
+        GameStart();
+    }
+
+    public void Revive()
+    {
+
+        YG.YandexGame.RewVideoShow(2);
+        if (!adManager)
+            return;
+
+        if (adManager.RewardedAdManager.IsRewardedAdReady())
         {
             adManager.RewardedAdManager.RegisterOnUserEarnedRewarededEvent(ReviveButton);
             adManager.RewardedAdManager.RegisterOnAdShowFailedEvent(RewardedEnd);

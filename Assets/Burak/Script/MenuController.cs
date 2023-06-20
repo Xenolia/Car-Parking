@@ -8,6 +8,10 @@ using TMPro;
 using System;
 using System.Runtime.InteropServices;
 using NoCodingEasyLocalization;
+
+using YG;
+using YG.Example;
+
 public class MenuController : MonoBehaviour
 {
     [SerializeField] LocalizeMaster lm = null;
@@ -56,7 +60,8 @@ public class MenuController : MonoBehaviour
             OpenLanguagePanel();
         }
      }
-    private void Start()
+ 
+        private void Start()
     {
         Time.timeScale = 1f;
     }
@@ -74,8 +79,7 @@ public class MenuController : MonoBehaviour
         {
             selectedLang = lm.GetSelectedLang();
         }
-        Debug.Log(lm.GetSelectedLang());
-    }
+     }
     public void DifficultyButton()
     {
         if (difficulty == 3)
@@ -90,7 +94,16 @@ public class MenuController : MonoBehaviour
         SetDifficultyButton();
 
     }
-    void SetDifficultyButton()
+    private void OnEnable()
+    {
+        YandexGame.RewardVideoEvent += UnlockWithRewarded2;
+    }
+    private void OnDisable()
+    {
+        YandexGame.RewardVideoEvent -= UnlockWithRewarded2;
+
+    }
+        void SetDifficultyButton()
     {
         if(difficulty==1)
         {
@@ -217,10 +230,25 @@ public class MenuController : MonoBehaviour
         price.Unlock();
         UpdateBuyButton();
     }
+    void UnlockWithRewarded2(int id)
+    {
+        if (id != 1)
+            return;
+        Price price = cars[activeCarIndex].GetComponent<Price>();
+        price.Unlock();
+        UpdateBuyButton();
 
+    }
     public void RewardedButton()
     {
-        if( adManager.RewardedAdManager.IsRewardedAdReady())
+        if (!adManager)
+        {
+            YandexGame.RewVideoShow(1);
+            return;
+        }
+
+
+        if ( adManager.RewardedAdManager.IsRewardedAdReady())
         {
             adManager.RewardedAdManager.RegisterOnUserEarnedRewarededEvent(UnlockWithRewarded);
             adManager.RewardedAdManager.RegisterOnAdClosedEvent(OnAdClosed);
