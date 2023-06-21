@@ -3904,13 +3904,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 538484915}
     m_Modifications:
+    - target: {fileID: 789433783048149864, guid: 78ecff6899efd6244a6087b87be7d085, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.8851747
+      objectReference: {fileID: 0}
     - target: {fileID: 1417197895592252248, guid: 78ecff6899efd6244a6087b87be7d085, type: 3}
       propertyPath: m_Name
       value: Bus1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1417197895592252248, guid: 78ecff6899efd6244a6087b87be7d085, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1792772773064821218, guid: 78ecff6899efd6244a6087b87be7d085, type: 3}
       propertyPath: m_RootOrder
@@ -3968,6 +3968,18 @@ PrefabInstance:
       propertyPath: tireScreechSound
       value: 
       objectReference: {fileID: 66484012}
+    - target: {fileID: 2611230133131503159, guid: 78ecff6899efd6244a6087b87be7d085, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3708618398784290136, guid: 78ecff6899efd6244a6087b87be7d085, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 4745207796171732036, guid: 78ecff6899efd6244a6087b87be7d085, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.8851747
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78ecff6899efd6244a6087b87be7d085, type: 3}
 --- !u!4 &1154814800 stripped

@@ -22,6 +22,7 @@ public class Direksiyon : MonoBehaviour
 
     private void Update()
     {
+        return;
         if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
             transform.DOLocalRotate(new Vector3(transform.rotation.x, -89, transform.rotation.z), wheelSpeed);
