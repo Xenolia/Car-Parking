@@ -8,6 +8,10 @@ using TMPro;
 using System;
 using System.Runtime.InteropServices;
 using NoCodingEasyLocalization;
+
+using YG;
+using YG.Example;
+
 public class MenuController : MonoBehaviour
 {
     [SerializeField] LocalizeMaster lm = null;
@@ -28,34 +32,35 @@ public class MenuController : MonoBehaviour
 
 
     [SerializeField] AdManager adManager;
-    
+
     CoinController coinController;
     [SerializeField] GameObject languagePanel;
-   [SerializeField] int difficulty;
+    [SerializeField] int difficulty;
     private void Awake()
-    { 
+    {
         coinController = GetComponent<CoinController>();
-         CheckButtons();
+        CheckButtons();
         UpdateBuyButton();
 
-       if(PlayerPrefs.HasKey("Difficulty"))
+        if (PlayerPrefs.HasKey("Difficulty"))
         {
-           difficulty= PlayerPrefs.GetInt("Difficulty");
+            difficulty = PlayerPrefs.GetInt("Difficulty");
         }
         else
         {
             difficulty = 1;
-            PlayerPrefs.SetInt("Difficulty",1);
+            PlayerPrefs.SetInt("Difficulty", 1);
         }
         selectedLang = lm.GetSelectedLang();
 
         SetDifficultyButton();
 
-        if(Time.realtimeSinceStartup<=15)
+        if (Time.realtimeSinceStartup <= 15)
         {
             OpenLanguagePanel();
         }
-     }
+    }
+
     private void Start()
     {
         Time.timeScale = 1f;
@@ -67,14 +72,13 @@ public class MenuController : MonoBehaviour
     public void CloseLanguagePanel()
     {
         languagePanel.SetActive(false);
-     }
+    }
     private void Update()
     {
-        if(selectedLang!=lm.GetSelectedLang())
+        if (selectedLang != lm.GetSelectedLang())
         {
             selectedLang = lm.GetSelectedLang();
         }
-        Debug.Log(lm.GetSelectedLang());
     }
     public void DifficultyButton()
     {
@@ -85,14 +89,23 @@ public class MenuController : MonoBehaviour
 
         }
 
-        difficulty = (PlayerPrefs.GetInt("Difficulty")) + 1 ;
+        difficulty = (PlayerPrefs.GetInt("Difficulty")) + 1;
 
         SetDifficultyButton();
 
     }
+    private void OnEnable()
+    {
+        YandexGame.RewardVideoEvent += UnlockWithRewarded2;
+    }
+    private void OnDisable()
+    {
+        YandexGame.RewardVideoEvent -= UnlockWithRewarded2;
+
+    }
     void SetDifficultyButton()
     {
-        if(difficulty==1)
+        if (difficulty == 1)
         {
             EasyDifficulty();
         }
@@ -108,7 +121,7 @@ public class MenuController : MonoBehaviour
     void EasyDifficulty()
     {
         PlayerPrefs.SetInt("Difficulty", 1);
-         if(selectedLang==SystemLanguage.English)
+        if (selectedLang == SystemLanguage.English)
         {
             DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "Easy";
         }
@@ -133,7 +146,7 @@ public class MenuController : MonoBehaviour
     void MediumDifficulty()
     {
         PlayerPrefs.SetInt("Difficulty", 2);
- 
+
         if (selectedLang == SystemLanguage.English)
         {
             DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "Medium";
@@ -161,7 +174,7 @@ public class MenuController : MonoBehaviour
     void HardDifficulty()
     {
         PlayerPrefs.SetInt("Difficulty", 3);
- 
+
         if (selectedLang == SystemLanguage.English)
         {
             DifficultyButtonObj.GetComponentInChildren<TextMeshProUGUI>().text = "Hard";
@@ -188,7 +201,7 @@ public class MenuController : MonoBehaviour
 
     public void LoadGame()
     {
-        PlayerPrefs.SetInt("Car",activeCarIndex);
+        PlayerPrefs.SetInt("Car", activeCarIndex);
 
 
         SceneManager.LoadScene(1);
@@ -200,7 +213,7 @@ public class MenuController : MonoBehaviour
         {
             item.SetActive(false);
         }
-        
+
         activeCarIndex++;
         cars[activeCarIndex].SetActive(true);
 
@@ -217,10 +230,25 @@ public class MenuController : MonoBehaviour
         price.Unlock();
         UpdateBuyButton();
     }
+    void UnlockWithRewarded2(int id)
+    {
+        if (id != 1)
+            return;
+        Price price = cars[activeCarIndex].GetComponent<Price>();
+        price.Unlock();
+        UpdateBuyButton();
 
+    }
     public void RewardedButton()
     {
-        if( adManager.RewardedAdManager.IsRewardedAdReady())
+        if (!adManager)
+        {
+            YandexGame.RewVideoShow(1);
+            return;
+        }
+
+
+        if (adManager.RewardedAdManager.IsRewardedAdReady())
         {
             adManager.RewardedAdManager.RegisterOnUserEarnedRewarededEvent(UnlockWithRewarded);
             adManager.RewardedAdManager.RegisterOnAdClosedEvent(OnAdClosed);
@@ -234,18 +262,18 @@ public class MenuController : MonoBehaviour
         adManager.RewardedAdManager.UnRegisterOnUserEarnedRewarededEvent(UnlockWithRewarded);
         adManager.RewardedAdManager.UnRegisterOnAdClosedEvent(OnAdClosed);
     }
-     
+
     private void UnlockWithRewarded(IronSourcePlacement arg1, IronSourceAdInfo arg2)
     {
         Price price = cars[activeCarIndex].GetComponent<Price>();
 
-         price.Unlock();
+        price.Unlock();
         UpdateBuyButton();
     }
 
     void CheckBuyButtonCoin(Price price)
     {
-        if(coinController.Coin>=price.CarPrice)
+        if (coinController.Coin >= price.CarPrice)
         {
             buyButton.GetComponent<Button>().interactable = true;
         }
@@ -257,9 +285,9 @@ public class MenuController : MonoBehaviour
     }
     void UpdateBuyButton()
     {
-        Price price= cars[activeCarIndex].GetComponent<Price>();
+        Price price = cars[activeCarIndex].GetComponent<Price>();
 
-        if(price.Locked)
+        if (price.Locked)
         {
             buyButton.SetActive(true);
             CheckBuyButtonCoin(price);
@@ -273,7 +301,7 @@ public class MenuController : MonoBehaviour
 
             EnableRace();
         }
-        
+
     }
 
     void DisableRace()
@@ -283,13 +311,13 @@ public class MenuController : MonoBehaviour
     void EnableRace()
     {
         RaceButton.gameObject.SetActive(true);
-     }
+    }
     void CheckButtons()
     {
         nextButton.SetActive(true);
         previousButton.SetActive(true);
 
-        if (activeCarIndex == cars.Length-1)
+        if (activeCarIndex == cars.Length - 1)
         {
             nextButton.SetActive(false);
         }
@@ -328,5 +356,5 @@ public class MenuController : MonoBehaviour
         }
     }
 
-    
+
 }

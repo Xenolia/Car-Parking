@@ -1,12 +1,12 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-    using System.Runtime.InteropServices;
+using System.Runtime.InteropServices;
 using System;
 using UnityEngine.Experimental.GlobalIllumination;
 using TMPro;
 using NoCodingEasyLocalization;
-using Unity.VisualScripting;
+using YG;
 
 public class GameController : MonoBehaviour
 {
@@ -19,14 +19,14 @@ public class GameController : MonoBehaviour
     [SerializeField] AudioClip CheckPointSound;
     AudioSource audioSource;
 
-    [SerializeField] bool useMobileControls=false;
+    [SerializeField] bool useMobileControls = false;
     [SerializeField] PrometeoCarController carController;
     [SerializeField] GameObject[] mobileButtons;
     [SerializeField] GameObject reviveButton;
     [SerializeField] GameObject winPanel;
     [SerializeField] GameObject losePanel;
     [SerializeField] Text countDownText;
-   public  bool gameFinished = false;
+    public bool gameFinished = false;
 
     LevelController levelController;
 
@@ -38,7 +38,7 @@ public class GameController : MonoBehaviour
 
     [SerializeField] Text timerText;
     float targetTime;
-   [SerializeField] AdManager adManager;
+    [SerializeField] AdManager adManager;
     [SerializeField] GameObject tutorialPanel;
     [SerializeField] GameObject gosterge;
     bool stopTimer = false;
@@ -52,10 +52,6 @@ public class GameController : MonoBehaviour
     {
         audioSource.PlayOneShot(CheckPointSound);
     }
-    
-  
-    
-    
     private void Awake()
     {
         selectedLang = lm.GetSelectedLang();
@@ -66,44 +62,44 @@ public class GameController : MonoBehaviour
         }
         Application.targetFrameRate = 60;
         audioSource = GetComponent<AudioSource>();
-         carManager = FindObjectOfType<CarManager>();
+        carManager = FindObjectOfType<CarManager>();
         EnableCar();
         coinController = GetComponent<CoinController>();
         levelController = GetComponent<LevelController>();
-  
-        
+
+
         GameStart();
-        if(PlayerPrefs.HasKey("NightMode"))
+        if (PlayerPrefs.HasKey("NightMode"))
         {
-          var   a = PlayerPrefs.GetInt("NightMode",0);
+            var a = PlayerPrefs.GetInt("NightMode", 0);
 
             if (a == 1)
                 nightMode = true;
         }
-    
+
         if (nightMode)
             SwitchLight();
     }
-     public void SwitchLight()
+    public void SwitchLight()
     {
         if (!nightLight.gameObject.activeSelf)
         {
             nightLight.gameObject.SetActive(true);
             dayLight.gameObject.SetActive(false);
             nightMode = true;
-            PlayerPrefs.SetInt("NightMode",1);
+            PlayerPrefs.SetInt("NightMode", 1);
         }
         else
         {
             nightLight.gameObject.SetActive(false);
             dayLight.gameObject.SetActive(true);
             nightMode = false;
-            PlayerPrefs.SetInt("NightMode",0);
+            PlayerPrefs.SetInt("NightMode", 0);
         }
     }
     void EnableCar()
     {
-      carIndex = PlayerPrefs.GetInt("Car",1);
+        carIndex = PlayerPrefs.GetInt("Car", 1);
         FindObjectOfType<CarManager>().ActivateCar(carIndex);
     }
     void GameStart()
@@ -112,7 +108,7 @@ public class GameController : MonoBehaviour
     }
     void SetMobileButtons(bool useMobile)
     {
-        if(useMobile)
+        if (useMobile)
         {
             foreach (var item in mobileButtons)
             {
@@ -131,9 +127,6 @@ public class GameController : MonoBehaviour
     }
     private void Update()
     {
-
-       
-
         /*
         if(Input.GetKeyDown(KeyCode.R))
         {
@@ -154,9 +147,13 @@ public class GameController : MonoBehaviour
             UpdateTimer();
 
     }
-   public void StopTimer(bool shouldStop)
+    private void OnEnable() => YandexGame.RewardVideoEvent += ReviveYG;
+    // Unsubscribe from the ad opening event in OnDisable
+    private void OnDisable() => YandexGame.RewardVideoEvent -= ReviveYG;
+
+    public void StopTimer(bool shouldStop)
     {
-        if(shouldStop)
+        if (shouldStop)
         {
             stopTimer = true;
         }
@@ -168,18 +165,18 @@ public class GameController : MonoBehaviour
     }
     void UpdateTimer()
     {
-         
-            if (targetTime > 0)
-            {
+
+        if (targetTime > 0)
+        {
             targetTime -= Time.deltaTime;
-            }
-            else
+        }
+        else
         {
             targetTime = 0f;
             LevelLoseByTime();
         }
-        timerText.text = ((int)targetTime).ToString()+" s";
-         
+        timerText.text = ((int)targetTime).ToString() + " s";
+
     }
     void LevelLoseByTime()
     {
@@ -188,7 +185,7 @@ public class GameController : MonoBehaviour
         GameEnd();
 
         LevelLoseDelay();
-     }
+    }
     void ChangeCameraAngle()
     {
         carManager.ChangeCamera();
@@ -205,9 +202,9 @@ public class GameController : MonoBehaviour
         {
             // carController.transform.position = checkPoint.transform.position;
             var revivePos = checkPoint.transform.position;
-            revivePos.y = revivePos.y+1;
-            var reviveRot= checkPoint.transform.localEulerAngles;
-            reviveRot.y = reviveRot.y-90;
+            revivePos.y = revivePos.y + 1;
+            var reviveRot = checkPoint.transform.localEulerAngles;
+            reviveRot.y = reviveRot.y - 90;
             reviveRot.z = 0;
             carController.Revive(revivePos, reviveRot);
 
@@ -216,23 +213,40 @@ public class GameController : MonoBehaviour
         else
         {
             //carController.transform.position = Vector3.zero;
-            carController.Revive(Vector3.zero,Vector3.zero);
+            carController.Revive(Vector3.zero, Vector3.zero);
             OnRevive?.Invoke();
         }
-        
+
+    }
+    void ReviveYG(int id)
+    {
+        if (id != 2)
+            return;
+        gosterge.SetActive(true);
+        losePanel.SetActive(false);
+        gameFinished = false;
+        targetTime = levelController.GetActiveLevel().gameObject.GetComponent<Level>().GetTime();
+        targetTime++;
+        timerText.gameObject.SetActive(true);
+        RestartWithCheckPoint();
+        GameStart();
     }
 
- 
-   public void Revive()
+    public void Revive()
     {
-      if(adManager.RewardedAdManager.IsRewardedAdReady())
+
+        YG.YandexGame.RewVideoShow(2);
+        if (!adManager)
+            return;
+
+        if (adManager.RewardedAdManager.IsRewardedAdReady())
         {
             adManager.RewardedAdManager.RegisterOnUserEarnedRewarededEvent(ReviveButton);
             adManager.RewardedAdManager.RegisterOnAdShowFailedEvent(RewardedEnd);
             adManager.RewardedAdManager.RegisterOnAdClosedEvent(RewardedEnd);
 
             adManager.RewardedAdManager.ShowAd();
-        } 
+        }
     }
 
     private void RewardedEnd(IronSourceError arg1, IronSourceAdInfo arg2)
@@ -255,7 +269,7 @@ public class GameController : MonoBehaviour
 
         losePanel.SetActive(false);
         gameFinished = false;
-       
+
         targetTime = levelController.GetActiveLevel().gameObject.GetComponent<Level>().GetTime();
         targetTime++;
         timerText.gameObject.SetActive(true);
@@ -290,20 +304,20 @@ public class GameController : MonoBehaviour
         coinController.MakeMoney();
         audioSource.PlayOneShot(winSound);
         OnGameEnd?.Invoke();
-     }
+    }
     public void LevelLose()
     {
-          if (gameFinished)
+        if (gameFinished)
             return;
         GameEnd();
-         
-        Invoke("LevelLoseDelay",0.1f);
+
+        Invoke("LevelLoseDelay", 0.1f);
     }
     void LevelLoseDelay()
     {
-         audioSource.PlayOneShot(LoseSound);
-         losePanel.SetActive(true);
-        if(levelController.GetActiveLevel().gameObject.GetComponent<Level>().LastCheckPoint()==null)
+        audioSource.PlayOneShot(LoseSound);
+        losePanel.SetActive(true);
+        if (levelController.GetActiveLevel().gameObject.GetComponent<Level>().LastCheckPoint() == null)
         {
             reviveButton.SetActive(false);
         }
@@ -316,6 +330,6 @@ public class GameController : MonoBehaviour
 
         timerText.gameObject.SetActive(false);
         gameFinished = true;
-       // Time.timeScale = 0f;
+        // Time.timeScale = 0f;
     }
 }
