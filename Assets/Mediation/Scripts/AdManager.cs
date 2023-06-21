@@ -173,8 +173,7 @@ public class AdManager : MonoBehaviour
         _bannerAdManager = new CrazyLabsBannerAdManager();
 #endif
 #if UNITY_EDITOR
-
-         _rewardedAdManager = new FakeRewardedAdManager();
+        _rewardedAdManager = new FakeRewardedAdManager();
         _interstatialAdManager = new FakeInterstatialAdManager();
         _bannerAdManager = new FakeBannerAdManager();
 
