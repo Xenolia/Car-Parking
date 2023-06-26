@@ -1,6 +1,19 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.UI;
+#UNTIY PLUGIN
+
+Setup:
+ - Drag the prefab "LaggedAPIUnity" into your scene
+ - Replace the DEV_ID and PUBLISHER_ID value with your IDs
+ - Test the Demo to make sure everything is working
+ - View the GameManager.cs for examples of how to implement the API
+ - Use LaggedAPIUnity.Instance.ShowAd() to show an advertisement
+ - Use LaggedAPIUnity.Instance.CheckRewardAd() to check if reward is available
+ - Use LaggedAPIUnity.Instance.PlayRewardAd() to play reward ad
+ - Make use of the events OnPauseGame and OnResumeGame for resuming/pausing your game in between ads
+ - Make use of the events onRewardAdReady, onRewardAdSuccess and onRewardAdFailure for Reward Ads
+ - Use LaggedAPIUnity.Instance.CallHighScore(score, boardID) to save a high score
+ - Use LaggedAPIUnity.Instance.SaveAchievement(awardID) to save an achievement
+
+Example:
 
 public class GameManager : MonoBehaviour
 {
