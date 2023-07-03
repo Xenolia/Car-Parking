@@ -175,7 +175,7 @@ public class GameController : MonoBehaviour
             targetTime = 0f;
             LevelLoseByTime();
         }
-        timerText.text = ((int)targetTime).ToString()+" s";
+        timerText.text = ((int)targetTime).ToString();
          
     }
     void LevelLoseByTime()
