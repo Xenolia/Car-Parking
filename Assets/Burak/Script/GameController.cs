@@ -300,6 +300,7 @@ public class GameController : MonoBehaviour
         if (gameFinished)
             return;
         GameEnd();
+         PlayerPrefs.SetInt("Level", levelController.Level + 1);
         winPanel.SetActive(true);
         coinController.MakeMoney();
         audioSource.PlayOneShot(winSound);
