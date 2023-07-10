@@ -8,8 +8,7 @@ using YG;
     AdManager adManager;
      private void Awake()
     {
-        return;
-
+      
         adManager = GetComponent<AdManager>();
         adManager.Init();
 
@@ -23,9 +22,10 @@ using YG;
     }
     public void ShowIntersitial()
     {
+        /*
         YG.YandexGame.FullscreenShow();
         return;
-
+        */
         if (adManager.InterstatialAdManager.IsInterstatialAdReady())
         adManager.InterstatialAdManager.ShowAd();
     }
