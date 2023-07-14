@@ -8,7 +8,14 @@ using Tabtale.TTPlugins;
 
 public class AdManager : MonoBehaviour
 {
-    [SerializeField] private InAppPurchase _inAppPurchase;
+#if UNITY_ANDROID && IRON_SOURCE
+         [SerializeField] private InAppPurchase _inAppPurchase;
+
+#elif UNITY_IOS && IRON_SOURCE
+          [SerializeField] private InAppPurchase _inAppPurchase;
+
+#endif
+
     [SerializeField] private IronSourceMediationSettings _ironSourceMediationSettings;
     [SerializeField] private bool _isUnderThirteen;
     [SerializeField] private IronSourceBannerPosition _bannerPosition = IronSourceBannerPosition.BOTTOM;
@@ -61,14 +68,18 @@ public class AdManager : MonoBehaviour
 
     public void  Init()
     {
-        if(_inAppPurchase != null)
+
+#if UNITY_ANDROID && IRON_SOURCE
+ if (_inAppPurchase != null)
         {
             _inAppPurchase.RemoveAds += RemoveAdsByNoAdPurchase;
         }
-
-#if UNITY_ANDROID && IRON_SOURCE
         _apKey = _ironSourceMediationSettings.AndroidAppKey;
 #elif UNITY_IOS && IRON_SOURCE
+ if (_inAppPurchase != null)
+        {
+            _inAppPurchase.RemoveAds += RemoveAdsByNoAdPurchase;
+        }
         _apKey = _ironSourceMediationSettings.IOSAppKey;
 #endif
 

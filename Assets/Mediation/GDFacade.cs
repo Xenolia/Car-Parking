@@ -24,9 +24,7 @@ public class GDFacade : MonoBehaviour
     [SerializeField] private LaggedAPIUnity _laggedAPIUnity;
 #endif
 
-#if YANDEX_GAMES
-    [SerializeField] private YandexSDK _yandexSDK;
-#endif
+ 
     public void Init()
     {
         Debug.Log("Facade Init 1");
@@ -77,9 +75,7 @@ public class GDFacade : MonoBehaviour
         return;
 #endif
 
-#if YANDEX_GAMES
-        _yandexSDK.Init();
-
+#if YANDEX_GAMES 
         _rewardedAdManager = new YandexRewardedAdManager();
         _interstatialAdManager = new YandexInterstatialAdManager();
         _bannerAdManager = new YandexBannerAdManager();
