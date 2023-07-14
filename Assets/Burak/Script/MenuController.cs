@@ -17,7 +17,7 @@ public class MenuController : MonoBehaviour
     [SerializeField] LocalizeMaster lm = null;
 
     [SerializeField] GameObject[] cars;
-    [SerializeField] int activeCarIndex;
+    [SerializeField] int activeCarIndex=0;
 
     [SerializeField] GameObject[] disableButtons;
     [SerializeField] GameObject nextButton;

@@ -8,9 +8,7 @@ public class AdHelper : MonoBehaviour
     AdManager adManager;
     private void Awake()
     {
-        return;
-
-        adManager = GetComponent<AdManager>();
+        adManager = FindObjectOfType<AdManager>();
         adManager.Init();
 
         // adManager.InterstatialAdManager.LoadAds();
@@ -22,9 +20,7 @@ public class AdHelper : MonoBehaviour
             ShowIntersitial();
     }
     public void ShowIntersitial()
-    {
-        YG.YandexGame.FullscreenShow();
-        return;
+    { 
 
         if (adManager.InterstatialAdManager.IsInterstatialAdReady())
             adManager.InterstatialAdManager.ShowAd();

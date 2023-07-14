@@ -2,11 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using YG;
 #if YANDEX_GAMES
 public class YandexInterstatialAdManager : IInterstatialAdManager
 {
-    private YandexSDK _yandexSDK;
 
     private Action<IronSourceAdInfo> OnAdOpenedEvent;
     private Action<IronSourceAdInfo> OnAdClosedEvent;
@@ -14,7 +13,7 @@ public class YandexInterstatialAdManager : IInterstatialAdManager
 
     public YandexInterstatialAdManager()
     {
-        _yandexSDK = YandexSDK.instance;
+      //  _yandexSDK = YandexSDK.instance;
     }
 
     public bool IsInterstatialAdReady()
@@ -29,9 +28,9 @@ public class YandexInterstatialAdManager : IInterstatialAdManager
 
     public void RegisterIronSourceInterstatialEvents()
     {
-        _yandexSDK.onClose += OnAdClosed;
-        _yandexSDK.onInterstitialShown += OnAdOpened;
-        _yandexSDK.onInterstitialFailed += OnAdFailed;
+         YandexGame.CloseFullAdEvent += OnAdClosed;
+        YandexGame.OpenFullAdEvent += OnAdOpened;
+        YandexGame.ErrorFullAdEvent += OnAdFailed;
     }
 
     public void RegisterOnAdClickedEvent(Action<IronSourceAdInfo> method)
@@ -71,14 +70,14 @@ public class YandexInterstatialAdManager : IInterstatialAdManager
 
     public void ShowAd()
     {
-        _yandexSDK.ShowInterstitial();
-    }
+        YandexGame.Instance._FullscreenShow();
+     }
 
     public void TerminateAd()
     {
-        _yandexSDK.onClose -= OnAdClosed;
-        _yandexSDK.onInterstitialShown -= OnAdOpened;
-        _yandexSDK.onInterstitialFailed -= OnAdFailed;
+        YandexGame.CloseFullAdEvent -= OnAdClosed;
+        YandexGame.OpenFullAdEvent -= OnAdOpened;
+        YandexGame.ErrorFullAdEvent -= OnAdFailed;
     }
 
     public void UnRegisterOnAdClickedEvent(Action<IronSourceAdInfo> method)
@@ -130,7 +129,7 @@ public class YandexInterstatialAdManager : IInterstatialAdManager
         OnAdClosedEvent?.Invoke(null);
     }
 
-    private void OnAdFailed(string str)
+    private void OnAdFailed()
     {
         OnAdFailedEvent?.Invoke(null);
     }

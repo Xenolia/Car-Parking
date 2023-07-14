@@ -2,12 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using YG;
 #if YANDEX_GAMES
 public class YandexRewardedAdManager : IRewardedAdManager
 {
-    private YandexSDK _yandexSDK;
-
+ 
     private Action<IronSourceAdInfo> OnAdClosedEvent;
     private Action<IronSourceAdInfo> OnAdOpenedEvent;
     private Action<IronSourcePlacement, IronSourceAdInfo> OnRewardEarnedEvent;
@@ -15,7 +14,7 @@ public class YandexRewardedAdManager : IRewardedAdManager
 
     public YandexRewardedAdManager()
     {
-        _yandexSDK = YandexSDK.instance;
+      //  _yandexSDK = YandexSDK.instance;
     }
     public bool IsRewardedAdReady()
     {
@@ -34,10 +33,10 @@ public class YandexRewardedAdManager : IRewardedAdManager
 
     public void RegisterIronSourceEvents()
     {
-        _yandexSDK.onRewardedAdClosed += OnAdClosed;
-        _yandexSDK.onRewardedAdOpened += OnAdOpened;
-        _yandexSDK.onRewardedAdReward += OnRewardEarned;
-        _yandexSDK.onRewardedAdError += OnAdFailed;
+        YandexGame.CloseVideoEvent += OnAdClosed;
+        YandexGame.OpenVideoEvent += OnAdOpened;
+        YandexGame.RewardVideoEvent += OnRewardEarned;
+        YandexGame.ErrorVideoEvent += OnAdFailed;
     }
 
     public void RegisterOnAdClickedEvent(Action<IronSourcePlacement, IronSourceAdInfo> method)
@@ -82,15 +81,15 @@ public class YandexRewardedAdManager : IRewardedAdManager
 
     public void ShowAd()
     {
-        _yandexSDK.ShowRewarded("");
+        YandexGame.Instance._RewardedShow(1);
     }
 
     public void TerminateAd()
     {
-        _yandexSDK.onRewardedAdClosed -= OnAdClosed;
-        _yandexSDK.onRewardedAdOpened -= OnAdOpened;
-        _yandexSDK.onRewardedAdReward -= OnRewardEarned;
-        _yandexSDK.onRewardedAdError -= OnAdFailed;
+        YandexGame.CloseVideoEvent -= OnAdClosed;
+        YandexGame.OpenVideoEvent -= OnAdOpened;
+        YandexGame.RewardVideoEvent -= OnRewardEarned;
+        YandexGame.ErrorVideoEvent -= OnAdFailed;
     }
 
     public void UnRegisteOnAdAvailableEvent(Action<IronSourceAdInfo> method)
@@ -138,26 +137,26 @@ public class YandexRewardedAdManager : IRewardedAdManager
         OnRewardEarnedEvent -= method;
     }
 
-    private void OnAdOpened(int i)
+    private void OnAdOpened()
     {
         AudioListener.volume = 0f;
         Time.timeScale = 0f;
         OnAdOpenedEvent?.Invoke(null);
     }
 
-    private void OnAdClosed(int i)
+    private void OnAdClosed()
     {
         AudioListener.volume = 1f;
         Time.timeScale = 1f;
         OnAdClosedEvent?.Invoke(null);
     }
 
-    private void OnRewardEarned(string str)
+    private void OnRewardEarned(int a)
     {
         OnRewardEarnedEvent?.Invoke(null, null);
     }
 
-    private void OnAdFailed(string str)
+    private void OnAdFailed()
     {
         OnAdFailedEvent?.Invoke(null);
     }
