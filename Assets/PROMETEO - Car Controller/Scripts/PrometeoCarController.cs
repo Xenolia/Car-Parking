@@ -599,6 +599,8 @@ public class PrometeoCarController : MonoBehaviour
         isDrifting = false;
         DriftCarPS();
       }
+
+        
       // The following part sets the throttle power to -1 smoothly.
       throttleAxis = throttleAxis - (Time.deltaTime * 3f);
       if(throttleAxis < -1f){
