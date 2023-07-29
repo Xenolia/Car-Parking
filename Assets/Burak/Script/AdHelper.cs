@@ -23,6 +23,10 @@ public class AdHelper : MonoBehaviour
     { 
 
         if (adManager.InterstatialAdManager.IsInterstatialAdReady())
+        {
             adManager.InterstatialAdManager.ShowAd();
+            Time.timeScale = 0f;
+        }
+
     }
 }
