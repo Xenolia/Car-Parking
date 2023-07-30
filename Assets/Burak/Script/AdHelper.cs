@@ -5,11 +5,11 @@ using YG;
  public class AdHelper : MonoBehaviour
 {
      [SerializeField] bool preRoll;
-    AdManager adManager;
+   [SerializeField] AdManager adManager;
      private void Awake()
     {
       
-        adManager = GetComponent<AdManager>();
+        adManager = FindObjectOfType<AdManager>();
         adManager.Init();
 
        // adManager.InterstatialAdManager.LoadAds();
@@ -27,6 +27,10 @@ using YG;
         return;
         */
         if (adManager.InterstatialAdManager.IsInterstatialAdReady())
-        adManager.InterstatialAdManager.ShowAd();
+        {
+            adManager.InterstatialAdManager.ShowAd();
+            Time.timeScale = 0f;
+        }
+       
     }
 }
