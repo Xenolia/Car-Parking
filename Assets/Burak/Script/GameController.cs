@@ -4,6 +4,7 @@ using UnityEngine.UI;
     using System.Runtime.InteropServices;
 using System;
 using UnityEngine.Experimental.GlobalIllumination;
+using CrazyGames;
 
 public class GameController : MonoBehaviour
 {
@@ -110,6 +111,9 @@ public class GameController : MonoBehaviour
         SetMobileButtons(useMobileControls);
         targetTime = levelController.GetActiveLevel().gameObject.GetComponent<Level>().GetTime();
         targetTime++;
+
+        CrazySDK.Instance.GameplayStart();
+
     }
     private void Update()
     {
@@ -269,7 +273,12 @@ public class GameController : MonoBehaviour
         coinController.MakeMoney();
         audioSource.PlayOneShot(winSound);
         OnGameEnd?.Invoke();
-     }
+
+        
+            CrazySDK.Instance.GameplayStop();
+        
+
+    }
     public void LevelLose()
     {
           if (gameFinished)
@@ -280,7 +289,9 @@ public class GameController : MonoBehaviour
     }
     void LevelLoseDelay()
     {
-         audioSource.PlayOneShot(LoseSound);
+        CrazySDK.Instance.GameplayStop();
+
+        audioSource.PlayOneShot(LoseSound);
          losePanel.SetActive(true);
         if(levelController.GetActiveLevel().gameObject.GetComponent<Level>().LastCheckPoint()==null)
         {

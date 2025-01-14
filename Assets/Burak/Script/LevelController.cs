@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using CrazyGames;
 
 public class LevelController : MonoBehaviour
 {
@@ -33,8 +34,7 @@ public class LevelController : MonoBehaviour
 
         ActivateLevel();
     }
- 
-   public int levelIndex;
+    public int levelIndex;
     void ActivateLevel()
     {
 
