@@ -166,6 +166,7 @@ public class CrazyGamesRewardedAdManager : IRewardedAdManager
         AudioListener.volume = 1f;
         Time.timeScale = 1f;
         Debug.Log("OnRewardedAdClosed");
+        OnAdRewardedUserEvent?.Invoke(null, null);
         OnRewardedAdClosedEvent?.Invoke(null);
     }
 
