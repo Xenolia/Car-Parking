@@ -37,7 +37,6 @@ public class GameController : MonoBehaviour
     [SerializeField] Text timerText;
     float targetTime;
     AdManager adManager;
-    [SerializeField] GameObject tutorialPanel;
     [SerializeField] GameObject gosterge;
     bool stopTimer = false;
     int carIndex;
@@ -63,18 +62,9 @@ public class GameController : MonoBehaviour
                 CrazySDK.Game.GameplayStart();  
         }
 
-        if (lm==null)
-        {
-            selectedLang= SystemLanguage.English;
-        }
-        else
+        
         selectedLang = lm.GetSelectedLang();
 
-
-         if (selectedLang == SystemLanguage.Russian)
-        {
-            tutorialPanel.SetActive(false);
-        }
         Application.targetFrameRate = 60;
         audioSource = GetComponent<AudioSource>();
          carManager = FindObjectOfType<CarManager>();

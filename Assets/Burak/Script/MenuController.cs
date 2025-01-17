@@ -25,7 +25,7 @@ public class MenuController : MonoBehaviour
 
     [SerializeField] GameObject DifficultyButtonObj;
 
-    private SystemLanguage selectedLang = SystemLanguage.English;
+    public SystemLanguage selectedLang = SystemLanguage.English;
 
 
     [SerializeField] AdManager adManager;
@@ -37,9 +37,8 @@ public class MenuController : MonoBehaviour
     { 
         coinController = GetComponent<CoinController>();
          CheckButtons();
-        UpdateBuyButton();
-
-       if(PlayerPrefs.HasKey("Difficulty"))
+        UpdateBuyButton(); 
+        if (PlayerPrefs.HasKey("Difficulty"))
         {
            difficulty= PlayerPrefs.GetInt("Difficulty");
         }
@@ -59,6 +58,10 @@ public class MenuController : MonoBehaviour
      }
     private void Start()
     {
+        if (selectedLang != lm.GetSelectedLang())
+        {
+            selectedLang = lm.GetSelectedLang();
+        }
         Time.timeScale = 1f;
     }
     public void OpenLanguagePanel()
@@ -71,10 +74,7 @@ public class MenuController : MonoBehaviour
      }
     private void Update()
     {
-        if(selectedLang!=lm.GetSelectedLang())
-        {
-            selectedLang = lm.GetSelectedLang();
-        }
+      
         Debug.Log(lm.GetSelectedLang());
     }
     public void DifficultyButton()
