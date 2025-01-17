@@ -127,9 +127,7 @@ public class SoundController : MonoBehaviour
         }
     }
     public void EnableSettingsPanel()
-    {
-        Debug.LogError("acıldı!!!!!!!");
-
+    { 
         if (settingsPanel.activeSelf)
         {
             settingsPanel.SetActive(false);

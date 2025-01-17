@@ -8,11 +8,13 @@ public class Level : MonoBehaviour
 
     public float Timer=300000f; 
     GameController gameController;
-
+    [SerializeField] Animator[] animators;
      private void Awake()
     {
         gameController = FindObjectOfType<GameController>();
         Timer = Timer - 3f;
+        PassengerController passengerController=gameController.gameObject.GetComponent<PassengerController>();
+        passengerController.Init(animators);
         
     }
     public float GetTime()
