@@ -7,7 +7,7 @@ public class SteeringWheel : MonoBehaviour
     [SerializeField] float clampDelta=200f;
     [SerializeField] float rotationSpeed = 600f;
     [SerializeField] float deltaChange;
- 
+ /*
     private void Update()
     {
         var horizontalInput = Input.GetAxisRaw("Horizontal")*rotationSpeed*Time.deltaTime;
@@ -27,4 +27,5 @@ public class SteeringWheel : MonoBehaviour
 
         transform.Rotate(Vector3.up*horizontalInput,Space.Self);
     }
+ */
 }

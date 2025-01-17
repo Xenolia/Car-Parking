@@ -6,17 +6,14 @@ public class Level : MonoBehaviour
 {
      GameObject checkPoint;
 
-    public float Timer=300000f;
-    public float TimerMedium = 300000f;
-    public float TimerHard = 300000f;
+    public float Timer=300000f; 
     GameController gameController;
 
      private void Awake()
     {
         gameController = FindObjectOfType<GameController>();
         Timer = Timer - 3f;
-        TimerMedium = TimerMedium - 3f; 
-        TimerHard = TimerHard - 3f; 
+        
     }
     public float GetTime()
     {
@@ -27,11 +24,11 @@ public class Level : MonoBehaviour
         }
         if (diff == 2)
         {
-            return TimerMedium;
+            return Timer-5;
         }
         if (diff == 3)
         {
-            return TimerHard;
+            return Timer-10;
         }
         return 0;
     }

@@ -1,5 +1,7 @@
 ﻿using System;
 using CrazyGames.WindowComponents;
+using CrazyGames.WindowComponents.AudioOptimizations;
+using CrazyGames.WindowComponents.ModelOptimizations;
 using CrazyGames.WindowComponents.TextureOptimizations;
 using CrazyOptimizer.Editor.WindowComponents.BuildLogs;
 using UnityEditor;
@@ -10,10 +12,10 @@ namespace CrazyGames
     public class OptimizerWindow : EditorWindow
     {
         private int _toolbarInt = 0;
-        private readonly string[] _toolbarStrings = {"Export", "Textures", "Build logs", "About"};
+        private readonly string[] _toolbarStrings = { "Export", "Textures", "Models", "Audio clips", "Build logs", "About" };
         public static EditorWindow EditorWindowInstance;
 
-        [MenuItem("CrazyGames/WebGL Optimizer")]
+        [MenuItem("Tools/WebGL Optimizer")]
         public static void ShowWindow()
         {
             EditorWindowInstance = GetWindow(typeof(OptimizerWindow), false, "WebGL Optimizer");
@@ -34,9 +36,15 @@ namespace CrazyGames
                     TextureOptimization.RenderGUI();
                     break;
                 case 2:
-                    BuildLogs.RenderGUI();
+                    ModelOptimization.RenderGUI();
                     break;
                 case 3:
+                    AudioOptimization.RenderGUI();
+                    break;
+                case 4:
+                    BuildLogs.RenderGUI();
+                    break;
+                case 5:
                     About.RenderGUI();
                     break;
             }

@@ -8,6 +8,7 @@ using TMPro;
 using System;
 using System.Runtime.InteropServices;
 using NoCodingEasyLocalization;
+using CrazyGames;
 public class MenuController : MonoBehaviour
 {
     [SerializeField] LocalizeMaster lm = null;
@@ -218,24 +219,22 @@ public class MenuController : MonoBehaviour
         UpdateBuyButton();
     }
 
-    public void RewardedButton()
+     public void RewardedButtonClicked()
     {
-        if( adManager.RewardedAdManager.IsRewardedAdReady())
+
+        CrazySDK.Ad.RequestAd(CrazyAdType.Rewarded, () =>
         {
-            adManager.RewardedAdManager.RegisterOnUserEarnedRewarededEvent(UnlockWithRewarded);
-            adManager.RewardedAdManager.RegisterOnAdClosedEvent(OnAdClosed);
-
-            adManager.RewardedAdManager.ShowAd();
-        }
+            /** ad started */
+        }, (error) =>
+        {
+            /** ad error */
+        }, () =>
+        {
+            /** ad finished, rewarded players here for CrazyAdType.Rewarded */
+            UnlockWithRewarded();
+        });
     }
-
-    private void OnAdClosed(IronSourceAdInfo obj)
-    {
-        adManager.RewardedAdManager.UnRegisterOnUserEarnedRewarededEvent(UnlockWithRewarded);
-        adManager.RewardedAdManager.UnRegisterOnAdClosedEvent(OnAdClosed);
-    }
-     
-    private void UnlockWithRewarded(IronSourcePlacement arg1, IronSourceAdInfo arg2)
+    private void UnlockWithRewarded()
     {
         Price price = cars[activeCarIndex].GetComponent<Price>();
 

@@ -7,44 +7,50 @@ namespace CrazyGames.WindowComponents.TextureOptimizations
 {
     public class TextureTreeItem : TreeElement
     {
-        public readonly string texturePath;
-        public readonly string textureName;
-        public readonly int textureMaxSize;
-        public TextureImporterFormat textureFormat;
-        public readonly TextureImporterType textureType;
-        public readonly int crunchCompressionQuality;
-        public readonly bool hasCrunchCompression;
-        public readonly string compression; // none/low quality, medium quality, high quality (values in TextureImporterCompression)
+        public string TexturePath { get; }
+        public string TextureName { get; }
 
-        //  private string texturePath;
-        // private TextureImporter textureImporter;
+        public int TextureMaxSize => _platformSettings.maxTextureSize;
+        public int CrunchCompressionQuality => _platformSettings.compressionQuality;
+        public bool HasCrunchCompression => _textureImporter.crunchedCompression;
+        public TextureImporterFormat TextureFormat => _platformSettings.format;
+        public TextureImporterType TextureType => _textureImporter.textureType;
+        public TextureImporterCompression TextureCompression => _textureImporter.textureCompression;
 
-        public TextureTreeItem(string name, int depth, int id, string texturePath, TextureImporter textureImporter) : base(name, depth, id)
+        public string TextureCompressionName
+        {
+            get
+            {
+                switch (TextureCompression)
+                {
+                    case TextureImporterCompression.Uncompressed:
+                        return "Uncompressed";
+                    case TextureImporterCompression.Compressed:
+                        return "Normal";
+                    case TextureImporterCompression.CompressedHQ:
+                        return "High";
+                    case TextureImporterCompression.CompressedLQ:
+                        return "Low";
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+        }
+
+        private readonly TextureImporter _textureImporter;
+        private readonly TextureImporterPlatformSettings _platformSettings;
+
+        public TextureTreeItem(string name, int depth, int id, string texturePath, TextureImporter textureImporter)
+            : base(name, depth, id)
         {
             if (depth == -1)
                 return;
-            this.texturePath = texturePath;
-            textureName = Path.GetFileName(texturePath);
-            textureImporter.GetPlatformTextureSettings("WebGL", out textureMaxSize, out textureFormat, out crunchCompressionQuality);
-            hasCrunchCompression = textureImporter.crunchedCompression;
-            textureType = textureImporter.textureType;
-            switch (textureImporter.textureCompression)
-            {
-                case TextureImporterCompression.Uncompressed:
-                    compression = "Uncompressed";
-                    break;
-                case TextureImporterCompression.Compressed:
-                    compression = "Normal";
-                    break;
-                case TextureImporterCompression.CompressedHQ:
-                    compression = "High";
-                    break;
-                case TextureImporterCompression.CompressedLQ:
-                    compression = "Low";
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+
+            TexturePath = texturePath;
+            TextureName = Path.GetFileName(texturePath);
+
+            _textureImporter = textureImporter;
+            _platformSettings = _textureImporter.GetPlatformTextureSettings("WebGL");
         }
     }
 }

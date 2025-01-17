@@ -1,9 +1,6 @@
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-    using System.Runtime.InteropServices;
-using System;
-using UnityEngine.Experimental.GlobalIllumination;
+using UnityEngine; 
+using UnityEngine.UI; 
+using System; 
 using TMPro;
 using NoCodingEasyLocalization;
 using Unity.VisualScripting;
@@ -43,7 +40,7 @@ public class GameController : MonoBehaviour
     [SerializeField] GameObject gosterge;
     bool stopTimer = false;
     int carIndex;
-    [SerializeField] LocalizeMaster lm = null;
+    [SerializeField] LocalizeMaster lm ;
 
     private SystemLanguage selectedLang = SystemLanguage.English;
 
@@ -58,9 +55,15 @@ public class GameController : MonoBehaviour
     
     private void Awake()
     {
+        if(lm==null)
+        {
+            selectedLang= SystemLanguage.English;
+        }
+        else
         selectedLang = lm.GetSelectedLang();
 
-        if (selectedLang == SystemLanguage.Russian)
+
+         if (selectedLang == SystemLanguage.Russian)
         {
             tutorialPanel.SetActive(false);
         }
@@ -225,6 +228,7 @@ public class GameController : MonoBehaviour
  
    public void Revive()
     {
+        /*
       if(adManager.RewardedAdManager.IsRewardedAdReady())
         {
             adManager.RewardedAdManager.RegisterOnUserEarnedRewarededEvent(ReviveButton);
@@ -233,23 +237,28 @@ public class GameController : MonoBehaviour
 
             adManager.RewardedAdManager.ShowAd();
         } 
+        */
     }
 
-    private void RewardedEnd(IronSourceError arg1, IronSourceAdInfo arg2)
+    private void RewardedEnd()
     {
+        /*
         adManager.RewardedAdManager.UnRegisterOnUserEarnedRewarededEvent(ReviveButton);
         adManager.RewardedAdManager.UnRegisterOnAdShowFailedEvent(RewardedEnd);
         adManager.RewardedAdManager.UnRegisterOnAdClosedEvent(RewardedEnd);
+        */
     }
 
-    private void RewardedEnd(IronSourceAdInfo obj)
+    private void RewardedEnd2()
     {
+        /*
         adManager.RewardedAdManager.UnRegisterOnUserEarnedRewarededEvent(ReviveButton);
         adManager.RewardedAdManager.UnRegisterOnAdShowFailedEvent(RewardedEnd);
         adManager.RewardedAdManager.UnRegisterOnAdClosedEvent(RewardedEnd);
-    }
+    */
+        }
 
-    private void ReviveButton(IronSourcePlacement arg1, IronSourceAdInfo arg2)
+    private void ReviveButton()
     {
         gosterge.SetActive(true);
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using CrazyGames;
 
 public class LevelController : MonoBehaviour
 {
@@ -71,12 +72,37 @@ public class LevelController : MonoBehaviour
     }
     public void NextLevel()
     {
-        SceneManager.LoadScene(1);
+        CrazySDK.Ad.RequestAd(CrazyAdType.Midgame, () =>
+        {
+            /** ad started */
+        }, (error) =>
+        {
+            /** ad error */
+            SceneManager.LoadScene(1);
+        }, () =>
+        {
+            /** ad finished, rewarded players here for CrazyAdType.Rewarded */
+            SceneManager.LoadScene(1);
+
+        });
 
     }
     public void Restart()
     {
-        SceneManager.LoadScene(1);
+
+        CrazySDK.Ad.RequestAd(CrazyAdType.Midgame, () =>
+        {
+            /** ad started */
+        }, (error) =>
+        {
+            /** ad error */
+            SceneManager.LoadScene(1);
+        }, () =>
+        {
+            /** ad finished, rewarded players here for CrazyAdType.Rewarded */
+            SceneManager.LoadScene(1);
+
+        });
     }
     public void LoadMenu()
     {
