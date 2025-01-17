@@ -28,7 +28,7 @@ public class Obstacle : MonoBehaviour
     void Revive()
     {
         if(GetComponent<Rigidbody>()!=null)
-        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
 
         transform.SetPositionAndRotation(startPos,startRot);
      }

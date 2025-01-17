@@ -39,7 +39,7 @@ namespace CrazyGames.WindowComponents
                     "To decrease the bundle size even more, you can select Medium or High stripping from Player Settings, but first of all read about them on our developer documentation.");
             }
 
-            if (UnityEngine.Rendering.GraphicsSettings.renderPipelineAsset != null)
+            if (UnityEngine.Rendering.GraphicsSettings.defaultRenderPipeline != null)
             {
                 var additionalInfoStyle = new GUIStyle
                 {

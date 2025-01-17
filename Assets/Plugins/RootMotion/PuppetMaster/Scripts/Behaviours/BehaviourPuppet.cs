@@ -145,13 +145,13 @@ namespace RootMotion.Dynamics {
 			/// <summary>
 			/// The PhysicsMaterial applied to the muscles while the character is in Puppet or GetUp state. Using a lower friction material reduces the risk of muscles getting stuck and pulled out of their joints.
 			/// </summary>
-			public PhysicMaterial puppetMaterial;
+			public PhysicsMaterial puppetMaterial;
 			
 			[Tooltip("The PhysicsMaterial applied to the muscles while the character is in Unpinned state.")]
 			/// <summary>
 			/// The PhysicsMaterial applied to the muscles while the character is in Unpinned state.
 			/// </summary>
-			public PhysicMaterial unpinnedMaterial;
+			public PhysicsMaterial unpinnedMaterial;
 		}
 
 		/// <summary>
@@ -627,7 +627,7 @@ namespace RootMotion.Dynamics {
 			if (state == State.Unpinned) {
 				unpinnedTimer += deltaTime;
 
-				if (unpinnedTimer >= getUpDelay && canGetUp && !getupDisabled && puppetMaster.muscles[0].rigidbody.velocity.magnitude < maxGetUpVelocity) {
+				if (unpinnedTimer >= getUpDelay && canGetUp && !getupDisabled && puppetMaster.muscles[0].rigidbody.linearVelocity.magnitude < maxGetUpVelocity) {
 					SetState(State.GetUp);
 					return;
 				}

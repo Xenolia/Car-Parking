@@ -35,7 +35,7 @@ public class CrazyAdsDemoPlayer : MonoBehaviour
         print("Ad Finished!  So respawning player!");
 
         transform.position = startPos;
-        rb.velocity = Vector3.zero;
+        rb.linearVelocity = Vector3.zero;
     }
 }
 #endif
