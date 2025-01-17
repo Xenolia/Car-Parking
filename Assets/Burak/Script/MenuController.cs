@@ -230,8 +230,9 @@ public class MenuController : MonoBehaviour
             /** ad error */
         }, () =>
         {
-            /** ad finished, rewarded players here for CrazyAdType.Rewarded */
-            UnlockWithRewarded();
+        /** ad finished, rewarded players here for CrazyAdType.Rewarded */
+        UnlockWithRewarded();
+            CrazySDK.Game.HappyTime();
         });
     }
     private void UnlockWithRewarded()

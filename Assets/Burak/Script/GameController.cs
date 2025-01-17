@@ -4,6 +4,7 @@ using System;
 using TMPro;
 using NoCodingEasyLocalization;
 using Unity.VisualScripting;
+using CrazyGames;
 
 public class GameController : MonoBehaviour
 {
@@ -35,7 +36,7 @@ public class GameController : MonoBehaviour
 
     [SerializeField] Text timerText;
     float targetTime;
-   [SerializeField] AdManager adManager;
+    AdManager adManager;
     [SerializeField] GameObject tutorialPanel;
     [SerializeField] GameObject gosterge;
     bool stopTimer = false;
@@ -44,7 +45,7 @@ public class GameController : MonoBehaviour
 
     private SystemLanguage selectedLang = SystemLanguage.English;
 
-
+     
     public void CheckPointPassed()
     {
         audioSource.PlayOneShot(CheckPointSound);
@@ -54,8 +55,15 @@ public class GameController : MonoBehaviour
     
     
     private void Awake()
-    {
-        if(lm==null)
+    { 
+        adManager=FindFirstObjectByType<AdManager>();
+        if(adManager)
+        {
+            if (adManager.sdkinitsucces)
+                CrazySDK.Game.GameplayStart();  
+        }
+
+        if (lm==null)
         {
             selectedLang= SystemLanguage.English;
         }
@@ -296,6 +304,7 @@ public class GameController : MonoBehaviour
             return;
         GameEnd();
         PlayerPrefs.SetInt("Level", levelController.Level + 1);
+        CrazySDK.Game.GameplayStop();
 
         winPanel.SetActive(true);
         coinController.MakeMoney();
@@ -312,7 +321,8 @@ public class GameController : MonoBehaviour
     }
     void LevelLoseDelay()
     {
-         audioSource.PlayOneShot(LoseSound);
+        CrazySDK.Game.GameplayStop();
+        audioSource.PlayOneShot(LoseSound);
          losePanel.SetActive(true);
         if(levelController.GetActiveLevel().gameObject.GetComponent<Level>().LastCheckPoint()==null)
         {

@@ -4,9 +4,11 @@ using UnityEngine;
 using DG.Tweening;
 public class SteeringWheel : MonoBehaviour
 {
+    /*
     [SerializeField] float clampDelta=200f;
     [SerializeField] float rotationSpeed = 600f;
     [SerializeField] float deltaChange;
+    */
  /*
     private void Update()
     {

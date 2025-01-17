@@ -2067,6 +2067,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 65, y: 120, z: 0}
+--- !u!1 &605993249
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 605993250}
+  m_Layer: 0
+  m_Name: Test
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &605993250
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605993249}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.8, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &616843976
 GameObject:
   m_ObjectHideFlags: 0
@@ -2411,7 +2442,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 25.7, y: -51.5}
+  m_AnchoredPosition: {x: 25.699951, y: -51.5}
   m_SizeDelta: {x: 160, y: 58}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &643332371
@@ -2543,7 +2574,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -7.700012, y: 0}
+  m_AnchoredPosition: {x: -7.699951, y: 0}
   m_SizeDelta: {x: 250, y: 140}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &677710026
@@ -2983,6 +3014,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 511879847}
     - target: {fileID: 5827589137518400564, guid: db182e7d6c39d9d428af743c69ba1d3f, type: 3}
+      propertyPath: bodyMassCenter.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5827589137518400564, guid: db182e7d6c39d9d428af743c69ba1d3f, type: 3}
       propertyPath: tireScreechSound
       value: 
       objectReference: {fileID: 66484012}
@@ -3207,6 +3242,10 @@ PrefabInstance:
       propertyPath: carEngineSound
       value: 
       objectReference: {fileID: 511879847}
+    - target: {fileID: 1364048809717154736, guid: 6fa16928ab649f643827ef536a7f9b45, type: 3}
+      propertyPath: bodyMassCenter.x
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 1364048809717154736, guid: 6fa16928ab649f643827ef536a7f9b45, type: 3}
       propertyPath: tireScreechSound
       value: 
@@ -3481,6 +3520,10 @@ PrefabInstance:
       propertyPath: carEngineSound
       value: 
       objectReference: {fileID: 511879847}
+    - target: {fileID: 7003138514114142891, guid: 707dffcbc4f29be43974a916d2d379e8, type: 3}
+      propertyPath: bodyMassCenter.x
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 7003138514114142891, guid: 707dffcbc4f29be43974a916d2d379e8, type: 3}
       propertyPath: tireScreechSound
       value: 
@@ -3830,6 +3873,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 538484915}
     m_Modifications:
+    - target: {fileID: 90305054767620995, guid: 78ecff6899efd6244a6087b87be7d085, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.72
+      objectReference: {fileID: 0}
     - target: {fileID: 789433783048149864, guid: 78ecff6899efd6244a6087b87be7d085, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.8851747
@@ -3837,6 +3884,10 @@ PrefabInstance:
     - target: {fileID: 1417197895592252248, guid: 78ecff6899efd6244a6087b87be7d085, type: 3}
       propertyPath: m_Name
       value: Bus1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1417197895592252248, guid: 78ecff6899efd6244a6087b87be7d085, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1792772773064821218, guid: 78ecff6899efd6244a6087b87be7d085, type: 3}
       propertyPath: m_RootOrder
@@ -3891,12 +3942,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 511879847}
     - target: {fileID: 1964476039759930061, guid: 78ecff6899efd6244a6087b87be7d085, type: 3}
+      propertyPath: bodyMassCenter.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1964476039759930061, guid: 78ecff6899efd6244a6087b87be7d085, type: 3}
       propertyPath: tireScreechSound
       value: 
       objectReference: {fileID: 66484012}
     - target: {fileID: 2611230133131503159, guid: 78ecff6899efd6244a6087b87be7d085, type: 3}
       propertyPath: m_Convex
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791857840902874163, guid: 78ecff6899efd6244a6087b87be7d085, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.72
       objectReference: {fileID: 0}
     - target: {fileID: 3708618398784290136, guid: 78ecff6899efd6244a6087b87be7d085, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4437,8 +4496,8 @@ MonoBehaviour:
   - {fileID: 2152966406651359371, guid: 2a113e10b93d2814fb60c750793b4dfd, type: 3}
   - {fileID: 7131139981916151000, guid: b7908ba067774a541b68929503185c71, type: 3}
   - {fileID: 3969435502211080684, guid: 02bedc3fe94dd284ab0b7a4e4bc6be6a, type: 3}
-  playSpecificLevel: 0
-  Level: 36
+  playSpecificLevel: 1
+  Level: 12
   Leveltext: {fileID: 1181202524}
   levelIndex: 0
 --- !u!114 &1287724331
@@ -4472,7 +4531,6 @@ MonoBehaviour:
   countDownText: {fileID: 582489994}
   gameFinished: 0
   timerText: {fileID: 420717441551540477}
-  adManager: {fileID: 0}
   tutorialPanel: {fileID: 0}
   gosterge: {fileID: 677710024}
   lm: {fileID: 0}
@@ -5964,6 +6022,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 511879847}
     - target: {fileID: 5954736393062469980, guid: 7da4c80eec949d243a7826c49fbd3d39, type: 3}
+      propertyPath: bodyMassCenter.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5954736393062469980, guid: 7da4c80eec949d243a7826c49fbd3d39, type: 3}
       propertyPath: tireScreechSound
       value: 
       objectReference: {fileID: 66484012}
@@ -7441,3 +7503,4 @@ SceneRoots:
   - {fileID: 511679430}
   - {fileID: 2006995048}
   - {fileID: 605649554}
+  - {fileID: 605993250}
