@@ -5,13 +5,15 @@ using UnityEngine;
 public class AdHelper : MonoBehaviour
 {
     [SerializeField] bool preRoll;
-    AdManager adManager;
+  //  AdManager adManager;
     private void Awake()
     {
+        /*
         adManager = GetComponent<AdManager>();
         adManager.Init();
 
         adManager.InterstatialAdManager.LoadAds();
+        */
     }
     private void Start()
     {
@@ -20,7 +22,9 @@ public class AdHelper : MonoBehaviour
     }
     public void ShowIntersitial()
     {
+        /*
         if(adManager.InterstatialAdManager.IsInterstatialAdReady())
         adManager.InterstatialAdManager.ShowAd();
+        */
     }
 }

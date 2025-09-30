@@ -36,7 +36,7 @@ public class GameController : MonoBehaviour
 
     [SerializeField] Text timerText;
     float targetTime;
-   [SerializeField] AdManager adManager;
+  // [SerializeField] AdManager adManager;
 
     [SerializeField] GameObject gosterge;
     bool stopTimer = false;
@@ -111,9 +111,7 @@ public class GameController : MonoBehaviour
         SetMobileButtons(useMobileControls);
         targetTime = levelController.GetActiveLevel().gameObject.GetComponent<Level>().GetTime();
         targetTime++;
-
-        CrazySDK.Instance.GameplayStart();
-
+        Debug.Log("gameplay start here crazysdk");
     }
     private void Update()
     {
@@ -208,6 +206,7 @@ public class GameController : MonoBehaviour
  
    public void Revive()
     {
+        /*
       if(adManager.RewardedAdManager.IsRewardedAdReady())
         {
             adManager.RewardedAdManager.RegisterOnUserEarnedRewarededEvent(ReviveButton);
@@ -216,23 +215,21 @@ public class GameController : MonoBehaviour
 
             adManager.RewardedAdManager.ShowAd();
         } 
+        */
     }
 
-    private void RewardedEnd(IronSourceError arg1, IronSourceAdInfo arg2)
+    private void RewardedEnd()
     {
+        /*
         adManager.RewardedAdManager.UnRegisterOnUserEarnedRewarededEvent(ReviveButton);
         adManager.RewardedAdManager.UnRegisterOnAdShowFailedEvent(RewardedEnd);
         adManager.RewardedAdManager.UnRegisterOnAdClosedEvent(RewardedEnd);
+        */
     }
 
-    private void RewardedEnd(IronSourceAdInfo obj)
-    {
-        adManager.RewardedAdManager.UnRegisterOnUserEarnedRewarededEvent(ReviveButton);
-        adManager.RewardedAdManager.UnRegisterOnAdShowFailedEvent(RewardedEnd);
-        adManager.RewardedAdManager.UnRegisterOnAdClosedEvent(RewardedEnd);
-    }
+  
 
-    private void ReviveButton(IronSourcePlacement arg1, IronSourceAdInfo arg2)
+    private void ReviveButton()
     {
         gosterge.SetActive(true);
 
@@ -274,9 +271,8 @@ public class GameController : MonoBehaviour
         audioSource.PlayOneShot(winSound);
         OnGameEnd?.Invoke();
 
-        
-            CrazySDK.Instance.GameplayStop();
-        
+
+        Debug.Log("Crazysdk gameplay stop here");
 
     }
     public void LevelLose()
@@ -289,7 +285,7 @@ public class GameController : MonoBehaviour
     }
     void LevelLoseDelay()
     {
-        CrazySDK.Instance.GameplayStop();
+        Debug.Log("Crazysdk gameplay stop here");
 
         audioSource.PlayOneShot(LoseSound);
          losePanel.SetActive(true);

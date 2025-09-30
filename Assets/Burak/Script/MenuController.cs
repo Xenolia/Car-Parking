@@ -24,7 +24,7 @@ public class MenuController : MonoBehaviour
 
  
 
-    [SerializeField] AdManager adManager;
+    //[SerializeField] AdManager adManager;
     
     CoinController coinController;
 
@@ -131,6 +131,7 @@ public class MenuController : MonoBehaviour
 
     public void RewardedButton()
     {
+        /*
         if( adManager.RewardedAdManager.IsRewardedAdReady())
         {
             adManager.RewardedAdManager.RegisterOnUserEarnedRewarededEvent(UnlockWithRewarded);
@@ -138,15 +139,18 @@ public class MenuController : MonoBehaviour
 
             adManager.RewardedAdManager.ShowAd();
         }
+        */
     }
 
-    private void OnAdClosed(IronSourceAdInfo obj)
+    private void OnAdClosed()
     {
+        /*
         adManager.RewardedAdManager.UnRegisterOnUserEarnedRewarededEvent(UnlockWithRewarded);
         adManager.RewardedAdManager.UnRegisterOnAdClosedEvent(OnAdClosed);
+        */
     }
      
-    private void UnlockWithRewarded(IronSourcePlacement arg1, IronSourceAdInfo arg2)
+    private void UnlockWithRewarded()
     {
         Price price = cars[activeCarIndex].GetComponent<Price>();
 
