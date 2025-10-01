@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CrazyGames;
 
 public class AdHelper : MonoBehaviour
 {
     [SerializeField] bool preRoll;
-  //  AdManager adManager;
+    public bool isSdkInitialized = false;   
+    //  AdManager adManager;
     private void Awake()
     {
+        CrazySDK.Init(() => { isSdkInitialized = true; });
+
         /*
         adManager = GetComponent<AdManager>();
         adManager.Init();
@@ -15,6 +19,7 @@ public class AdHelper : MonoBehaviour
         adManager.InterstatialAdManager.LoadAds();
         */
     }
+
     private void Start()
     {
         if (preRoll)
