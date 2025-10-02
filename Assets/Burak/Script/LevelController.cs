@@ -25,9 +25,9 @@ public class LevelController : MonoBehaviour
         }
            
 
-        if (PlayerPrefs.HasKey("Level"))
+        if (PlayerPrefs.HasKey("CPLevel"))
         {
-            Level = PlayerPrefs.GetInt("Level", 1);
+            Level = PlayerPrefs.GetInt("CPLevel", 1);
         }
         else
             Level = 1;
@@ -70,7 +70,7 @@ public class LevelController : MonoBehaviour
     }
     public void NextLevel()
     {
-        PlayerPrefs.SetInt("Level",Level+1);
+        PlayerPrefs.SetInt("CPLevel", Level+1);
         SceneManager.LoadScene(1);
 
     }
@@ -81,7 +81,6 @@ public class LevelController : MonoBehaviour
     public void LoadMenu()
     {
         SceneManager.LoadScene(1);
-
     }
 
 }

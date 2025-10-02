@@ -24,6 +24,8 @@ public class AdHelper : MonoBehaviour
     {
         if (preRoll)
             ShowIntersitial();
+
+        Debug.Log("gameplaystart here");
     }
     public void ShowIntersitial()
     {
