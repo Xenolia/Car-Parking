@@ -3769,7 +3769,9 @@ MonoBehaviour:
   - {fileID: 156447103180048681, guid: 0aeb95f38d85a0a44a13901f0b9ff4a8, type: 3}
   - {fileID: 4740448593072050288, guid: d10748011d0efe8458e9403239126eac, type: 3}
   - {fileID: 8062802194073777423, guid: f5efb42341590e842b1ba4a91f5815ff, type: 3}
+  - {fileID: 6291957140822391497, guid: 844b2cdad8c5c81458667c3a7f6fb626, type: 3}
   - {fileID: 1060702556495620010, guid: 8faf60e6c5fe9d443b18955276f406e3, type: 3}
+  - {fileID: 6298535260612169796, guid: dc5ebaf0a4c64d446bf15a3430c14cf1, type: 3}
   - {fileID: 6931533123006855065, guid: 20aaa9aee2583d94f8e65fcafa1ad86c, type: 3}
   - {fileID: 6272965777856076120, guid: 8e4be7510b47b4a5195dc59f5b227fc7, type: 3}
   - {fileID: 8709997882307454748, guid: a59692747b73c7c40bbd942e491f466a, type: 3}
@@ -4716,28 +4718,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ShowDebugText: 0
-  m_ShowCameraFrustum: 1
-  m_IgnoreTimeScale: 0
-  m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 2
-  m_BlendUpdateMethod: 1
-  m_DefaultBlend:
-    m_Style: 1
-    m_Time: 2
-    m_CustomCurve:
+  ShowDebugText: 0
+  ShowCameraFrustum: 1
+  IgnoreTimeScale: 0
+  WorldUpOverride: {fileID: 0}
+  ChannelMask: -1
+  UpdateMethod: 2
+  BlendUpdateMethod: 1
+  LensModeOverride:
+    Enabled: 0
+    DefaultMode: 2
+  DefaultBlend:
+    Style: 1
+    Time: 2
+    CustomCurve:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  m_CustomBlends: {fileID: 0}
-  m_CameraCutEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_CameraActivatedEvent:
-    m_PersistentCalls:
-      m_Calls: []
+  CustomBlends: {fileID: 0}
 --- !u!114 &1697935066
 MonoBehaviour:
   m_ObjectHideFlags: 0
