@@ -71,7 +71,7 @@ public class LevelController : MonoBehaviour
     public void NextLevel()
     {
         PlayerPrefs.SetInt("CPLevel", Level+1);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
 
     }
     public void Restart()

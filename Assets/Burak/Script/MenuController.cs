@@ -19,7 +19,7 @@ public class MenuController : MonoBehaviour
     [SerializeField] GameObject buyButton;
     [SerializeField] GameObject rewardedButton;
     [SerializeField] GameObject RaceButton;
-    bool isSoftPublish = false;
+  [SerializeField]  bool isSoftPublish = false;
 
     [SerializeField] GameObject DifficultyButtonObj;
 
@@ -103,7 +103,7 @@ public class MenuController : MonoBehaviour
         PlayerPrefs.SetInt("Car",activeCarIndex);
 
 
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
     public void NextCar()
