@@ -19,6 +19,7 @@ public class MenuController : MonoBehaviour
     [SerializeField] GameObject buyButton;
     [SerializeField] GameObject rewardedButton;
     [SerializeField] GameObject RaceButton;
+    bool isSoftPublish = false;
 
     [SerializeField] GameObject DifficultyButtonObj;
 
@@ -179,18 +180,32 @@ public class MenuController : MonoBehaviour
             buyButton.SetActive(true);
             CheckBuyButtonCoin(price);
             DisableRace();
-            rewardedButton.SetActive(true);
+            RewardedButtonSetactive(true);
         }
         else
         {
+            
             buyButton.SetActive(false);
-            rewardedButton.SetActive(false);
+           RewardedButtonSetactive(false);
 
             EnableRace();
         }
         
     }
+    private void RewardedButtonSetactive(bool setActive)
+    {
+        if(setActive)
+        {
+            if (isSoftPublish)
+                return;
 
+                rewardedButton.SetActive(true);
+
+        }
+        else
+            rewardedButton.SetActive(false);
+
+    }
     void DisableRace()
     {
         RaceButton.gameObject.SetActive(false);
