@@ -21,6 +21,8 @@ public class GameController : MonoBehaviour
     [SerializeField] GameObject[] mobileButtons;
     [SerializeField] GameObject reviveButton;
     [SerializeField] GameObject winPanel;
+    [SerializeField] GameObject oneStarPanel, twoStarPanel, threeStarPanel;
+
     [SerializeField] GameObject losePanel;
     [SerializeField] Text countDownText;
    public  bool gameFinished = false;
@@ -35,6 +37,7 @@ public class GameController : MonoBehaviour
 
     [SerializeField] Text timerText;
     float targetTime;
+    float targetTimeHam;
   // [SerializeField] AdManager adManager;
 
     [SerializeField] GameObject gosterge;
@@ -110,6 +113,7 @@ public class GameController : MonoBehaviour
         SetMobileButtons(useMobileControls);
         targetTime = levelController.GetActiveLevel().gameObject.GetComponent<Level>().GetTime();
         targetTime++;
+        targetTimeHam = targetTime; 
         Debug.Log("gameplay start here crazysdk");
     }
     private void Update()
@@ -266,6 +270,20 @@ public class GameController : MonoBehaviour
             return;
         GameEnd();
         winPanel.SetActive(true);
+         
+        if(targetTime>targetTimeHam*10/100)
+        {
+            threeStarPanel.SetActive(true);
+        }
+        else if (targetTime > targetTimeHam * 6 / 100)
+        {
+            twoStarPanel.SetActive(true);
+        }
+        else 
+        {
+            oneStarPanel.SetActive(true);
+        }
+        
         coinController.MakeMoney();
         audioSource.PlayOneShot(winSound);
         OnGameEnd?.Invoke();
