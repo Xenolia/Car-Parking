@@ -164,6 +164,10 @@ public class GameController : MonoBehaviour
         }
 
     }
+    void DriftEnd()
+    {
+
+    }
     void UpdateTimer()
     {
          
@@ -174,7 +178,10 @@ public class GameController : MonoBehaviour
             else
         {
             targetTime = 0f;
-            LevelLoseByTime();
+            if (isDrift)
+                DriftEnd();
+            else
+                LevelLoseByTime();
         }
         timerText.text = ((int)targetTime).ToString()+" s";
          
