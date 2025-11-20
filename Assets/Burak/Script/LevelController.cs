@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
-using CrazyGames;
-
+ 
 public class LevelController : MonoBehaviour
 {
     GameController gameController;

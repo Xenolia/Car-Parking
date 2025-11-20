@@ -4,8 +4,7 @@ using UnityEngine.UI;
     using System.Runtime.InteropServices;
 using System;
 using UnityEngine.Experimental.GlobalIllumination;
-using CrazyGames;
-
+ 
 public class GameController : MonoBehaviour
 {
     [SerializeField] Light dayLight;

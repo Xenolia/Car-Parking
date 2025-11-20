@@ -1,8 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using CrazyGames;
-
+ 
 public class AdHelper : MonoBehaviour
 {
     [SerializeField] bool preRoll;
@@ -10,7 +9,7 @@ public class AdHelper : MonoBehaviour
     //  AdManager adManager;
     private void Awake()
     {
-        CrazySDK.Init(() => { isSdkInitialized = true; });
+       // CrazySDK.Init(() => { isSdkInitialized = true; });
 
         /*
         adManager = GetComponent<AdManager>();
