@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -70,16 +70,16 @@ public class LevelController : MonoBehaviour
     public void NextLevel()
     {
         PlayerPrefs.SetInt("CPLevel", Level+1);
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene("Game"); // Yüklenecek sahnenin adı
 
     }
     public void Restart()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene("Game"); // Yüklenecek sahnenin adı
     }
     public void LoadMenu()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Menu"); // Yüklenecek sahnenin adı
     }
 
 }

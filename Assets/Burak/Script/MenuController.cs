@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -103,7 +103,7 @@ public class MenuController : MonoBehaviour
         PlayerPrefs.SetInt("Car",activeCarIndex);
 
 
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene("Game"); // Yüklenecek sahnenin adı
     }
 
     public void NextCar()
