@@ -38,6 +38,7 @@ public class GameController : MonoBehaviour
     [SerializeField] Text timerText;
     float targetTime;
     float targetTimeHam;
+    [SerializeField] bool isDrift;
   // [SerializeField] AdManager adManager;
 
     [SerializeField] GameObject gosterge;
@@ -55,8 +56,8 @@ public class GameController : MonoBehaviour
         EnableCar();
         coinController = GetComponent<CoinController>();
         levelController = GetComponent<LevelController>();
-  
-        
+
+
         GameStart();
         if(PlayerPrefs.HasKey("NightMode"))
         {
@@ -68,6 +69,13 @@ public class GameController : MonoBehaviour
     
         if (nightMode)
             SwitchLight();
+
+
+        if (SceneManager.GetActiveScene().name == "Drift")
+        {
+            isDrift = true;
+            DriftModeSettings();
+        }
     }
      public void SwitchLight()
     {
@@ -85,6 +93,12 @@ public class GameController : MonoBehaviour
             nightMode = false;
             PlayerPrefs.SetInt("NightMode",0);
         }
+    }
+    void DriftModeSettings()
+    {
+        countDownText.gameObject.SetActive(false);
+        levelController.DriftSceneSettings();
+        targetTime = 90f;
     }
     void EnableCar()
     {

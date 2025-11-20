@@ -12,6 +12,7 @@ public class LevelController : MonoBehaviour
     public int Level;
     GameObject activeLevel;
     public TextMeshProUGUI Leveltext;
+    [SerializeField] GameObject driftSceneMap;
     private void Awake()
     {
   
@@ -34,6 +35,12 @@ public class LevelController : MonoBehaviour
         ActivateLevel();
     }
     public int levelIndex;
+    public void DriftSceneSettings()
+    {
+        GameObject ads = activeLevel;
+        Destroy(ads);
+        Instantiate(driftSceneMap);
+    }
     void ActivateLevel()
     {
 

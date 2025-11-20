@@ -47,7 +47,16 @@ public class MenuController : MonoBehaviour
         }
         SetDifficultyButton();
      }
-    public void DifficultyButton()
+    public void LoadDrift()
+    {
+    
+        PlayerPrefs.SetInt("Car", activeCarIndex);
+
+
+        SceneManager.LoadScene("Drift"); // Yüklenecek sahnenin adı
+    }
+
+public void DifficultyButton()
     {
         if (difficulty == 3)
         {
