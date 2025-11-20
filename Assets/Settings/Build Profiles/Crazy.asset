@@ -102,6 +102,7 @@ MonoBehaviour:
     - line: '|   androidStartInFullscreen: 1'
     - line: '|   androidRenderOutsideSafeArea: 1'
     - line: '|   androidUseSwappy: 1'
+    - line: '|   androidDisplayOptions: 1'
     - line: '|   androidBlitType: 0'
     - line: '|   androidResizeableActivity: 0'
     - line: '|   androidDefaultWindowWidth: 1920'
@@ -883,7 +884,7 @@ MonoBehaviour:
     - line: '|   webGLDebugSymbols: 0'
     - line: '|   webGLEmscriptenArgs: '
     - line: '|   webGLModulesDirectory: '
-    - line: '|   webGLTemplate: PROJECT:Crazy_2020'
+    - line: '|   webGLTemplate: APPLICATION:Minimal'
     - line: '|   webGLAnalyzeBuildSize: 0'
     - line: '|   webGLUseEmbeddedResources: 0'
     - line: '|   webGLCompressionFormat: 0'
@@ -1024,11 +1025,11 @@ MonoBehaviour:
     - line: '|   captureStartupLogs: {}'
     - line: '|   activeInputHandler: 0'
     - line: '|   windowsGamepadBackendHint: 0'
-    - line: '|   cloudProjectId: '
+    - line: '|   cloudProjectId: 9bbcb4c6-c7b8-49c1-b4d1-14ff61f9461a'
     - line: '|   framebufferDepthMemorylessMode: 0'
     - line: '|   qualitySettingsNames: []'
-    - line: '|   projectName: '
-    - line: '|   organizationId: '
+    - line: '|   projectName: Parking Challenge'
+    - line: '|   organizationId: burakhrk'
     - line: '|   cloudEnabled: 0'
     - line: '|   legacyClampBlendShapeWeights: 0'
     - line: '|   hmiLoadingImage: {instanceID: 0}'
@@ -1038,6 +1039,7 @@ MonoBehaviour:
     - line: '|   androidVulkanDenyFilterList: []'
     - line: '|   androidVulkanAllowFilterList: []'
     - line: '|   androidVulkanDeviceFilterListAsset: {instanceID: 0}'
+    - line: '|   d3d12DeviceFilterListAsset: {instanceID: 0}'
     - line: '| '
   references:
     version: 2
@@ -1061,7 +1063,7 @@ MonoBehaviour:
         m_CodeOptimization: 0
         m_WebGLClientBrowserPath: 
         m_WebGLClientBrowserType: 0
-        m_WebGLTextureSubtarget: 0
+        m_WebGLTextureSubtarget: 1
 --- !u!114 &3016120285803790863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1074,11 +1076,11 @@ MonoBehaviour:
   m_Script: {fileID: 15012, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: BuildAutomationSettings
   m_EditorClassIdentifier: UnityEditor.dll::UnityEditor.Build.Profile.BuildAutomationSettings
-  m_OperatingSystemValue: 
-  m_OperatingSystemFamily: 
-  m_XcodeVersion: 
-  m_AndroidSdkVersion: 
+  m_OperatingSystemValue: windows11
+  m_OperatingSystemFamily: windows
+  m_XcodeVersion: default
+  m_AndroidSdkVersion: android_sdk_35
   m_UnityArchitecture: 
-  m_MachineTypeId: 
+  m_MachineTypeId: win_standard_v1
   m_CredentialsId: 
   m_BuildTarget: 20
