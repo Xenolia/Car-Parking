@@ -19,6 +19,7 @@ public class MenuController : MonoBehaviour
     [SerializeField] GameObject buyButton;
     [SerializeField] GameObject rewardedButton;
     [SerializeField] GameObject RaceButton;
+    [SerializeField] GameObject driftButton;
   [SerializeField]  bool isSoftPublish = false;
 
     [SerializeField] GameObject DifficultyButtonObj;
@@ -218,6 +219,7 @@ public void DifficultyButton()
     void DisableRace()
     {
         RaceButton.gameObject.SetActive(false);
+        driftButton.gameObject.SetActive(false);
     }
     void EnableRace()
     {
