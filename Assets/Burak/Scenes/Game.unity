@@ -1116,7 +1116,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 00000000
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -2858,6 +2858,10 @@ PrefabInstance:
       value: -18.046041
       objectReference: {fileID: 0}
     - target: {fileID: 1541212463346962363, guid: 4bd1febf3599488418f1a614370ac1e2, type: 3}
+      propertyPath: maxSpeed
+      value: 78
+      objectReference: {fileID: 0}
+    - target: {fileID: 1541212463346962363, guid: 4bd1febf3599488418f1a614370ac1e2, type: 3}
       propertyPath: carSpeedText
       value: 
       objectReference: {fileID: 677710026}
@@ -2882,6 +2886,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4639703301927460920}
     - target: {fileID: 1541212463346962363, guid: 4bd1febf3599488418f1a614370ac1e2, type: 3}
+      propertyPath: maxReverseSpeed
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 1541212463346962363, guid: 4bd1febf3599488418f1a614370ac1e2, type: 3}
       propertyPath: turnRightButton
       value: 
       objectReference: {fileID: 4639703301944645580}
@@ -2896,6 +2904,10 @@ PrefabInstance:
     - target: {fileID: 1541212463346962363, guid: 4bd1febf3599488418f1a614370ac1e2, type: 3}
       propertyPath: useTouchControls
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1541212463346962363, guid: 4bd1febf3599488418f1a614370ac1e2, type: 3}
+      propertyPath: accelerationMultiplier
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1639716309281154196, guid: 4bd1febf3599488418f1a614370ac1e2, type: 3}
       propertyPath: m_RootOrder
@@ -3970,6 +3982,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4639703302239706708}
     - target: {fileID: 1964476039759930061, guid: 78ecff6899efd6244a6087b87be7d085, type: 3}
+      propertyPath: steeringSpeed
+      value: 0.436
+      objectReference: {fileID: 0}
+    - target: {fileID: 1964476039759930061, guid: 78ecff6899efd6244a6087b87be7d085, type: 3}
       propertyPath: carEngineSound
       value: 
       objectReference: {fileID: 511879847}
@@ -4353,12 +4369,12 @@ MonoBehaviour:
   - {fileID: 156447103180048681, guid: 0aeb95f38d85a0a44a13901f0b9ff4a8, type: 3}
   - {fileID: 4740448593072050288, guid: d10748011d0efe8458e9403239126eac, type: 3}
   - {fileID: 8062802194073777423, guid: f5efb42341590e842b1ba4a91f5815ff, type: 3}
-  - {fileID: 6291957140822391497, guid: 844b2cdad8c5c81458667c3a7f6fb626, type: 3}
   - {fileID: 1060702556495620010, guid: 8faf60e6c5fe9d443b18955276f406e3, type: 3}
   - {fileID: 6298535260612169796, guid: dc5ebaf0a4c64d446bf15a3430c14cf1, type: 3}
+  - {fileID: 6291957140822391497, guid: 844b2cdad8c5c81458667c3a7f6fb626, type: 3}
+  - {fileID: 8709997882307454748, guid: a59692747b73c7c40bbd942e491f466a, type: 3}
   - {fileID: 6931533123006855065, guid: 20aaa9aee2583d94f8e65fcafa1ad86c, type: 3}
   - {fileID: 6272965777856076120, guid: 8e4be7510b47b4a5195dc59f5b227fc7, type: 3}
-  - {fileID: 8709997882307454748, guid: a59692747b73c7c40bbd942e491f466a, type: 3}
   - {fileID: 3160236291838678401, guid: 9c3b7ef35f3f21a4f8f04e0e50fb1d99, type: 3}
   - {fileID: 1587561015795194754, guid: 6f3b47b5e4961aa4ab9b15594c7c5363, type: 3}
   - {fileID: 8718253251283971379, guid: 456b771057b64e041b748bd0833a7d76, type: 3}
@@ -4388,8 +4404,9 @@ MonoBehaviour:
   - {fileID: 1123957114126764209, guid: 363347b00e6a845479a6251f16de0528, type: 3}
   - {fileID: 930318544430323861, guid: 41ca74d30a2dc204cbc49a036f7da975, type: 3}
   playSpecificLevel: 0
-  Level: 13
+  Level: 23
   Leveltext: {fileID: 1181202524}
+  driftSceneMap: {fileID: 0}
   levelIndex: 0
 --- !u!114 &1287724331
 MonoBehaviour:
@@ -4425,6 +4442,7 @@ MonoBehaviour:
   countDownText: {fileID: 582489994}
   gameFinished: 0
   timerText: {fileID: 420717441551540477}
+  isDrift: 0
   gosterge: {fileID: 677710024}
 --- !u!4 &1287724332
 Transform:
@@ -5360,7 +5378,7 @@ Transform:
   m_GameObject: {fileID: 1697935061}
   serializedVersion: 2
   m_LocalRotation: {x: 0.25147444, y: -0.0007113236, z: -0.0043850895, w: 0.9678538}
-  m_LocalPosition: {x: 0.0000056743625, y: 10.948, z: -15.339165}
+  m_LocalPosition: {x: 0.000007033348, y: 12.879999, z: -18.046076}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

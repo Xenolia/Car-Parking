@@ -25,6 +25,8 @@ public class AdHelper : MonoBehaviour
             ShowIntersitial();
 
         Debug.Log("gameplaystart here");
+
+        Time.timeScale = 1f;
     }
     public void ShowIntersitial()
     {

@@ -88,20 +88,20 @@ public class LevelEnd : MonoBehaviour
         }
 
         float absoluteCarSpeed = Mathf.Abs(CarController.carSpeed);
-        if(!doNotCheckRotation)
+        if (!doNotCheckRotation)
         {
-              temp = targetAngleY;
+            temp = targetAngleY;
 
             float carRotationY = CarController.transform.rotation.eulerAngles.y;
 
             float difference = Mathf.DeltaAngle(carRotationY, targetAngleY);
 
-            if (difference > 2 )
+            if (Mathf.Abs(difference) > 3) // use Abs and slightly larger threshold
             {
-                
-             rotationWarningText.SetActive(true);
+                rotationWarningText.SetActive(true);
                 return;
             }
+            Debug.Log("Rotation Y: " + carRotationY+ "difference " + difference );
 
         }
         if (Mathf.RoundToInt(absoluteCarSpeed) != 0)
