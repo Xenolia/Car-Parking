@@ -33,6 +33,11 @@ public class PrometeoCarController : MonoBehaviour
       public int maxSteeringAngle = 27; // The maximum angle that the tires can reach while rotating the steering wheel.
       [Range(0.1f, 1f)]
       public float steeringSpeed = 0.5f; // How fast the steering wheel turns.
+      [Range(0, 1)]
+      public float highSpeedSteerAngle = 10f; // Maximum steering angle at high speeds.
+      [Range(0, 1)]
+      public float highSpeedSteerAt = 100f; // Speed at which the steering angle is clamped to highSpeedSteerAngle.
+
       [Space(10)]
       [Range(100, 1000)]
       public int brakeForce = 350; // The strength of the wheel brakes.
@@ -45,6 +50,20 @@ public class PrometeoCarController : MonoBehaviour
                                     // in the points x = 0 and z = 0 of your car. You can select the value that you want in the y axis,
                                     // however, you must notice that the higher this value is, the more unstable the car becomes.
                                     // Usually the y value goes from 0 to 1.5.
+      [Space(10)]
+      [Range(0, 5000)]
+      public float antiRollVal = 5000f; // Force applied to stabilize the car.
+
+      [Space(20)]
+      //[Header("SUSPENSION")]
+      [Space(10)]
+      [Range(0, 50000)]
+      public float suspensionSpring = 35000f;
+      [Range(0, 5000)]
+      public float suspensionDamper = 4500f;
+      [Range(0, 1)]
+      public float suspensionTargetPosition = 0.5f;
+
 
     //WHEELS
 
@@ -420,6 +439,54 @@ public class PrometeoCarController : MonoBehaviour
 
     }
 
+    void UpdateSuspension()
+    {
+        ApplySuspensionSettings(frontLeftCollider);
+        ApplySuspensionSettings(frontRightCollider);
+        ApplySuspensionSettings(rearLeftCollider);
+        ApplySuspensionSettings(rearRightCollider);
+    }
+
+    void ApplySuspensionSettings(WheelCollider wheel)
+    {
+        JointSpring spring = wheel.suspensionSpring;
+        spring.spring = suspensionSpring;
+        spring.damper = suspensionDamper;
+        spring.targetPosition = suspensionTargetPosition;
+        wheel.suspensionSpring = spring;
+    }
+
+    void FixedUpdate()
+    {
+        UpdateSuspension();
+        ApplyAntiRollBar(frontLeftCollider, frontRightCollider);
+        ApplyAntiRollBar(rearLeftCollider, rearRightCollider);
+    }
+
+    void ApplyAntiRollBar(WheelCollider wheelL, WheelCollider wheelR)
+    {
+        WheelHit hit;
+        float travelL = 1.0f;
+        float travelR = 1.0f;
+
+        bool groundedL = wheelL.GetGroundHit(out hit);
+        if (groundedL)
+            travelL = (-wheelL.transform.InverseTransformPoint(hit.point).y - wheelL.radius) / wheelL.suspensionDistance;
+
+        bool groundedR = wheelR.GetGroundHit(out hit);
+        if (groundedR)
+            travelR = (-wheelR.transform.InverseTransformPoint(hit.point).y - wheelR.radius) / wheelR.suspensionDistance;
+
+        float antiRollForce = (travelL - travelR) * antiRollVal;
+
+        if (groundedL)
+            carRigidbody.AddForceAtPosition(wheelL.transform.up * -antiRollForce, wheelL.transform.position);
+
+        if (groundedR)
+            carRigidbody.AddForceAtPosition(wheelR.transform.up * antiRollForce, wheelR.transform.position);
+    }
+
+
     // This method converts the car speed data from float to string, and then set the text of the UI carSpeedText with this value.
     public void CarSpeedUI(){
 
@@ -477,7 +544,9 @@ public class PrometeoCarController : MonoBehaviour
       if(steeringAxis < -1f){
         steeringAxis = -1f;
       }
-      var steeringAngle = steeringAxis * maxSteeringAngle;
+      var currentMaxSteeringAngle = Mathf.Lerp(maxSteeringAngle, highSpeedSteerAngle, Mathf.Abs(carSpeed) / highSpeedSteerAt);
+      var steeringAngle = steeringAxis * currentMaxSteeringAngle;
+
       frontLeftCollider.steerAngle = Mathf.Lerp(frontLeftCollider.steerAngle, steeringAngle, steeringSpeed);
       frontRightCollider.steerAngle = Mathf.Lerp(frontRightCollider.steerAngle, steeringAngle, steeringSpeed);
     }
@@ -488,7 +557,9 @@ public class PrometeoCarController : MonoBehaviour
       if(steeringAxis > 1f){
         steeringAxis = 1f;
       }
-      var steeringAngle = steeringAxis * maxSteeringAngle;
+      var currentMaxSteeringAngle = Mathf.Lerp(maxSteeringAngle, highSpeedSteerAngle, Mathf.Abs(carSpeed) / highSpeedSteerAt);
+      var steeringAngle = steeringAxis * currentMaxSteeringAngle;
+
       frontLeftCollider.steerAngle = Mathf.Lerp(frontLeftCollider.steerAngle, steeringAngle, steeringSpeed);
       frontRightCollider.steerAngle = Mathf.Lerp(frontRightCollider.steerAngle, steeringAngle, steeringSpeed);
     }
@@ -504,7 +575,9 @@ public class PrometeoCarController : MonoBehaviour
       if(Mathf.Abs(frontLeftCollider.steerAngle) < 1f){
         steeringAxis = 0f;
       }
-      var steeringAngle = steeringAxis * maxSteeringAngle;
+      var currentMaxSteeringAngle = Mathf.Lerp(maxSteeringAngle, highSpeedSteerAngle, Mathf.Abs(carSpeed) / highSpeedSteerAt);
+      var steeringAngle = steeringAxis * currentMaxSteeringAngle;
+
       frontLeftCollider.steerAngle = Mathf.Lerp(frontLeftCollider.steerAngle, steeringAngle, steeringSpeed);
       frontRightCollider.steerAngle = Mathf.Lerp(frontRightCollider.steerAngle, steeringAngle, steeringSpeed);
     }

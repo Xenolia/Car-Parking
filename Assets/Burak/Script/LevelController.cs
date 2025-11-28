@@ -74,9 +74,13 @@ public class LevelController : MonoBehaviour
     {
         return activeLevel;
     }
+    public void NextLevelPrefSet()
+    {
+        PlayerPrefs.SetInt("CPLevel", Level + 1);
+
+    }
     public void NextLevel()
     {
-        PlayerPrefs.SetInt("CPLevel", Level+1);
         SceneManager.LoadScene("Game"); // Yüklenecek sahnenin adı
 
     }

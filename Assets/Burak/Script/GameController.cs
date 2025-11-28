@@ -291,8 +291,8 @@ public class GameController : MonoBehaviour
             return;
         GameEnd();
         winPanel.SetActive(true);
-         
-        if(targetTime>targetTimeHam*10/100)
+        levelController.NextLevelPrefSet();
+        if (targetTime>targetTimeHam*10/100)
         {
             threeStarPanel.SetActive(true);
         }

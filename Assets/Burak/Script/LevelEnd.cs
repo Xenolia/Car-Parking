@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -90,19 +90,26 @@ public class LevelEnd : MonoBehaviour
         float absoluteCarSpeed = Mathf.Abs(CarController.carSpeed);
         if (!doNotCheckRotation)
         {
-            temp = targetAngleY;
-
+ 
             float carRotationY = CarController.transform.rotation.eulerAngles.y;
+            float rawDiff = Mathf.DeltaAngle(carRotationY, targetAngleY);
+            float absDiff = Mathf.Abs(rawDiff);
 
-            float difference = Mathf.DeltaAngle(carRotationY, targetAngleY);
+            // Minimum gerçek dönüş farkı
+            float minDiff = Mathf.Min(absDiff, 360f - absDiff);
 
-            if (Mathf.Abs(difference) > 3) // use Abs and slightly larger threshold
+            Debug.Log(
+                $"RotationY: {carRotationY} | rawDiff: {rawDiff} | absDiff: {absDiff} | minDiff: {minDiff}"
+            );
+            if(minDiff>170)
+            {
+                minDiff=180 - minDiff;
+            }
+            if (minDiff > 2.2f)
             {
                 rotationWarningText.SetActive(true);
                 return;
             }
-            Debug.Log("Rotation Y: " + carRotationY+ "difference " + difference );
-
         }
         if (Mathf.RoundToInt(absoluteCarSpeed) != 0)
         {
