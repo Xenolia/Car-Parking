@@ -9,6 +9,7 @@ public class PartUnlockManager : MonoBehaviour
     [Tooltip("Assign the Light GameObjects corresponding to Part 1, Part 2, Part 3")]
     [SerializeField] private GameObject[] partLights;
     [SerializeField] private TextMeshProUGUI collectedText;
+    [SerializeField] private GameObject object1,object2,object3;
 
     private const string PartPrefPrefix = "PartUnlocked_";
 
@@ -54,6 +55,11 @@ public class PartUnlockManager : MonoBehaviour
     {
        
         FindObjectOfType<MenuController>().UnlockWithParts();
+                collectedText.text = $"All Parts Collected Car 5 Unlocked";
+                object1.SetActive(false);
+                object2.SetActive(false);
+                object3.SetActive(false);
+
     }
 
     /// <summary>

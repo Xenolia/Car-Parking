@@ -9146,6 +9146,7 @@ MonoBehaviour:
   Timer: 20
   TimerMedium: 18
   TimerHard: 15
+  partUnlocked: 1
 --- !u!1 &8062802194137605448
 GameObject:
   m_ObjectHideFlags: 0
@@ -14574,7 +14575,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8367711442657723610, guid: 6ad298a58751a0a49a29b768dab00b77, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8371365307835055612, guid: 6ad298a58751a0a49a29b768dab00b77, type: 3}
       propertyPath: m_RootOrder

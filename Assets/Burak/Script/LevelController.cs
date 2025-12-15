@@ -12,7 +12,7 @@ public class LevelController : MonoBehaviour
     public int Level;
     public Level levelScript;
     GameObject activeLevel;
-    public TextMeshProUGUI Leveltext;
+    public TextMeshProUGUI Leveltext,partUnlockedText;
     [SerializeField] GameObject driftSceneMap;
     private void Awake()
     {
@@ -108,11 +108,23 @@ public class LevelController : MonoBehaviour
     public void NextLevelPrefSet()
     {
        if(levelScript.partUnlocked == 1) 
+       {
     PartUnlockManager.instance.UnlockPart(0); // Unlocks Part 1 (Index 0)
+    partUnlockedText.gameObject.SetActive(true);
+partUnlockedText.text = "Part 1 Unlocked!!";
+       }
 if(levelScript.partUnlocked == 2) 
+{
     PartUnlockManager.instance.UnlockPart(1); // Unlocks Part 2 (Index 1)
+partUnlockedText.gameObject.SetActive(true);
+partUnlockedText.text = "Part 2 Unlocked!!";
+}
 if(levelScript.partUnlocked == 3) 
+{
     PartUnlockManager.instance.UnlockPart(2); // Unlocks Part 3 (Index 2)
+partUnlockedText.gameObject.SetActive(true);
+partUnlockedText.text = "Part 3 Unlocked!!";
+}
     
         if (PlayerPrefs.GetInt("IsDailyLevel", 0) == 1)
         {
