@@ -359,7 +359,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -267, y: 440.57}
+  m_AnchoredPosition: {x: -266.99994, y: 440.57}
   m_SizeDelta: {x: -1306, y: -881.14}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &73312615
@@ -5558,6 +5558,7 @@ GameObject:
   - component: {fileID: 1332968020}
   - component: {fileID: 1332968021}
   - component: {fileID: 1332968022}
+  - component: {fileID: 1332968023}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -5752,6 +5753,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1332968023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1332968016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 566b1d785cb013c48a60e5f82b28fde6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PartUnlockManager
+  partLights:
+  - {fileID: 758490670}
+  - {fileID: 2043980366}
+  - {fileID: 1890416336}
+  collectedText: {fileID: 1539749530}
 --- !u!1 &1340731924
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ public class LevelController : MonoBehaviour
     [SerializeField] GameObject[] levels;
     [SerializeField] bool playSpecificLevel = false;
     public int Level;
+    public Level levelScript;
     GameObject activeLevel;
     public TextMeshProUGUI Leveltext;
     [SerializeField] GameObject driftSceneMap;
@@ -98,6 +99,7 @@ public class LevelController : MonoBehaviour
             activeLevel = go;
 
         }
+    levelScript=activeLevel.GetComponent<Level>();
      }
     public GameObject GetActiveLevel()
     {
@@ -105,6 +107,18 @@ public class LevelController : MonoBehaviour
     }
     public void NextLevelPrefSet()
     {
+        if(levelScript.partUnlocked==3)
+        {
+             PlayerPrefs.SetInt("PartUnlocked_3", 1);
+        }
+         if(levelScript.partUnlocked==2)
+        {
+             PlayerPrefs.SetInt("PartUnlocked_2", 1);
+        }
+         if(levelScript.partUnlocked==1)
+        {
+             PlayerPrefs.SetInt("PartUnlocked_1", 1);
+        }
         if (PlayerPrefs.GetInt("IsDailyLevel", 0) == 1)
         {
         PlayerPrefs.SetInt("IsDailyLevel", 2);
