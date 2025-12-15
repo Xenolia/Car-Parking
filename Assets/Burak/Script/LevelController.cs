@@ -107,18 +107,13 @@ public class LevelController : MonoBehaviour
     }
     public void NextLevelPrefSet()
     {
-        if(levelScript.partUnlocked==3)
-        {
-             PlayerPrefs.SetInt("PartUnlocked_3", 1);
-        }
-         if(levelScript.partUnlocked==2)
-        {
-             PlayerPrefs.SetInt("PartUnlocked_2", 1);
-        }
-         if(levelScript.partUnlocked==1)
-        {
-             PlayerPrefs.SetInt("PartUnlocked_1", 1);
-        }
+       if(levelScript.partUnlocked == 1) 
+    PartUnlockManager.instance.UnlockPart(0); // Unlocks Part 1 (Index 0)
+if(levelScript.partUnlocked == 2) 
+    PartUnlockManager.instance.UnlockPart(1); // Unlocks Part 2 (Index 1)
+if(levelScript.partUnlocked == 3) 
+    PartUnlockManager.instance.UnlockPart(2); // Unlocks Part 3 (Index 2)
+    
         if (PlayerPrefs.GetInt("IsDailyLevel", 0) == 1)
         {
         PlayerPrefs.SetInt("IsDailyLevel", 2);

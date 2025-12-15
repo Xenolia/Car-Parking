@@ -185,7 +185,13 @@ public void DifficultyButton()
          price.Unlock();
         UpdateBuyButton();
     }
+public   void UnlockWithParts()
+    {
+        Price price = cars[4].GetComponent<Price>();
 
+         price.Unlock();
+        UpdateBuyButton();
+    }
     void CheckBuyButtonCoin(Price price)
     {
         if(coinController.Coin>=price.CarPrice)

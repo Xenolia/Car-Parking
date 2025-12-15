@@ -3,6 +3,8 @@ using TMPro;
 
 public class PartUnlockManager : MonoBehaviour
 {
+    public static PartUnlockManager instance;
+
     [Header("UI References")]
     [Tooltip("Assign the Light GameObjects corresponding to Part 1, Part 2, Part 3")]
     [SerializeField] private GameObject[] partLights;
@@ -12,6 +14,7 @@ public class PartUnlockManager : MonoBehaviour
 
     private void Awake()
     {
+        instance = this;
         LoadPartStates();
     }
 
@@ -40,6 +43,17 @@ public class PartUnlockManager : MonoBehaviour
             if (IsPartUnlocked(i)) count++;
         }
         collectedText.text = $"Parts Collected {count}/{partLights.Length}";
+
+        if (count == partLights.Length)
+        {
+            OnAllPartsCollected();
+        }
+    }
+
+    private void OnAllPartsCollected()
+    {
+       
+        FindObjectOfType<MenuController>().UnlockWithParts();
     }
 
     /// <summary>
