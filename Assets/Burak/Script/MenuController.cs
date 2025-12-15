@@ -33,6 +33,7 @@ public class MenuController : MonoBehaviour
    [SerializeField] int difficulty;
     private void Awake()
     { 
+        PlayerPrefs.SetInt("IsDailyLevel", 0);
         coinController = GetComponent<CoinController>();
          CheckButtons();
         UpdateBuyButton();
@@ -47,6 +48,16 @@ public class MenuController : MonoBehaviour
             PlayerPrefs.SetInt("Difficulty",1);
         }
         SetDifficultyButton();
+     }
+     public void MapOfTheDay()
+     {
+ PlayerPrefs.SetInt("IsDailyLevel", 1);
+        PlayerPrefs.SetInt("Car", activeCarIndex);
+        SceneManager.LoadScene("Game"); // Yüklenecek sahnenin adı
+     }
+     public void ButtonMapOfTheDay()
+     {
+       MapOfTheDay();
      }
     public void LoadDrift()
     {
@@ -110,6 +121,8 @@ public void DifficultyButton()
 
     public void LoadGame()
     {
+        PlayerPrefs.SetInt("IsDailyLevel", 0);
+
         PlayerPrefs.SetInt("Car",activeCarIndex);
 
 

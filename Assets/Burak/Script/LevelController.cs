@@ -18,20 +18,49 @@ public class LevelController : MonoBehaviour
   
 
         gameController = GetComponent<GameController>();
+
+         // Daily Level Logic
+        if (PlayerPrefs.GetInt("IsDailyLevel", 0) == 1)
+        {
+            // Use current date as seed
+            int seed = System.DateTime.Now.Date.GetHashCode();
+            Debug.Log($"Daily Seed: {seed}, Date: {System.DateTime.Now.Date}");
+            
+            System.Random dailyRandom = new System.Random(seed);
+            
+            Debug.Log($"Total Levels Available: {levels.Length}");
+
+            // Select random level from available levels
+            // Level is 1-based index for display, and logic below uses it for index calc
+            int minLevel = 19;
+            if (levels.Length < minLevel)
+            {
+                minLevel = 10; 
+                Debug.LogWarning($"Total levels ({levels.Length}) is less than 17. Defaulting daily map start to 1.");
+            }
+            Level = dailyRandom.Next(minLevel, levels.Length + 1);
+            Debug.Log($"Daily Level Selected: {Level}");
+            
+            Leveltext.text = "DAILY MAP";
+            // Override the standard level text set in ActivateLevel, or handle it there
+            playSpecificLevel = true; // reusing this flag or just letting ActivateLevel handle it might be safer, 
+                                      // but ActivateLevel sets text too. Let's adjust ActivateLevel logic implicitly by setting Level.
+        }
+
+
         if (playSpecificLevel)
         {
             ActivateLevel();
             return;
         }
-           
-
-        if (PlayerPrefs.HasKey("CPLevel"))
+      if (PlayerPrefs.HasKey("CPLevel"))
         {
             Level = PlayerPrefs.GetInt("CPLevel", 1);
         }
         else
             Level = 1;
 
+       
         ActivateLevel();
     }
     public int levelIndex;
@@ -76,8 +105,14 @@ public class LevelController : MonoBehaviour
     }
     public void NextLevelPrefSet()
     {
+        if (PlayerPrefs.GetInt("IsDailyLevel", 0) == 1)
+        {
+        PlayerPrefs.SetInt("IsDailyLevel", 0);
+            return;
+        }
+    
         PlayerPrefs.SetInt("CPLevel", Level + 1);
-
+  
     }
     public void NextLevel()
     {
