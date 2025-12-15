@@ -7,13 +7,7 @@ public class CarManager : MonoBehaviour
     [SerializeField] GameObject[] Cars;
     [SerializeField] GameObject CurrentCar;
     [SerializeField] GameObject rain;
-    private void Start()
-    {
-        if (Random.value < 0.2f)
-        {
-            SetRain();
-        }
-    }
+ 
     void SetRain()
     {
         if (CurrentCar != null)
@@ -26,6 +20,10 @@ public class CarManager : MonoBehaviour
     {
         CurrentCar = Cars[index];
         Cars[index].SetActive(true);
+        if (Random.Range(0, 100) < 25) // 20% chance
+{
+    SetRain();
+}
     }
     public void ChangeCamera()
     {
