@@ -98,9 +98,7 @@ public class LevelEnd : MonoBehaviour
             // Minimum gerçek dönüş farkı
             float minDiff = Mathf.Min(absDiff, 360f - absDiff);
 
-            Debug.Log(
-                $"RotationY: {carRotationY} | rawDiff: {rawDiff} | absDiff: {absDiff} | minDiff: {minDiff}"
-            );
+            
             if(minDiff>170)
             {
                 minDiff=180 - minDiff;
