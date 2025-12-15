@@ -33,7 +33,12 @@ public class MenuController : MonoBehaviour
    [SerializeField] int difficulty;
     private void Awake()
     { 
-        PlayerPrefs.SetInt("IsDailyLevel", 0);
+        if (PlayerPrefs.GetInt("IsDailyLevel", 0) == 1)
+        {
+             PlayerPrefs.SetInt("IsDailyLevel", 0);
+        }
+        
+        CheckDailyMapStatus();
         coinController = GetComponent<CoinController>();
          CheckButtons();
         UpdateBuyButton();
@@ -121,7 +126,6 @@ public void DifficultyButton()
 
     public void LoadGame()
     {
-        PlayerPrefs.SetInt("IsDailyLevel", 0);
 
         PlayerPrefs.SetInt("Car",activeCarIndex);
 
@@ -282,5 +286,25 @@ public void DifficultyButton()
         }
     }
 
-    
+   [SerializeField] TextMeshProUGUI dailyMapStatusText;
+   [SerializeField] Button dailyMapButton;
+    public void CheckDailyMapStatus()
+    {
+        if (PlayerPrefs.GetInt("IsDailyLevel", 0) == 2)
+        {
+             // Map of the day completed
+             Debug.Log("Daily Map Completed");
+             dailyMapStatusText.text = "Come Again Tomorrow";
+             dailyMapButton.gameObject.SetActive(false);
+        }
+        else
+        {
+             // Map of the day not played yet
+             Debug.Log("Daily Map Not Played");
+             dailyMapStatusText.text = "Play Map Of The Day";
+             dailyMapButton.interactable = true;   
+             dailyMapButton.gameObject.SetActive(true);
+ 
+         }
+    }
 }

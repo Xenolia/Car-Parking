@@ -107,7 +107,7 @@ public class LevelController : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("IsDailyLevel", 0) == 1)
         {
-        PlayerPrefs.SetInt("IsDailyLevel", 0);
+        PlayerPrefs.SetInt("IsDailyLevel", 2);
             return;
         }
     
