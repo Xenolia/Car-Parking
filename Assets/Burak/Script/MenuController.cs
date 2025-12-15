@@ -290,6 +290,16 @@ public void DifficultyButton()
    [SerializeField] Button dailyMapButton;
     public void CheckDailyMapStatus()
     {
+        string savedDate = PlayerPrefs.GetString("DailyLevelDate", "");
+        string today = System.DateTime.Now.ToString("yyyy-MM-dd");
+
+        if (savedDate != today)
+        {
+            // New day detected, reset status
+            PlayerPrefs.SetInt("IsDailyLevel", 0);
+            PlayerPrefs.SetString("DailyLevelDate", today);
+        }
+
         if (PlayerPrefs.GetInt("IsDailyLevel", 0) == 2)
         {
              // Map of the day completed
