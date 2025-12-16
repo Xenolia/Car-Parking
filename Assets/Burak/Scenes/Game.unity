@@ -4733,6 +4733,7 @@ MonoBehaviour:
   Leveltext: {fileID: 1181202524}
   partUnlockedText: {fileID: 36080760}
   driftSceneMap: {fileID: 0}
+  isDailyLevel: 0
   levelIndex: 0
 --- !u!114 &1287724331
 MonoBehaviour:
@@ -4800,6 +4801,7 @@ MonoBehaviour:
   Coin: 0
   coinText: {fileID: 388424561}
   GodMode: 0
+  levelController: {fileID: 1287724330}
 --- !u!82 &1287724334
 AudioSource:
   m_ObjectHideFlags: 0

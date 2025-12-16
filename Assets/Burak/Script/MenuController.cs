@@ -38,7 +38,11 @@ public class MenuController : MonoBehaviour
              PlayerPrefs.SetInt("IsDailyLevel", 0);
         }
         
-        CheckDailyMapStatus();
+        try {
+            CheckDailyMapStatus();
+        } catch (System.Exception e) {
+            Debug.LogError("Error checking daily map status: " + e.Message);
+        }
         coinController = GetComponent<CoinController>();
          CheckButtons();
         UpdateBuyButton();
@@ -296,6 +300,13 @@ public   void UnlockWithParts()
    [SerializeField] Button dailyMapButton;
     public void CheckDailyMapStatus()
     {
+        // Defensive check: If UI references are missing, exit to avoid crashing Awake()
+        if (dailyMapStatusText == null || dailyMapButton == null)
+        {
+            Debug.LogError("Daily Map UI references are NULL in MenuController! Check Inspector.");
+            return;
+        }
+
         string savedDate = PlayerPrefs.GetString("DailyLevelDate", "");
         string today = System.DateTime.Now.ToString("yyyy-MM-dd");
 
@@ -311,7 +322,7 @@ public   void UnlockWithParts()
              // Map of the day completed
              Debug.Log("Daily Map Completed");
              dailyMapStatusText.text = "Come Again Tomorrow";
-             dailyMapButton.gameObject.SetActive(false);
+             dailyMapButton.interactable=false;
         }
         else
         {
@@ -319,7 +330,6 @@ public   void UnlockWithParts()
              Debug.Log("Daily Map Not Played");
              dailyMapStatusText.text = "Play Map Of The Day";
              dailyMapButton.interactable = true;   
-             dailyMapButton.gameObject.SetActive(true);
  
          }
     }

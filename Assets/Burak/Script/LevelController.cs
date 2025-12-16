@@ -14,6 +14,7 @@ public class LevelController : MonoBehaviour
     GameObject activeLevel;
     public TextMeshProUGUI Leveltext,partUnlockedText;
     [SerializeField] GameObject driftSceneMap;
+   public bool isDailyLevel = false;
     private void Awake()
     {
   
@@ -41,7 +42,7 @@ public class LevelController : MonoBehaviour
             }
             Level = dailyRandom.Next(minLevel, levels.Length + 1);
             Debug.Log($"Daily Level Selected: {Level}");
-            
+            isDailyLevel = true;
             Leveltext.text = "DAILY MAP";
             // Override the standard level text set in ActivateLevel, or handle it there
             playSpecificLevel = true; // reusing this flag or just letting ActivateLevel handle it might be safer, 

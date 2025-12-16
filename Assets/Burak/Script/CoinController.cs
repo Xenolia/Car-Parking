@@ -11,6 +11,7 @@ public class CoinController : MonoBehaviour
     public Text coinText;
     GameController gameController;
    [SerializeField] int GodMode = 0;
+   [SerializeField] LevelController levelController;
     private void Awake()
     {
         gameController = GetComponent<GameController>();
@@ -23,9 +24,9 @@ public class CoinController : MonoBehaviour
         
             
 
-        if(PlayerPrefs.HasKey("Coin"))
+        if(PlayerPrefs.HasKey("CGBCoin"))
         {
-            Coin = PlayerPrefs.GetInt("Coin",0);
+            Coin = PlayerPrefs.GetInt("CGBCoin",0);
         }
         else
         {
@@ -46,16 +47,30 @@ public class CoinController : MonoBehaviour
     }
     public void MakeMoney()
     {
-        Coin = Coin + 100;
-        PlayerPrefs.SetInt("Coin",Coin);
+        if(levelController!=null)
+        {
+            if(levelController.isDailyLevel)
+            {
+ Coin = Coin + 200;
+        PlayerPrefs.SetInt("CGBCoin",Coin);
         UpdateCoin();
+            }
+ 
+        }
+        else
+        {
+  Coin = Coin + 100;
+        PlayerPrefs.SetInt("CGBCoin",Coin);
+        UpdateCoin();
+        }
+      
 
     }
 
     public void SpendMoney(int amount)
     {
         Coin = Coin - amount;
-        PlayerPrefs.SetInt("Coin", Coin);
+        PlayerPrefs.SetInt("CGBCoin", Coin);
         UpdateCoin();
 
     }
