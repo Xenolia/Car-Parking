@@ -16,6 +16,12 @@ public class AnimControl : MonoBehaviour
     [Tooltip("Maximum time between Golf triggers")]
     [SerializeField] private float maxGolfTime = 18f;
 
+    [Header("Teleport Targets")]
+    [Tooltip("Target position to snap to when Run ends")]
+    [SerializeField] private Transform runTarget;
+    [Tooltip("Target position to snap to when RunBack ends")]
+    [SerializeField] private Transform startTarget;
+
     private float golfTimer;
 
     private void Start()
@@ -60,6 +66,7 @@ public class AnimControl : MonoBehaviour
             if (isRunning)
             {
                 animator.SetTrigger("Run");
+                ResetGolfTimer(); // User request: Reset timer if run triggers
             }
             else
             {
@@ -99,5 +106,30 @@ public class AnimControl : MonoBehaviour
         entryExit.eventID = EventTriggerType.PointerExit;
         entryExit.callback.AddListener((data) => { SetRun(false); });
         trigger.triggers.Add(entryExit);
+    }
+    
+
+    // Call this via Animation Event at end of Run clip
+    public void TeleportToRunTarget()
+    {
+        if (runTarget != null)
+        {
+            transform.position = runTarget.position;
+            transform.rotation = runTarget.rotation;
+                    Debug.Log("ss");
+
+        }
+    }
+
+    // Call this via Animation Event at end of RunBack clip
+    public void TeleportToStartTarget()
+    {
+        if (startTarget != null)
+        {
+            transform.position = startTarget.position;
+            transform.rotation = startTarget.rotation;
+        }
+                Debug.Log("dd");
+
     }
 }
