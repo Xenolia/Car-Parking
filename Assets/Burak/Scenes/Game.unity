@@ -1663,6 +1663,10 @@ PrefabInstance:
       value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 5234535342556549943, guid: 9af5ea1e94d39fb4f83294f6c2f98f3b, type: 3}
+      propertyPath: suspensionSpring
+      value: 40000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5234535342556549943, guid: 9af5ea1e94d39fb4f83294f6c2f98f3b, type: 3}
       propertyPath: tireScreechSound
       value: 
       objectReference: {fileID: 66484012}
@@ -2928,6 +2932,10 @@ PrefabInstance:
       value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 7129188875146297852, guid: 26ccbd7d4b6621445b3ee4407d61b470, type: 3}
+      propertyPath: suspensionSpring
+      value: 40000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7129188875146297852, guid: 26ccbd7d4b6621445b3ee4407d61b470, type: 3}
       propertyPath: tireScreechSound
       value: 
       objectReference: {fileID: 66484012}
@@ -3142,6 +3150,14 @@ PrefabInstance:
     - target: {fileID: 1541212463346962363, guid: 4bd1febf3599488418f1a614370ac1e2, type: 3}
       propertyPath: maxSteeringAngle
       value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 1541212463346962363, guid: 4bd1febf3599488418f1a614370ac1e2, type: 3}
+      propertyPath: suspensionDamper
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1541212463346962363, guid: 4bd1febf3599488418f1a614370ac1e2, type: 3}
+      propertyPath: suspensionSpring
+      value: 40000
       objectReference: {fileID: 0}
     - target: {fileID: 1541212463346962363, guid: 4bd1febf3599488418f1a614370ac1e2, type: 3}
       propertyPath: tireScreechSound
@@ -4333,6 +4349,10 @@ PrefabInstance:
       value: 42
       objectReference: {fileID: 0}
     - target: {fileID: 1964476039759930061, guid: 78ecff6899efd6244a6087b87be7d085, type: 3}
+      propertyPath: suspensionSpring
+      value: 40000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1964476039759930061, guid: 78ecff6899efd6244a6087b87be7d085, type: 3}
       propertyPath: tireScreechSound
       value: 
       objectReference: {fileID: 66484012}
@@ -4573,6 +4593,10 @@ PrefabInstance:
     - target: {fileID: 4561652060267018726, guid: 9dfc7f02567e54a4a88252620b9897f1, type: 3}
       propertyPath: maxSteeringAngle
       value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561652060267018726, guid: 9dfc7f02567e54a4a88252620b9897f1, type: 3}
+      propertyPath: suspensionSpring
+      value: 40000
       objectReference: {fileID: 0}
     - target: {fileID: 4561652060267018726, guid: 9dfc7f02567e54a4a88252620b9897f1, type: 3}
       propertyPath: tireScreechSound

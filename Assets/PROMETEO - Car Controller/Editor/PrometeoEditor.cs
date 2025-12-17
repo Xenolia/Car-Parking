@@ -25,6 +25,11 @@ public class PrometeoEditor : Editor{
   private SerializedProperty decelerationMultiplier;
   private SerializedProperty handbrakeDriftMultiplier;
   private SerializedProperty bodyMassCenter;
+
+  private SerializedProperty antiRollVal;
+  private SerializedProperty suspensionSpring;
+  private SerializedProperty suspensionDamper;
+  private SerializedProperty suspensionTargetPosition;
   //
   //
   //WHEELS VARIABLES
@@ -89,6 +94,11 @@ public class PrometeoEditor : Editor{
     handbrakeDriftMultiplier = SO.FindProperty("handbrakeDriftMultiplier");
     bodyMassCenter = SO.FindProperty("bodyMassCenter");
 
+    antiRollVal = SO.FindProperty("antiRollVal");
+    suspensionSpring = SO.FindProperty("suspensionSpring");
+    suspensionDamper = SO.FindProperty("suspensionDamper");
+    suspensionTargetPosition = SO.FindProperty("suspensionTargetPosition");
+
     frontLeftMesh = SO.FindProperty("frontLeftMesh");
     frontLeftCollider = SO.FindProperty("frontLeftCollider");
     frontRightMesh = SO.FindProperty("frontRightMesh");
@@ -141,7 +151,16 @@ public class PrometeoEditor : Editor{
     brakeForce.intValue = EditorGUILayout.IntSlider("Brake Force:", brakeForce.intValue, 100, 600);
     decelerationMultiplier.intValue = EditorGUILayout.IntSlider("Deceleration Multiplier:", decelerationMultiplier.intValue, 1, 10);
     handbrakeDriftMultiplier.intValue = EditorGUILayout.IntSlider("Drift Multiplier:", handbrakeDriftMultiplier.intValue, 1, 10);
+    handbrakeDriftMultiplier.intValue = EditorGUILayout.IntSlider("Drift Multiplier:", handbrakeDriftMultiplier.intValue, 1, 10);
     EditorGUILayout.PropertyField(bodyMassCenter, new GUIContent("Mass Center of Car: "));
+
+    GUILayout.Space(25);
+    GUILayout.Label("SUSPENSION", EditorStyles.boldLabel);
+    GUILayout.Space(10);
+    antiRollVal.floatValue = EditorGUILayout.Slider("Anti-Roll Force:", antiRollVal.floatValue, 0, 5000);
+    suspensionSpring.floatValue = EditorGUILayout.Slider("Suspension Spring:", suspensionSpring.floatValue, 0, 50000);
+    suspensionDamper.floatValue = EditorGUILayout.Slider("Suspension Damper:", suspensionDamper.floatValue, 0, 5000);
+    suspensionTargetPosition.floatValue = EditorGUILayout.Slider("Suspension Target:", suspensionTargetPosition.floatValue, 0, 1);
 
     //
     //

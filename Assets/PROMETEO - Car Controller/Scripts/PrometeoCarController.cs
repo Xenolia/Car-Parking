@@ -52,15 +52,15 @@ public class PrometeoCarController : MonoBehaviour
                                     // Usually the y value goes from 0 to 1.5.
       [Space(10)]
       [Range(0, 5000)]
-      public float antiRollVal = 5000f; // Force applied to stabilize the car.
+      public float antiRollVal = 3500f; // Force applied to stabilize the car.
 
       [Space(20)]
       //[Header("SUSPENSION")]
       [Space(10)]
       [Range(0, 50000)]
-      public float suspensionSpring = 35000f;
+      public float suspensionSpring = 28000f;
       [Range(0, 5000)]
-      public float suspensionDamper = 4500f;
+      public float suspensionDamper = 3000f;
       [Range(0, 1)]
       public float suspensionTargetPosition = 0.5f;
 
