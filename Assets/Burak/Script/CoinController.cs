@@ -24,9 +24,9 @@ public class CoinController : MonoBehaviour
         
             
 
-        if(PlayerPrefs.HasKey("CGBCoin"))
+        if(PlayerPrefs.HasKey("Coin"))
         {
-            Coin = PlayerPrefs.GetInt("CGBCoin",0);
+            Coin = PlayerPrefs.GetInt("Coin",0);
         }
         else
         {
@@ -47,30 +47,22 @@ public class CoinController : MonoBehaviour
     }
     public void MakeMoney()
     {
-        if(levelController!=null)
-        {
-            if(levelController.isDailyLevel)
-            {
- Coin = Coin + 200;
-        PlayerPrefs.SetInt("CGBCoin",Coin);
-        UpdateCoin();
-            }
- 
-        }
-        else
-        {
-  Coin = Coin + 100;
-        PlayerPrefs.SetInt("CGBCoin",Coin);
-        UpdateCoin();
-        }
-      
+        int earnings = 100; // Default (Normal Level)
 
+        if (levelController != null && levelController.isDailyLevel)
+        {
+            earnings = 200; // Daily Level Bonus
+        }
+
+        Coin += earnings;
+        PlayerPrefs.SetInt("Coin", Coin);
+        UpdateCoin();
     }
 
     public void SpendMoney(int amount)
     {
         Coin = Coin - amount;
-        PlayerPrefs.SetInt("CGBCoin", Coin);
+        PlayerPrefs.SetInt("Coin", Coin);
         UpdateCoin();
 
     }

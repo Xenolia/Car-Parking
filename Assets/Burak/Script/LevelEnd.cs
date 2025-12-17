@@ -29,6 +29,7 @@ public class LevelEnd : MonoBehaviour
 
         rotationWarningText = GameObject.FindGameObjectWithTag("WarningText");
         rotationWarningText.SetActive(false);
+        doNotCheckRotation=true;
     }
     private void OnEnable()
     {
