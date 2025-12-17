@@ -29,6 +29,7 @@ public class AnimControl : MonoBehaviour
     private Transform currentTarget;
     private Coroutine moveCoroutine;
     private float golfTimer;
+    private bool isInRunDelay;
 
     private void Start()
     {
@@ -97,10 +98,22 @@ public class AnimControl : MonoBehaviour
             {
                 animator.SetTrigger("Run");
                 ResetGolfTimer();
+                isInRunDelay = true;
                 moveCoroutine = StartCoroutine(StartMoveDelay(runTarget));
             }
             else
             {
+                // If we cancel before the Run actually started moving...
+                if (isInRunDelay)
+                {
+                    if (moveCoroutine != null) StopCoroutine(moveCoroutine);
+                    isInRunDelay = false;
+                    
+                    animator.ResetTrigger("Run");
+                    animator.SetBool("Idle", true);
+                    return; // Skip RunBack
+                }
+
                 animator.SetTrigger("RunBack");
                 moveCoroutine = StartCoroutine(StartMoveDelay(startTarget));
             } 
@@ -110,6 +123,7 @@ public class AnimControl : MonoBehaviour
     private System.Collections.IEnumerator StartMoveDelay(Transform target)
     {
         yield return new WaitForSeconds(delayTime);
+        isInRunDelay = false; // Delay finished
         currentTarget = target;
     }
 
