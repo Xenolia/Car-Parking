@@ -2705,7 +2705,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 94f496f59c426f84bb16d9c0d13dab5a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.9325
+      value: 0.61
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 94f496f59c426f84bb16d9c0d13dab5a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2746,6 +2746,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 94f496f59c426f84bb16d9c0d13dab5a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2020692414}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 94f496f59c426f84bb16d9c0d13dab5a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2020692415}
   m_SourcePrefab: {fileID: 100100000, guid: 94f496f59c426f84bb16d9c0d13dab5a, type: 3}
 --- !u!1 &649300549
 GameObject:
@@ -7663,6 +7666,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2020692415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2020692412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e743f1aa2794eae45bbaea1f9792b5cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimControl
+  animator: {fileID: 2020692414}
+  raceButton: {fileID: 2115073327}
+  minGolfTime: 5
+  maxGolfTime: 10
 --- !u!4 &2041653449 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7344874181333496817, guid: ab4ea67cd9337c341af0bd7182c60f92, type: 3}
