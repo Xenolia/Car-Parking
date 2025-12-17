@@ -40,7 +40,7 @@ public class LevelController : MonoBehaviour
                 minLevel = 10; 
                 Debug.LogWarning($"Total levels ({levels.Length}) is less than 17. Defaulting daily map start to 1.");
             }
-            Level = dailyRandom.Next(minLevel, levels.Length + 1);
+            Level = dailyRandom.Next(minLevel, 30);
             Debug.Log($"Daily Level Selected: {Level}");
             isDailyLevel = true;
             Leveltext.text = "DAILY MAP";
