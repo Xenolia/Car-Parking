@@ -150,4 +150,19 @@ partUnlockedText.text = "Part 3 Unlocked!!";
         SceneManager.LoadScene("Menu"); // Yüklenecek sahnenin adı
     }
 
+#if UNITY_EDITOR
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Restart();
+        }
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            NextLevelPrefSet();
+            NextLevel();
+        }
+    }
+#endif
+
 }
