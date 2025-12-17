@@ -39,6 +39,7 @@ public class GameController : MonoBehaviour
     float targetTime;
     float targetTimeHam;
     [SerializeField] bool isDrift;
+    [SerializeField] GameObject cameraTutor;
   // [SerializeField] AdManager adManager;
 
     [SerializeField] GameObject gosterge;
@@ -267,7 +268,15 @@ public class GameController : MonoBehaviour
         RestartWithCheckPoint();
         GameStart();
     }
-
+  public void ShowCameraTutor()
+  {
+    cameraTutor.SetActive(true);
+    Invoke("HideCameraTutor",5f);
+  }
+  public void HideCameraTutor()
+  {
+    cameraTutor.SetActive(false);
+  }
     public void WinCountDown(int countDown)
     {
         countDownText.gameObject.SetActive(true);

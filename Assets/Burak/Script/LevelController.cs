@@ -108,8 +108,7 @@ public class LevelController : MonoBehaviour
     }
     public void NextLevelPrefSet()
     {
-        if(PartUnlockManager.instance!=null)
-    {
+      
  if(levelScript.partUnlocked == 1) 
        {
     PartUnlockManager.instance.UnlockPart(0); // Unlocks Part 1 (Index 0)
@@ -128,7 +127,6 @@ if(levelScript.partUnlocked == 3)
 partUnlockedText.gameObject.SetActive(true);
 partUnlockedText.text = "Part 3 Unlocked!!";
 }
-    }
       
     
         if (PlayerPrefs.GetInt("IsDailyLevel", 0) == 1)
