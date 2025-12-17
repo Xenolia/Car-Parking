@@ -21,7 +21,13 @@ public class AnimControl : MonoBehaviour
     [SerializeField] private Transform runTarget;
     [Tooltip("Target position to snap to when RunBack ends")]
     [SerializeField] private Transform startTarget;
+    [Tooltip("Movement speed")]
+    [SerializeField] private float moveSpeed = 5f;
+    [Tooltip("Delay before running starts")]
+    [SerializeField] private float delayTime = 0.5f;
 
+    private Transform currentTarget;
+    private Coroutine moveCoroutine;
     private float golfTimer;
 
     private void Start()
@@ -36,6 +42,25 @@ public class AnimControl : MonoBehaviour
     private void Update()
     {
         HandleGolfTimer();
+        HandleMovement();
+    }
+
+    private void HandleMovement()
+    {
+        if (currentTarget != null)
+        {
+            // Move towards the target
+            transform.position = Vector3.MoveTowards(transform.position, currentTarget.position, moveSpeed * Time.deltaTime);
+            
+            // Check if reached destination (very close)
+            if (Vector3.Distance(transform.position, currentTarget.position) < 0.01f)
+            {
+                 // We have arrived
+                 transform.position = currentTarget.position; // Snap exactly
+                 currentTarget = null; // Stop moving
+                 if (animator != null) animator.SetBool("Idle", true);
+            }
+        }
     }
 
     private void HandleGolfTimer()
@@ -63,17 +88,29 @@ public class AnimControl : MonoBehaviour
     {
         if (animator != null)
         {
+            if (moveCoroutine != null) StopCoroutine(moveCoroutine);
+
+            // Immediately mark as NOT Idle so we don't transition back early
+            animator.SetBool("Idle", false);
+
             if (isRunning)
             {
                 animator.SetTrigger("Run");
-                ResetGolfTimer(); // User request: Reset timer if run triggers
+                ResetGolfTimer();
+                moveCoroutine = StartCoroutine(StartMoveDelay(runTarget));
             }
             else
             {
-                // Trigger RunBack when mouse leaves
-                animator.SetTrigger("RunBack"); 
-            }
+                animator.SetTrigger("RunBack");
+                moveCoroutine = StartCoroutine(StartMoveDelay(startTarget));
+            } 
         }
+    }
+
+    private System.Collections.IEnumerator StartMoveDelay(Transform target)
+    {
+        yield return new WaitForSeconds(delayTime);
+        currentTarget = target;
     }
 
     /// <summary>
@@ -106,30 +143,5 @@ public class AnimControl : MonoBehaviour
         entryExit.eventID = EventTriggerType.PointerExit;
         entryExit.callback.AddListener((data) => { SetRun(false); });
         trigger.triggers.Add(entryExit);
-    }
-    
-
-    // Call this via Animation Event at end of Run clip
-    public void TeleportToRunTarget()
-    {
-        if (runTarget != null)
-        {
-            transform.position = runTarget.position;
-            transform.rotation = runTarget.rotation;
-                    Debug.Log("ss");
-
-        }
-    }
-
-    // Call this via Animation Event at end of RunBack clip
-    public void TeleportToStartTarget()
-    {
-        if (startTarget != null)
-        {
-            transform.position = startTarget.position;
-            transform.rotation = startTarget.rotation;
-        }
-                Debug.Log("dd");
-
     }
 }
