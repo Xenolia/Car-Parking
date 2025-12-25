@@ -80,12 +80,12 @@ public class MenuController : MonoBehaviour
             if (PlayerPrefs.GetInt("ChaseButtonShown", 0) == 0)
             {
                 chaseModeButton.transform.localScale = Vector3.zero;
-                chaseModeButton.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
+                chaseModeButton.transform.DOScale(Vector3.one * 1.5f, 3f).SetEase(Ease.OutElastic);
                 PlayerPrefs.SetInt("ChaseButtonShown", 1);
             }
             else
             {
-                chaseModeButton.transform.localScale = Vector3.one;
+                chaseModeButton.transform.localScale = Vector3.one * 1.5f;
             }
         }
         else
