@@ -22,6 +22,7 @@ public class GameController : MonoBehaviour
     [SerializeField] GameObject reviveButton;
     [SerializeField] GameObject winPanel;
     [SerializeField] GameObject oneStarPanel, twoStarPanel, threeStarPanel;
+    [SerializeField] GameObject nextLevelButton;
 
     [SerializeField] GameObject losePanel;
     [SerializeField] Text countDownText;
@@ -301,6 +302,18 @@ public class GameController : MonoBehaviour
         GameEnd();
         winPanel.SetActive(true);
         levelController.NextLevelPrefSet();
+
+        if (levelController.Level >= 7)
+        {
+            if (nextLevelButton != null)
+                nextLevelButton.SetActive(false);
+        }
+        else
+        {
+            if (nextLevelButton != null)
+                nextLevelButton.SetActive(true);
+        }
+
         if (targetTime>targetTimeHam*10/100)
         {
             threeStarPanel.SetActive(true);

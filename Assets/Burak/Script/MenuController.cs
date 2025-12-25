@@ -23,6 +23,8 @@ public class MenuController : MonoBehaviour
   [SerializeField]  bool isSoftPublish = false;
 
     [SerializeField] GameObject DifficultyButtonObj;
+    [SerializeField] GameObject chaseModeButton;
+    [SerializeField] string chaseSceneName = "Chase";
 
  
 
@@ -57,7 +59,45 @@ public class MenuController : MonoBehaviour
             PlayerPrefs.SetInt("Difficulty",1);
         }
         SetDifficultyButton();
+        CheckChaseButton();
      }
+     
+     void CheckChaseButton()
+    {
+        if (chaseModeButton == null) return;
+
+        // Ensure we are checking the progressed level, not just the selected one
+        int unlockedLevel = PlayerPrefs.GetInt("CPLevel", 1);
+        
+        // Check if player has passed level 7 (meaning they are at least on level 8 or completed 7)
+        // Adjust logic if "CPLevel" represents the *current* level to play. 
+        // If CPLevel is 8, it means 7 is finished.
+        if (unlockedLevel > 7)
+        {
+            chaseModeButton.SetActive(true);
+
+            // Animation Logic for first time
+            if (PlayerPrefs.GetInt("ChaseButtonShown", 0) == 0)
+            {
+                chaseModeButton.transform.localScale = Vector3.zero;
+                chaseModeButton.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
+                PlayerPrefs.SetInt("ChaseButtonShown", 1);
+            }
+            else
+            {
+                chaseModeButton.transform.localScale = Vector3.one;
+            }
+        }
+        else
+        {
+            chaseModeButton.SetActive(false);
+        }
+    }
+
+    public void LoadChaseScene()
+    {
+        SceneManager.LoadScene(chaseSceneName);
+    }
      public void MapOfTheDay()
      {
  PlayerPrefs.SetInt("IsDailyLevel", 1);
