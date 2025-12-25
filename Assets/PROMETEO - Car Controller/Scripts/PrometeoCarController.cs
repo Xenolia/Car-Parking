@@ -22,7 +22,7 @@ public class PrometeoCarController : MonoBehaviour
       [Space(20)]
       //[Header("CAR SETUP")]
       [Space(10)]
-      [Range(0, 190)]
+      [Range(0, 500)]
       public int maxSpeed = 90; //The maximum speed that the car can reach in km/h.
       [Range(10, 120)]
       public int maxReverseSpeed = 45; //The maximum speed that the car can reach while going on reverse in km/h.
@@ -926,9 +926,10 @@ public class PrometeoCarController : MonoBehaviour
     }
 
     // This function is used to recover the traction of the car when the user has stopped using the car's handbrake.
+    // This function is used to recover the traction of the car when the user has stopped using the car's handbrake.
     public void RecoverTraction(){
       isTractionLocked = false;
-      driftingAxis = driftingAxis - (Time.deltaTime / 1.5f);
+      driftingAxis = driftingAxis - (Time.deltaTime * 5f);
       if(driftingAxis < 0f){
         driftingAxis = 0f;
       }
