@@ -22,14 +22,11 @@ public class AnimControl : MonoBehaviour
     [Tooltip("Target position to snap to when RunBack ends")]
     [SerializeField] private Transform startTarget;
     [Tooltip("Movement speed")]
-    [SerializeField] private float moveSpeed = 5f;
-    [Tooltip("Delay before running starts")]
-    [SerializeField] private float delayTime = 0.5f;
+    [SerializeField] private float moveSpeed = 5f; 
 
-    private Transform currentTarget;
-    private Coroutine moveCoroutine;
+    private Transform currentTarget; 
     private float golfTimer;
-    private bool isInRunDelay;
+    private bool isWaitingForRunStart;
 
     private void Start()
     {
@@ -89,42 +86,62 @@ public class AnimControl : MonoBehaviour
     {
         if (animator != null)
         {
-            if (moveCoroutine != null) StopCoroutine(moveCoroutine);
+
 
             // Immediately mark as NOT Idle so we don't transition back early
             animator.SetBool("Idle", false);
 
             if (isRunning)
             {
+                Debug.Log("SetRun(true) called");
                 animator.SetTrigger("Run");
                 ResetGolfTimer();
-                isInRunDelay = true;
-                moveCoroutine = StartCoroutine(StartMoveDelay(runTarget));
+                isWaitingForRunStart = true;
+                // Movement will be started by Animation Event "StartRunMovement"
             }
             else
             {
-                // If we cancel before the Run actually started moving...
-                if (isInRunDelay)
+                Debug.Log("SetRun(false) called");
+                // Stop waiting for Run Start (so we don't move forward if the event fires later)
+                if (isWaitingForRunStart)
                 {
-                    if (moveCoroutine != null) StopCoroutine(moveCoroutine);
-                    isInRunDelay = false;
-                    
-                    animator.ResetTrigger("Run");
-                    animator.SetBool("Idle", true);
-                    return; // Skip RunBack
+                    Debug.Log("Run Cancelled (Movement prevented), but playing RunBack.");
+                    isWaitingForRunStart = false;
                 }
 
                 animator.SetTrigger("RunBack");
-                moveCoroutine = StartCoroutine(StartMoveDelay(startTarget));
+                // Movement will be started by Animation Event "StartRunBackMovement"
             } 
         }
     }
 
-    private System.Collections.IEnumerator StartMoveDelay(Transform target)
+    /// <summary>
+    /// Call this via Animation Event at the frame where the character starts running.
+    /// </summary>
+    public void StartRunMovement()
     {
-        yield return new WaitForSeconds(delayTime);
-        isInRunDelay = false; // Delay finished
-        currentTarget = target;
+        Debug.Log("Event: StartRunMovement fired");
+
+        // FIX: If we cancelled the run early (isWaitingForRunStart is false), ignore this event!
+        if (!isWaitingForRunStart)
+        {
+             Debug.Log("Event Ignored: Run was cancelled.");
+             return;
+        }
+
+        isWaitingForRunStart = false; 
+        currentTarget = runTarget;
+        if (animator != null) animator.SetBool("Idle", false);
+    }
+    
+    /// <summary>
+    /// Call this via Animation Event at the frame where the character starts running back.
+    /// </summary>
+    public void StartRunBackMovement()
+    {
+        Debug.Log("Event: StartRunBackMovement fired");
+        currentTarget = startTarget;
+        if (animator != null) animator.SetBool("Idle", false);
     }
 
     /// <summary>
