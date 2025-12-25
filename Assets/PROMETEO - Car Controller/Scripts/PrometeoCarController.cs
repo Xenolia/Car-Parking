@@ -179,17 +179,28 @@ public class PrometeoCarController : MonoBehaviour
 
 
     GameController gameController;
+    ChaseGameController chaseGameController;
+
     private void Awake()
     {
         gameController = FindObjectOfType<GameController>();
+        chaseGameController = FindObjectOfType<ChaseGameController>();
     }
     private void OnEnable()
     {
-         gameController.OnGameEnd += GameEnd;
+         if(gameController!=null)
+            gameController.OnGameEnd += GameEnd;
+         
+         if(chaseGameController!=null)
+            chaseGameController.OnGameEnd += GameEnd;
     }
     private void OnDisable()
     {
-         gameController.OnGameEnd -= GameEnd;
+         if(gameController!=null)
+            gameController.OnGameEnd -= GameEnd;
+
+         if(chaseGameController!=null)
+            chaseGameController.OnGameEnd -= GameEnd;
 
     }
     
