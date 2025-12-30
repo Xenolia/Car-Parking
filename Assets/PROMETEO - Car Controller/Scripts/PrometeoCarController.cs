@@ -555,8 +555,11 @@ public class PrometeoCarController : MonoBehaviour
       if(steeringAxis < -1f){
         steeringAxis = -1f;
       }
-      var currentMaxSteeringAngle = Mathf.Lerp(maxSteeringAngle, highSpeedSteerAngle, Mathf.Abs(carSpeed) / highSpeedSteerAt);
-      var steeringAngle = steeringAxis * currentMaxSteeringAngle;
+      
+      // DRIFT CONTROL IMPROVEMENT: If drifting, allow full steering angle for better counter-steering
+      float effectiveMaxAngle = isDrifting ? maxSteeringAngle : Mathf.Lerp(maxSteeringAngle, highSpeedSteerAngle, Mathf.Abs(carSpeed) / highSpeedSteerAt);
+      
+      var steeringAngle = steeringAxis * effectiveMaxAngle;
 
       frontLeftCollider.steerAngle = Mathf.Lerp(frontLeftCollider.steerAngle, steeringAngle, steeringSpeed);
       frontRightCollider.steerAngle = Mathf.Lerp(frontRightCollider.steerAngle, steeringAngle, steeringSpeed);
@@ -568,8 +571,11 @@ public class PrometeoCarController : MonoBehaviour
       if(steeringAxis > 1f){
         steeringAxis = 1f;
       }
-      var currentMaxSteeringAngle = Mathf.Lerp(maxSteeringAngle, highSpeedSteerAngle, Mathf.Abs(carSpeed) / highSpeedSteerAt);
-      var steeringAngle = steeringAxis * currentMaxSteeringAngle;
+      
+      // DRIFT CONTROL IMPROVEMENT: If drifting, allow full steering angle for better counter-steering
+      float effectiveMaxAngle = isDrifting ? maxSteeringAngle : Mathf.Lerp(maxSteeringAngle, highSpeedSteerAngle, Mathf.Abs(carSpeed) / highSpeedSteerAt);
+      
+      var steeringAngle = steeringAxis * effectiveMaxAngle;
 
       frontLeftCollider.steerAngle = Mathf.Lerp(frontLeftCollider.steerAngle, steeringAngle, steeringSpeed);
       frontRightCollider.steerAngle = Mathf.Lerp(frontRightCollider.steerAngle, steeringAngle, steeringSpeed);
@@ -586,8 +592,11 @@ public class PrometeoCarController : MonoBehaviour
       if(Mathf.Abs(frontLeftCollider.steerAngle) < 1f){
         steeringAxis = 0f;
       }
-      var currentMaxSteeringAngle = Mathf.Lerp(maxSteeringAngle, highSpeedSteerAngle, Mathf.Abs(carSpeed) / highSpeedSteerAt);
-      var steeringAngle = steeringAxis * currentMaxSteeringAngle;
+      
+      // DRIFT CONTROL IMPROVEMENT: If drifting, use full angle logic
+      float effectiveMaxAngle = isDrifting ? maxSteeringAngle : Mathf.Lerp(maxSteeringAngle, highSpeedSteerAngle, Mathf.Abs(carSpeed) / highSpeedSteerAt);
+      
+      var steeringAngle = steeringAxis * effectiveMaxAngle;
 
       frontLeftCollider.steerAngle = Mathf.Lerp(frontLeftCollider.steerAngle, steeringAngle, steeringSpeed);
       frontRightCollider.steerAngle = Mathf.Lerp(frontRightCollider.steerAngle, steeringAngle, steeringSpeed);
@@ -638,6 +647,28 @@ public class PrometeoCarController : MonoBehaviour
       }else{
         isDrifting = false;
         DriftCarPS();
+      }
+
+      // ACTIVE DRIFT REDUCTION: If user is pressing gas, help recover traction faster
+      if (driftingAxis > 0f && !isTractionLocked) 
+      {
+           driftingAxis -= (Time.deltaTime * 3f); 
+           if(driftingAxis < 0f) driftingAxis = 0f;
+            
+            // Apply the reduced drift immediately to friction
+            if(FLwheelFriction.extremumSlip > FLWextremumSlip){
+                FLwheelFriction.extremumSlip = FLWextremumSlip * handbrakeDriftMultiplier * driftingAxis;
+                frontLeftCollider.sidewaysFriction = FLwheelFriction;
+                
+                FRwheelFriction.extremumSlip = FRWextremumSlip * handbrakeDriftMultiplier * driftingAxis;
+                frontRightCollider.sidewaysFriction = FRwheelFriction;
+                
+                RLwheelFriction.extremumSlip = RLWextremumSlip * handbrakeDriftMultiplier * driftingAxis;
+                rearLeftCollider.sidewaysFriction = RLwheelFriction;
+                
+                RRwheelFriction.extremumSlip = RRWextremumSlip * handbrakeDriftMultiplier * driftingAxis;
+                rearRightCollider.sidewaysFriction = RRwheelFriction;
+            }
       }
       // The following part sets the throttle power to 1 smoothly.
       throttleAxis = throttleAxis + (Time.deltaTime * 3f);
